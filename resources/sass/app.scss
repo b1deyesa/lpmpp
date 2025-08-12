@@ -1,0 +1,192 @@
+
+$color-1: #FFFE14;
+$color-2: #FEBF00;
+$color-3: #ED1B24;
+$color-4: #a9e4ff;
+$color-5: #083e57;
+$color-6: #222222;
+$color-7: #FEFEFE;
+
+:root {
+    font-size: .9em;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.navbar {
+    position: sticky;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+    background: $color-5;
+    color: $color-7;
+    .navbar__container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 1000px;
+        padding: 1em;
+        .navbar__banner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1em;
+            .banner__logo {
+                display: flex;
+                align-items: center;
+                gap: .3em;
+                img {
+                    height: 3em;
+                }
+            }
+            .banner__text {
+                display: flex;
+                flex-direction: column;
+                gap: .2em;
+                header {
+                    font-size: 1.7em;
+                    font-weight: 700;
+                    line-height: 1;
+                }
+            }
+        }
+        .navbar__menu {
+            display: flex;
+            gap: .5em;
+            .menu__item {
+                padding: .3em .8em;
+            }
+            .menu__dropdown {
+                display: none;
+            }
+        }
+    }
+}
+
+.second-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $color-2;
+    color: $color-6;
+    .second-navbar__container {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        width: 100%;
+        max-width: 1000px;
+        padding: .3em 1em;
+        .second-navbar__menu {
+            display: flex;
+            gap: .5em;
+            font-size: .9em;
+            .menu__item {
+                display: flex;
+                align-items: center;
+                gap: .5em;
+                padding: .3em .5em;
+                a {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: bold;
+                    line-height: 1;
+                }
+                i {
+                    font-size: 1.3em;
+                    line-height: 0;
+                }
+            }
+            .menu__dropdown {
+                display: none;
+            }
+        }
+    }
+}
+
+.jumbotron {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .jumbotron__container {
+        display: flex;
+        gap: 4em;
+        height: 500px;
+        width: 100%;
+        max-width: 1100px;
+        padding: 3em 1em;
+        .jumbotron__left {
+            position: relative;
+            display: flex;
+            height: 100%;
+            width: 60%;
+            overflow: hidden;
+            &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+            }
+            img {
+                position: absolute;
+                object-fit: cover;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                
+            }
+        }
+        .jumbotron__right {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2em;
+            padding: 2em;
+            background: #DDD;
+            .post {
+                display: flex;
+                flex-direction: column;
+                gap: 1em;
+                .post__item {
+                    display: flex;
+                    gap: 1em;
+                    .post__thumbnail {
+                        object-fit: cover;
+                        aspect-ratio: 4/3;
+                        height: 5em;
+                    }
+                    .item__right {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .5em;
+                        .post__title {
+                            font-weight: 600;
+                            line-height: 1.2;
+                        }
+                        .item__info {
+                            display: flex;
+                            gap: .8em;
+                            small {
+                                display: flex;
+                                align-items: center;
+                                gap: .3em;
+                                color: #888;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
