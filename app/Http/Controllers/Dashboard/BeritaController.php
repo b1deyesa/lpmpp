@@ -37,15 +37,17 @@ class BeritaController extends Controller
             return redirect()->back()->withErrors(['title' => 'Title sudah ada'])->withInput();
         }
         
-        $file = $request->file('cover');
-        $filename = time() . '_' . $file->getClientOriginalName();
-        Storage::disk('public')->putFileAs('berita', $file, $filename);        
+        if ($request->file) {
+            $file = $request->file('cover');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            Storage::disk('public')->putFileAs('berita', $file, $filename);        
+        }
         
         Berita::create([
             'title' => $request->title,
             'slug' => Str::slug($request->title),
             'body' => $request->body,
-            'cover' => $filename
+            'cover' => $filename ?? null
         ]);
         
         return redirect()->route('dashboard.berita.index')->with('success', 'Berhasil Menambahkan Berita');
