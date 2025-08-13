@@ -12,7 +12,7 @@ class BeritaController extends Controller
      */
     public function index()
     {   
-        return view('dashboard.berita.index');
+        // 
     }
 
     /**
@@ -36,7 +36,9 @@ class BeritaController extends Controller
      */
     public function show(Berita $beritum)
     {
-        //
+        return view('page.berita.show', [
+            'berita' => $beritum
+        ]);
     }
 
     /**

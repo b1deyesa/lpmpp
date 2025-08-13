@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
 use App\Models\Berita;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class BeritaController extends Controller
 {
@@ -13,7 +15,9 @@ class BeritaController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.berita.index', [
+            'beritas' => Berita::orderBy('id', 'desc')->get()
+        ]);
     }
 
     /**
@@ -21,7 +25,7 @@ class BeritaController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.berita.create');
     }
 
     /**
@@ -29,13 +33,28 @@ class BeritaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (Berita::where('slug', Str::slug($request->title))->exists()) {
+            return redirect()->back()->withErrors(['title' => 'Title sudah ada'])->withInput();
+        }
+        
+        $file = $request->file('cover');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        Storage::disk('public')->putFileAs('berita', $file, $filename);        
+        
+        Berita::create([
+            'title' => $request->title,
+            'slug' => Str::slug($request->title),
+            'body' => $request->body,
+            'cover' => $filename
+        ]);
+        
+        return redirect()->route('dashboard.berita.index')->with('success', 'Berhasil Menambahkan Berita');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Berita $berita)
+    public function show(Berita $beritum)
     {
         //
     }
@@ -43,7 +62,7 @@ class BeritaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Berita $berita)
+    public function edit(Berita $beritum)
     {
         //
     }
@@ -51,7 +70,7 @@ class BeritaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Berita $berita)
+    public function update(Request $request, Berita $beritum)
     {
         //
     }
@@ -59,8 +78,10 @@ class BeritaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Berita $berita)
+    public function destroy(Berita $beritum)
     {
-        //
+        $beritum->delete();
+        
+        return redirect()->route('dashboard.berita.index')->with('success', 'Berhasil Menghapus Berita');
     }
 }

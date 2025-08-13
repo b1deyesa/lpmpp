@@ -6,18 +6,16 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Dashboard extends Component
+class Page extends Component
 {
     /**
      * Create a new component instance.
      */
     public function __construct(
-        public $class = null,
-        public $title = null
+        public $class = null
     )
     {
         $this->class = $class;
-        $this->title = $title;
     }
 
     /**
@@ -25,6 +23,6 @@ class Dashboard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.layout.dashboard');
+        return view('components.layout.page');
     }
 }

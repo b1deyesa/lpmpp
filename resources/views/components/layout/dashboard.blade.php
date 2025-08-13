@@ -1,4 +1,4 @@
-<x-layout.app>
+<x-layout.app class="dashboard">
     
     {{-- Sidebar --}}
     <section class="sidebar">
@@ -9,7 +9,11 @@
         </div>
     </section>
     
-    <section>
+    {{-- Content --}}
+    <section class="{{ $class }}">
+        @if ($title)
+            <header>{{ $title }}</header>
+        @endif
         {{ $slot }}
     </section>
     

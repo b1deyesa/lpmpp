@@ -1,23 +1,25 @@
 <?php
 
-namespace App\View\Components\Layout;
+namespace App\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Dashboard extends Component
+class Button extends Component
 {
     /**
      * Create a new component instance.
      */
     public function __construct(
+        public $type = 'button',
         public $class = null,
-        public $title = null
+        public $href = '#'
     )
     {
+        $this->type = $type;
         $this->class = $class;
-        $this->title = $title;
+        $this->href = $href;
     }
 
     /**
@@ -25,6 +27,6 @@ class Dashboard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.layout.dashboard');
+        return view('components.button');
     }
 }
