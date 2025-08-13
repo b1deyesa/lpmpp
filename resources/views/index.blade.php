@@ -277,45 +277,59 @@
                 <img src="{{ asset('img/jumbotron/pict-5.jpg') }}" alt="">
             </div>
             <div class="jumbotron__right">
-                <ul class="post">
-                    <a href="#" class="post__item">
-                        <img src="{{ asset('img/jumbotron/pict-1.jpg') }}" class="post__thumbnail">
-                        <div class="item__right">
-                            <h2 class="post__title">Lorem, ipsum dolor sit amet consectetur adipisicing elit</h2>
-                            <div class="item__info">
-                                <small><i class="far fa-clock"></i>Agu 27, 2025</small>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" class="post__item">
-                        <img src="{{ asset('img/jumbotron/pict-1.jpg') }}" class="post__thumbnail">
-                        <div class="item__right">
-                            <h2 class="post__title">Lorem, ipsum dolor sit amet consectetur adipisicing elit</h2>
-                            <div class="item__info">
-                                <small><i class="far fa-clock"></i>Agu 27, 2025</small>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" class="post__item">
-                        <img src="{{ asset('img/jumbotron/pict-1.jpg') }}" class="post__thumbnail">
-                        <div class="item__right">
-                            <h2 class="post__title">Lorem, ipsum dolor sit amet consectetur adipisicing elit</h2>
-                            <div class="item__info">
-                                <small><i class="far fa-clock"></i>Agu 27, 2025</small>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" class="post__item">
-                        <img src="{{ asset('img/jumbotron/pict-1.jpg') }}" class="post__thumbnail">
-                        <div class="item__right">
-                            <h2 class="post__title">Lorem, ipsum dolor sit amet consectetur adipisicing elit</h2>
-                            <div class="item__info">
-                                <small><i class="far fa-clock"></i>Agu 27, 2025</small>
-                            </div>
-                        </div>
-                    </a>
-                </ul>
+                <i class="fas fa-chevron-up arrow-up" style="cursor:pointer;"></i>
+                <div class="news-wrapper" style="overflow: hidden; height: 250px;">
+                    <ul class="post">
+                        @foreach ($beritas as $berita)
+                        <li>
+                            <a href="{{ route('berita.show', ['beritum' => $berita]) }}" class="post__item">
+                                <img src="{{ asset('img/jumbotron/pict-1.jpg') }}" class="post__thumbnail">
+                                <div class="item__right">
+                                    <h2 class="post__title">{{ $berita->title }}</h2>
+                                    <div class="item__info">
+                                        <small><i class="far fa-clock"></i>{{ $berita->created_at?->format('d F Y') }}</small>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
+                <i class="fas fa-chevron-down arrow-down" style="cursor:pointer;"></i>
             </div>
+            <script>
+                $(function() {
+                    let $ul = $(".post");
+                    let itemHeight = $(".post li").outerHeight();
+                
+                    function scrollUp() {
+                        let $first = $ul.find("li:first");
+                        $ul.animate({marginTop: -itemHeight}, 500, function() {
+                            $ul.append($first).css({marginTop: 0});
+                        });
+                    }
+                
+                    function scrollDown() {
+                        let $last = $ul.find("li:last");
+                        $ul.prepend($last).css({marginTop: -itemHeight});
+                        $ul.animate({marginTop: 0}, 500);
+                    }
+                
+                    let autoScroll = setInterval(scrollUp, 3000);
+                
+                    $(".arrow-up").click(function() {
+                        clearInterval(autoScroll);
+                        scrollUp();
+                        autoScroll = setInterval(scrollUp, 3000);
+                    });
+                
+                    $(".arrow-down").click(function() {
+                        clearInterval(autoScroll);
+                        scrollDown();
+                        autoScroll = setInterval(scrollUp, 3000);
+                    });
+                });
+            </script>                
         </div>
     </section>
     

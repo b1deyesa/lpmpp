@@ -117,7 +117,7 @@ $color-7: #FEFEFE;
     justify-content: center;
     .jumbotron__container {
         display: flex;
-        gap: 4em;
+        // gap: 4em;
         height: 500px;
         width: 100%;
         max-width: 1100px;
@@ -126,7 +126,7 @@ $color-7: #FEFEFE;
             position: relative;
             display: flex;
             height: 100%;
-            width: 60%;
+            width: 70%;
             overflow: hidden;
             &::after {
                 content: '';
@@ -151,9 +151,13 @@ $color-7: #FEFEFE;
         .jumbotron__right {
             display: flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
             gap: 1.2em;
-            padding: 2em;
-            background: #DDD;
+            width: 500px;
+            padding: 2em 3em;
+            background: $color-6;
+            color: $color-7;
             .post {
                 display: flex;
                 flex-direction: column;
