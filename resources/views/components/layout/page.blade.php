@@ -4,7 +4,7 @@
     <nav class="second-navbar">
         <div class="second-navbar__container">
             <ul class="second-navbar__menu">
-                <li class="menu__item"><a href="#">SPMI</a></li> 
+                <li class="menu__item"><a href="https://sipenjamu-lpmpp-unpatti.id">SIPENJAMU</a></li> 
                 <li class="menu__item"><a href="#">AMI</a></li> 
                 <li class="menu__item">
                     <a href="#">Arsip</a>
@@ -148,7 +148,7 @@
                     </ul>
                 </li>
                 <li class="menu__item">
-                    <a href="#">Download</a>
+                    <a href="https://drive.google.com/drive/folders/19urCz_HopyPOy-PHbmpepzDFDy-7au9Q">Download</a>
                     <ul class="menu__dropdown">
                         <li class="dropdown__item"><a href="#">Laporan</a></li>
                         <li class="dropdown__item">

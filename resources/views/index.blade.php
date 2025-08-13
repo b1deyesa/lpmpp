@@ -89,6 +89,7 @@
         </script>
     </section>
     
+    {{-- About --}}
     <section class="about">
         <div class="about__container">
             
@@ -168,6 +169,5 @@
             
         </div>
     </section>
-    
     
 </x-layout.page>
