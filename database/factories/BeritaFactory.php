@@ -22,7 +22,7 @@ class BeritaFactory extends Factory
         return [
             'title' => $title,
             'slug' => Str::slug($title),
-            'body' => fake()->paragraph(rand(2,4))
+            'body' => fake()->paragraph(rand(10,20))
         ];
     }
 }

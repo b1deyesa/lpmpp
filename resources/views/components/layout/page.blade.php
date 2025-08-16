@@ -191,10 +191,10 @@
         </div>
     </nav>
     
-    {{-- Navbar --}}
-    <nav class="navbar">
-        <div class="navbar__container">
-            <a href="{{ route('index') }}" class="navbar__banner">
+    {{-- First Navbar --}}
+    <nav class="first-navbar">
+        <div class="first-navbar__container">
+            <a href="{{ route('index') }}" class="first-navbar__banner">
                 <div class="banner__logo">
                     <img src="{{ asset('img/logo-unpatti.png') }}" alt="Logo UNPATTI">
                     <img src="{{ asset('img/logo-lpmpp.png') }}" alt="Logo LPMPP">
@@ -204,7 +204,7 @@
                     <small>Lembaga Penjaminan Mutu dan Pengembangan Pembelajaran</small>
                 </div>
             </a>
-            <ul class="navbar__menu">
+            <ul class="first-navbar__menu">
                 <li class="menu__item">
                     <a href="{{ route('profil') }}">Profil</a>
                     <ul class="menu__dropdown">
