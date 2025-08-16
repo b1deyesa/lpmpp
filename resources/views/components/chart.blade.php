@@ -1,4 +1,4 @@
-<div class="bg-gradient-to-b from-gray-50 to-gray-100 border border-gray-300 shadow-lg shadow-gray-500/10 p-4 rounded-md" style="width: {{ $width }};">
+<div class="chart" style="width: {{ $width }};">
     <canvas id="{{ $id }}" style="height: {{ $height }}; width: 200px"></canvas>
     @if ($datasets)
         <script>

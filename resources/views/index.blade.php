@@ -82,11 +82,11 @@
                 </div>
                 <div class="data__item">
                     <h6 class="data__title">Jumlah Terakreditasi Unggul/A</h6>
-                    <span>{{ count($akreditasis[0]['program_studi']) + count($akreditasis[5]['program_studi']) }}</span>
+                    <span>{{ count($akreditasis[now()->year][0]['program_studi']) + count($akreditasis[now()->year][5]['program_studi']) }}</span>
                 </div>
                 <div class="data__item">
                     <h6 class="data__title">Presentase Terakreditasi Unggul/A</h6>
-                    <span>{{ round(((count($akreditasis[0]['program_studi']) + count($akreditasis[5]['program_studi'])) / $program_studis->count()) * 100, 1) }}%</span>
+                    <span>{{ round(((count($akreditasis[now()->year][0]['program_studi']) + count($akreditasis[now()->year][5]['program_studi'])) / $program_studis->count()) * 100, 1) }}%</span>
                 </div>
             </div>
             <div class="sipenjamu__header">
@@ -104,14 +104,9 @@
         <img src="{{ asset('img/gedung-unpatti.jpg') }}" alt="">
     </section>
     
-    {{-- <section class="grafik-akreditasi">
-        <div class="grafik-akreditasi__container">
-            <div class="grafik-akreditasi__item">
-                <h3 class="item__title">Grafik Akreditasi Program Studi</h3>
-                <x-chart id="akreditasi" height="300px" type="pie" :label="$akreditasi_program_studi['labels']" :data="$akreditasi_program_studi['data']" :colors="$akreditasi_program_studi['colors']" title="Jumlah Program Studi berdasarkan Akreditasi"/>            
-            </div>
-        </div>
-    </section> --}}
+    <section class="grafik-akreditasi">
+        @livewire('chart.akreditasi', compact('akreditasis'))
+    </section>
     
     {{-- Berita --}}
     <section class="berita">
