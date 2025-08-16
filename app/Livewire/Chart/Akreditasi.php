@@ -14,7 +14,7 @@ class Akreditasi extends Component
     public $chartData = [];
 
     public function mount()
-    {        
+    {
         $this->year = now()->year;
         $this->chartData = $this->buildAkreditasiCountPerYear($this->akreditasis, (int)$this->year);
     }
@@ -35,28 +35,33 @@ class Akreditasi extends Component
             'C'                   => '#facc15',
             'Tidak Terakreditasi' => '#f87171',
         ];
-    
-        foreach ($akreditasis as $item) {
-            foreach ($item as $value) {
-                $programStudis = collect($value['program_studi'] ?? []);
-        
-                $count = $programStudis->filter(function ($prodi) use ($year) {
-                    $start = Carbon::parse($prodi['tanggal_berlaku'])->year;
-                    $end   = Carbon::parse($prodi['tanggal_berakhir'])->year;
-                    return $start <= $year && $end >= $year;
-                })->count();
-        
-                $akreditasi[$value['akreditasi']] = $count;
+
+        $akreditasi = [];
+
+        if ($akreditasis->has($year)) {
+            $programs = $akreditasis->get($year);
+
+            foreach ($programs as $item) {
+                if (isset($item['program_studi']) && is_array($item['program_studi'])) {
+                    foreach ($item['program_studi'] as $prodi) {
+                        $start = Carbon::parse($prodi['tanggal_berlaku'])->year;
+                        $end   = Carbon::parse($prodi['tanggal_berakhir'])->year;
+
+                        if ($start <= $year && $end >= $year) {
+                            $akreditasi[$item['akreditasi']] = ($akreditasi[$item['akreditasi']] ?? 0) + 1;
+                        }
+                    }
+                }
             }
         }
-    
+
         return [
             'labels' => array_keys($akreditasi),
             'data'   => array_values($akreditasi),
             'colors' => array_map(fn($k) => $colorMap[$k] ?? '#999', array_keys($akreditasi))
         ];
     }
-    
+
     public function render()
     {
         return view('livewire.chart.akreditasi', [

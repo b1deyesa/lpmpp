@@ -417,7 +417,7 @@ $color-7: #FEFEFE;
         gap: 2em;
         width: 100%;
         max-width: 1000px;
-        padding: 4em 1em 2em;
+        padding: 6em 1em 2em;
         
         .grafik-akreditasi__item {
             display: flex;
@@ -428,6 +428,7 @@ $color-7: #FEFEFE;
             height: 300px;
             padding: 2em 1em;
             border-radius: .8em;
+            box-shadow: 3px 3px 10px #33333310;
             border: 1px solid #DDD;
             background: $color-7;
             
@@ -442,6 +443,7 @@ $color-7: #FEFEFE;
             display: flex;
             overflow: hidden;
             border-radius: .8em;
+            box-shadow: 3px 3px 10px #33333310;
             border: 1px solid #DDD;
             // gap: 1em;
             
@@ -452,7 +454,7 @@ $color-7: #FEFEFE;
                 text-align: start;
                 width: 400px;
                 padding: 1em;
-                background: #dbdbdb;
+                background: #a8dcee;
                 
                 
                 button {
@@ -464,7 +466,7 @@ $color-7: #FEFEFE;
                     color: #333333;
                     
                     &.active {
-                        background: $color-7;
+                        background: rgba($color-7, 60%);
                         color: $color-6;
                     }
                     
@@ -480,7 +482,7 @@ $color-7: #FEFEFE;
                 .content__title {
                     font-weight: bold;
                     padding: .6em 1em;
-                    background: #ececec;
+                    background: #e7f8ff;
                     color: $color-6;
                 }
                 
@@ -492,7 +494,8 @@ $color-7: #FEFEFE;
                             font-size: .8em;
                             padding: .5em .8em;
                             border: 1px solid #dfdfdf;
-                            background: #AAA;
+                            background: #14597b;
+                            color: $color-7;
                         }
                         
                         td {

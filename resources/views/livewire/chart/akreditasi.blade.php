@@ -1,13 +1,8 @@
 <div class="grafik-akreditasi__container">
     {{-- <select wire:model.live="year">
-        <option value="2020">2020</option>
-        <option value="2021">2021</option>
-        <option value="2022">2022</option>
-        <option value="2023">2023</option>
-        <option value="2024">2024</option>
-        <option value="2025">2025</option>
-        <option value="2026">2026</option>
-        <option value="2027">2027</option>
+        @for ($i = 2020; $i <= 2027; $i++)
+            <option value="{{ $i }}">{{ $i }}</option>
+        @endfor
     </select> --}}
     <div style="display: flex; gap: 1em; justify-content: space-between;">
         <div class="grafik-akreditasi__item">
@@ -40,8 +35,8 @@
                         <template x-for="row in tabs[active].prodis" :key="row.id">
                             <tr>
                                 <td x-text="row.nama"></td>
-                                <td x-text="row.akreditasi" width="200px" align="cneter"></td>
-                                <td x-text="row.masa" width="150px" align="cneter"></td>
+                                <td x-text="row.akreditasi" width="200px" align="center"></td>
+                                <td x-text="row.masa" width="150px" align="center"></td>
                             </tr>
                         </template>
                     </tbody>
