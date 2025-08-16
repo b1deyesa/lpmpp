@@ -9,11 +9,12 @@ use Illuminate\Support\Facades\Http;
 class Akreditasi extends Component
 {
     public $akreditasis;
+    public $program_studis;
     public $year;
     public $chartData = [];
 
     public function mount()
-    {
+    {        
         $this->year = now()->year;
         $this->chartData = $this->buildAkreditasiCountPerYear($this->akreditasis, (int)$this->year);
     }
@@ -59,7 +60,8 @@ class Akreditasi extends Component
     public function render()
     {
         return view('livewire.chart.akreditasi', [
-            'akreditasis' => $this->akreditasis
+            'akreditasis' => $this->akreditasis,
+            'program_studis' => $this->program_studis
         ]);
     }
 }

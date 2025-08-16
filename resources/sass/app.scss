@@ -421,6 +421,72 @@ $color-7: #FEFEFE;
                 
             }
         }
+        
+        .grafik-akreditasi__tab {
+            display: flex;
+            gap: 1em;
+            
+            .tab__menu {
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+                text-align: start;
+                width: 400px;
+                padding: 1em;
+                border-radius: .8em;
+                border: 1px solid #DDD;
+                background: $color-6;
+                
+                
+                button {
+                    text-align: start;
+                    width: 100%;
+                    padding: .3em .8em;
+                    cursor: pointer;
+                    border-radius: .4em;
+                    color: $color-7;
+                    
+                    &.active {
+                        background: $color-7;
+                        color: $color-6;
+                    }
+                    
+                }
+            }
+            
+            .tab__content {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                overflow: hidden;
+                border-radius: .8em;
+                border: 1px solid #AAA;
+                
+                .content__title {
+                    font-weight: bold;
+                    padding: .6em 1em;
+                    background: $color-6;
+                    color: $color-7;
+                }
+                
+                table {
+                    width: 100%;
+                    
+                    tr {
+                        th {
+                            padding: .5em .8em;
+                            border: 1px solid #AAA;
+                            background: $color-2;
+                        }
+                        
+                        td {
+                            border: 1px solid #DDD;
+                            padding: .3em .8em;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 .berita {

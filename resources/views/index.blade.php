@@ -105,7 +105,7 @@
     </section>
     
     <section class="grafik-akreditasi">
-        @livewire('chart.akreditasi', compact('akreditasis'))
+        @livewire('chart.akreditasi', compact('akreditasis', 'program_studis'))
     </section>
     
     {{-- Berita --}}
