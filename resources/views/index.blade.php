@@ -6,29 +6,221 @@
             <div class="jumbotron__slide">
                 <i class="fas fa-angle-left"></i>
                 <div class="slide__menu">
-                    <div class="slide__item">                        
+                    <div class="slide__item">
                         <img src="{{ asset('img/jumbotron/pict-1.jpg') }}" alt="">
-                        <div class="item__content">
+                        {{-- <div class="item__content">
                             <h2 class="item__title">Helo a</h2>
                             <p class="item__subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit temporibus voluptatem ex molestiae! Unde assumenda harum provident. Autem, dolor! Repellendus tempore cum vel illo quam magni voluptates ratione assumenda consectetur, quod asperiores exercitationem sed blanditiis suscipit ut? Cupiditate, esse ea magnam sequi quis voluptatem eius consequuntur a ducimus aliquid consequatur?</p>
                             <x-button type="link" href="#" class="item__button">Selengkapnya</x-button>
-                        </div>
+                        </div> --}}
                     </div>
-                    <div class="slide__item">                        
+                    <div class="slide__item">
                         <img src="{{ asset('img/jumbotron/pict-2.jpg') }}" alt="">
-                        <div class="item__content">
-                            <h2 class="item__title">Helo Bideyesa</h2>
-                            <p class="item__subtitle">Lsumenda harum provident. Autem, dolor! Repellendus tempore cum vel illo quam magni voluptates ratione assumenda consectetur, quod asperiores exercitationem sed blanditiis suscipit ut? Cupiditate, esse ea magnam sequi quis voluptatem eius consequuntur a ducimus aliquid consequatur?</p>
+                        {{-- <div class="item__content">
+                            <h2 class="item__title">Helo a</h2>
+                            <p class="item__subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit temporibus voluptatem ex molestiae! Unde assumenda harum provident. Autem, dolor! Repellendus tempore cum vel illo quam magni voluptates ratione assumenda consectetur, quod asperiores exercitationem sed blanditiis suscipit ut? Cupiditate, esse ea magnam sequi quis voluptatem eius consequuntur a ducimus aliquid consequatur?</p>
                             <x-button type="link" href="#" class="item__button">Selengkapnya</x-button>
-                        </div>
+                        </div> --}}
                     </div>
-                    <div class="slide__item">                        
+                    <div class="slide__item">
                         <img src="{{ asset('img/jumbotron/pict-3.jpg') }}" alt="">
-                        <div class="item__content">
-                            <h2 class="item__title">Helo v</h2>
-                            <p class="item__subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit temporonsequatur?</p>
+                        {{-- <div class="item__content">
+                            <h2 class="item__title">Helo a</h2>
+                            <p class="item__subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit temporibus voluptatem ex molestiae! Unde assumenda harum provident. Autem, dolor! Repellendus tempore cum vel illo quam magni voluptates ratione assumenda consectetur, quod asperiores exercitationem sed blanditiis suscipit ut? Cupiditate, esse ea magnam sequi quis voluptatem eius consequuntur a ducimus aliquid consequatur?</p>
                             <x-button type="link" href="#" class="item__button">Selengkapnya</x-button>
-                        </div>
+                        </div> --}}
+                    </div>
+                    <div class="slide__item">
+                        <img src="{{ asset('img/jumbotron/pict-4.jpg') }}" alt="">
+                        {{-- <div class="item__content">
+                            <h2 class="item__title">Helo a</h2>
+                            <p class="item__subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit temporibus voluptatem ex molestiae! Unde assumenda harum provident. Autem, dolor! Repellendus tempore cum vel illo quam magni voluptates ratione assumenda consectetur, quod asperiores exercitationem sed blanditiis suscipit ut? Cupiditate, esse ea magnam sequi quis voluptatem eius consequuntur a ducimus aliquid consequatur?</p>
+                            <x-button type="link" href="#" class="item__button">Selengkapnya</x-button>
+                        </div> --}}
+                    </div>
+                    <div class="slide__item">
+                        <img src="{{ asset('img/jumbotron/pict-5.jpg') }}" alt="">
+                        {{-- <div class="item__content">
+                            <h2 class="item__title">Helo a</h2>
+                            <p class="item__subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit temporibus voluptatem ex molestiae! Unde assumenda harum provident. Autem, dolor! Repellendus tempore cum vel illo quam magni voluptates ratione assumenda consectetur, quod asperiores exercitationem sed blanditiis suscipit ut? Cupiditate, esse ea magnam sequi quis voluptatem eius consequuntur a ducimus aliquid consequatur?</p>
+                            <x-button type="link" href="#" class="item__button">Selengkapnya</x-button>
+                        </div> --}}
+                    </div>
+                    <div class="slide__item">
+                        <img src="{{ asset('img/jumbotron/pict-6.jpg') }}" alt="">
+                        {{-- <div class="item__content">
+                            <h2 class="item__title">Helo a</h2>
+                            <p class="item__subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit temporibus voluptatem ex molestiae! Unde assumenda harum provident. Autem, dolor! Repellendus tempore cum vel illo quam magni voluptates ratione assumenda consectetur, quod asperiores exercitationem sed blanditiis suscipit ut? Cupiditate, esse ea magnam sequi quis voluptatem eius consequuntur a ducimus aliquid consequatur?</p>
+                            <x-button type="link" href="#" class="item__button">Selengkapnya</x-button>
+                        </div> --}}
+                    </div>
+                    <div class="slide__item">
+                        <img src="{{ asset('img/jumbotron/pict-7.jpg') }}" alt="">
+                        {{-- <div class="item__content">
+                            <h2 class="item__title">Helo a</h2>
+                            <p class="item__subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit temporibus voluptatem ex molestiae! Unde assumenda harum provident. Autem, dolor! Repellendus tempore cum vel illo quam magni voluptates ratione assumenda consectetur, quod asperiores exercitationem sed blanditiis suscipit ut? Cupiditate, esse ea magnam sequi quis voluptatem eius consequuntur a ducimus aliquid consequatur?</p>
+                            <x-button type="link" href="#" class="item__button">Selengkapnya</x-button>
+                        </div> --}}
+                    </div>
+                    <div class="slide__item">
+                        <img src="{{ asset('img/jumbotron/pict-8.jpg') }}" alt="">
+                        {{-- <div class="item__content">
+                            <h2 class="item__title">Helo a</h2>
+                            <p class="item__subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit temporibus voluptatem ex molestiae! Unde assumenda harum provident. Autem, dolor! Repellendus tempore cum vel illo quam magni voluptates ratione assumenda consectetur, quod asperiores exercitationem sed blanditiis suscipit ut? Cupiditate, esse ea magnam sequi quis voluptatem eius consequuntur a ducimus aliquid consequatur?</p>
+                            <x-button type="link" href="#" class="item__button">Selengkapnya</x-button>
+                        </div> --}}
+                    </div>
+                    <div class="slide__item">
+                        <img src="{{ asset('img/jumbotron/pict-9.jpg') }}" alt="">
+                        {{-- <div class="item__content">
+                            <h2 class="item__title">Helo a</h2>
+                            <p class="item__subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit temporibus voluptatem ex molestiae! Unde assumenda harum provident. Autem, dolor! Repellendus tempore cum vel illo quam magni voluptates ratione assumenda consectetur, quod asperiores exercitationem sed blanditiis suscipit ut? Cupiditate, esse ea magnam sequi quis voluptatem eius consequuntur a ducimus aliquid consequatur?</p>
+                            <x-button type="link" href="#" class="item__button">Selengkapnya</x-button>
+                        </div> --}}
+                    </div>
+                    <div class="slide__item">
+                        <img src="{{ asset('img/jumbotron/pict-10.jpg') }}" alt="">
+                        {{-- <div class="item__content">
+                            <h2 class="item__title">Helo a</h2>
+                            <p class="item__subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit temporibus voluptatem ex molestiae! Unde assumenda harum provident. Autem, dolor! Repellendus tempore cum vel illo quam magni voluptates ratione assumenda consectetur, quod asperiores exercitationem sed blanditiis suscipit ut? Cupiditate, esse ea magnam sequi quis voluptatem eius consequuntur a ducimus aliquid consequatur?</p>
+                            <x-button type="link" href="#" class="item__button">Selengkapnya</x-button>
+                        </div> --}}
+                    </div>
+                    <div class="slide__item">
+                        <img src="{{ asset('img/jumbotron/pict-11.jpg') }}" alt="">
+                        {{-- <div class="item__content">
+                            <h2 class="item__title">Helo a</h2>
+                            <p class="item__subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit temporibus voluptatem ex molestiae! Unde assumenda harum provident. Autem, dolor! Repellendus tempore cum vel illo quam magni voluptates ratione assumenda consectetur, quod asperiores exercitationem sed blanditiis suscipit ut? Cupiditate, esse ea magnam sequi quis voluptatem eius consequuntur a ducimus aliquid consequatur?</p>
+                            <x-button type="link" href="#" class="item__button">Selengkapnya</x-button>
+                        </div> --}}
+                    </div>
+                    <div class="slide__item">
+                        <img src="{{ asset('img/jumbotron/pict-12.jpg') }}" alt="">
+                        {{-- <div class="item__content">
+                            <h2 class="item__title">Helo a</h2>
+                            <p class="item__subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit temporibus voluptatem ex molestiae! Unde assumenda harum provident. Autem, dolor! Repellendus tempore cum vel illo quam magni voluptates ratione assumenda consectetur, quod asperiores exercitationem sed blanditiis suscipit ut? Cupiditate, esse ea magnam sequi quis voluptatem eius consequuntur a ducimus aliquid consequatur?</p>
+                            <x-button type="link" href="#" class="item__button">Selengkapnya</x-button>
+                        </div> --}}
+                    </div>
+                    <div class="slide__item">
+                        <img src="{{ asset('img/jumbotron/pict-13.jpg') }}" alt="">
+                        {{-- <div class="item__content">
+                            <h2 class="item__title">Helo a</h2>
+                            <p class="item__subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit temporibus voluptatem ex molestiae! Unde assumenda harum provident. Autem, dolor! Repellendus tempore cum vel illo quam magni voluptates ratione assumenda consectetur, quod asperiores exercitationem sed blanditiis suscipit ut? Cupiditate, esse ea magnam sequi quis voluptatem eius consequuntur a ducimus aliquid consequatur?</p>
+                            <x-button type="link" href="#" class="item__button">Selengkapnya</x-button>
+                        </div> --}}
+                    </div>
+                    <div class="slide__item">
+                        <img src="{{ asset('img/jumbotron/pict-14.jpg') }}" alt="">
+                        {{-- <div class="item__content">
+                            <h2 class="item__title">Helo a</h2>
+                            <p class="item__subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit temporibus voluptatem ex molestiae! Unde assumenda harum provident. Autem, dolor! Repellendus tempore cum vel illo quam magni voluptates ratione assumenda consectetur, quod asperiores exercitationem sed blanditiis suscipit ut? Cupiditate, esse ea magnam sequi quis voluptatem eius consequuntur a ducimus aliquid consequatur?</p>
+                            <x-button type="link" href="#" class="item__button">Selengkapnya</x-button>
+                        </div> --}}
+                    </div>
+                    <div class="slide__item">
+                        <img src="{{ asset('img/jumbotron/pict-15.jpg') }}" alt="">
+                        {{-- <div class="item__content">
+                            <h2 class="item__title">Helo a</h2>
+                            <p class="item__subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit temporibus voluptatem ex molestiae! Unde assumenda harum provident. Autem, dolor! Repellendus tempore cum vel illo quam magni voluptates ratione assumenda consectetur, quod asperiores exercitationem sed blanditiis suscipit ut? Cupiditate, esse ea magnam sequi quis voluptatem eius consequuntur a ducimus aliquid consequatur?</p>
+                            <x-button type="link" href="#" class="item__button">Selengkapnya</x-button>
+                        </div> --}}
+                    </div>
+                    <div class="slide__item">
+                        <img src="{{ asset('img/jumbotron/pict-16.jpg') }}" alt="">
+                        {{-- <div class="item__content">
+                            <h2 class="item__title">Helo a</h2>
+                            <p class="item__subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit temporibus voluptatem ex molestiae! Unde assumenda harum provident. Autem, dolor! Repellendus tempore cum vel illo quam magni voluptates ratione assumenda consectetur, quod asperiores exercitationem sed blanditiis suscipit ut? Cupiditate, esse ea magnam sequi quis voluptatem eius consequuntur a ducimus aliquid consequatur?</p>
+                            <x-button type="link" href="#" class="item__button">Selengkapnya</x-button>
+                        </div> --}}
+                    </div>
+                    <div class="slide__item">
+                        <img src="{{ asset('img/jumbotron/pict-17.jpg') }}" alt="">
+                        {{-- <div class="item__content">
+                            <h2 class="item__title">Helo a</h2>
+                            <p class="item__subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit temporibus voluptatem ex molestiae! Unde assumenda harum provident. Autem, dolor! Repellendus tempore cum vel illo quam magni voluptates ratione assumenda consectetur, quod asperiores exercitationem sed blanditiis suscipit ut? Cupiditate, esse ea magnam sequi quis voluptatem eius consequuntur a ducimus aliquid consequatur?</p>
+                            <x-button type="link" href="#" class="item__button">Selengkapnya</x-button>
+                        </div> --}}
+                    </div>
+                    <div class="slide__item">
+                        <img src="{{ asset('img/jumbotron/pict-18.jpg') }}" alt="">
+                        {{-- <div class="item__content">
+                            <h2 class="item__title">Helo a</h2>
+                            <p class="item__subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit temporibus voluptatem ex molestiae! Unde assumenda harum provident. Autem, dolor! Repellendus tempore cum vel illo quam magni voluptates ratione assumenda consectetur, quod asperiores exercitationem sed blanditiis suscipit ut? Cupiditate, esse ea magnam sequi quis voluptatem eius consequuntur a ducimus aliquid consequatur?</p>
+                            <x-button type="link" href="#" class="item__button">Selengkapnya</x-button>
+                        </div> --}}
+                    </div>
+                    <div class="slide__item">
+                        <img src="{{ asset('img/jumbotron/pict-19.jpg') }}" alt="">
+                        {{-- <div class="item__content">
+                            <h2 class="item__title">Helo a</h2>
+                            <p class="item__subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit temporibus voluptatem ex molestiae! Unde assumenda harum provident. Autem, dolor! Repellendus tempore cum vel illo quam magni voluptates ratione assumenda consectetur, quod asperiores exercitationem sed blanditiis suscipit ut? Cupiditate, esse ea magnam sequi quis voluptatem eius consequuntur a ducimus aliquid consequatur?</p>
+                            <x-button type="link" href="#" class="item__button">Selengkapnya</x-button>
+                        </div> --}}
+                    </div>
+                    <div class="slide__item">
+                        <img src="{{ asset('img/jumbotron/pict-20.jpg') }}" alt="">
+                        {{-- <div class="item__content">
+                            <h2 class="item__title">Helo a</h2>
+                            <p class="item__subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit temporibus voluptatem ex molestiae! Unde assumenda harum provident. Autem, dolor! Repellendus tempore cum vel illo quam magni voluptates ratione assumenda consectetur, quod asperiores exercitationem sed blanditiis suscipit ut? Cupiditate, esse ea magnam sequi quis voluptatem eius consequuntur a ducimus aliquid consequatur?</p>
+                            <x-button type="link" href="#" class="item__button">Selengkapnya</x-button>
+                        </div> --}}
+                    </div>
+                    <div class="slide__item">
+                        <img src="{{ asset('img/jumbotron/pict-21.jpg') }}" alt="">
+                        {{-- <div class="item__content">
+                            <h2 class="item__title">Helo a</h2>
+                            <p class="item__subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit temporibus voluptatem ex molestiae! Unde assumenda harum provident. Autem, dolor! Repellendus tempore cum vel illo quam magni voluptates ratione assumenda consectetur, quod asperiores exercitationem sed blanditiis suscipit ut? Cupiditate, esse ea magnam sequi quis voluptatem eius consequuntur a ducimus aliquid consequatur?</p>
+                            <x-button type="link" href="#" class="item__button">Selengkapnya</x-button>
+                        </div> --}}
+                    </div>
+                    <div class="slide__item">
+                        <img src="{{ asset('img/jumbotron/pict-22.jpg') }}" alt="">
+                        {{-- <div class="item__content">
+                            <h2 class="item__title">Helo a</h2>
+                            <p class="item__subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit temporibus voluptatem ex molestiae! Unde assumenda harum provident. Autem, dolor! Repellendus tempore cum vel illo quam magni voluptates ratione assumenda consectetur, quod asperiores exercitationem sed blanditiis suscipit ut? Cupiditate, esse ea magnam sequi quis voluptatem eius consequuntur a ducimus aliquid consequatur?</p>
+                            <x-button type="link" href="#" class="item__button">Selengkapnya</x-button>
+                        </div> --}}
+                    </div>
+                    <div class="slide__item">
+                        <img src="{{ asset('img/jumbotron/pict-23.jpg') }}" alt="">
+                        {{-- <div class="item__content">
+                            <h2 class="item__title">Helo a</h2>
+                            <p class="item__subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit temporibus voluptatem ex molestiae! Unde assumenda harum provident. Autem, dolor! Repellendus tempore cum vel illo quam magni voluptates ratione assumenda consectetur, quod asperiores exercitationem sed blanditiis suscipit ut? Cupiditate, esse ea magnam sequi quis voluptatem eius consequuntur a ducimus aliquid consequatur?</p>
+                            <x-button type="link" href="#" class="item__button">Selengkapnya</x-button>
+                        </div> --}}
+                    </div>
+                    <div class="slide__item">
+                        <img src="{{ asset('img/jumbotron/pict-24.jpg') }}" alt="">
+                        {{-- <div class="item__content">
+                            <h2 class="item__title">Helo a</h2>
+                            <p class="item__subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit temporibus voluptatem ex molestiae! Unde assumenda harum provident. Autem, dolor! Repellendus tempore cum vel illo quam magni voluptates ratione assumenda consectetur, quod asperiores exercitationem sed blanditiis suscipit ut? Cupiditate, esse ea magnam sequi quis voluptatem eius consequuntur a ducimus aliquid consequatur?</p>
+                            <x-button type="link" href="#" class="item__button">Selengkapnya</x-button>
+                        </div> --}}
+                    </div>
+                    <div class="slide__item">
+                        <img src="{{ asset('img/jumbotron/pict-25.jpg') }}" alt="">
+                        {{-- <div class="item__content">
+                            <h2 class="item__title">Helo a</h2>
+                            <p class="item__subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit temporibus voluptatem ex molestiae! Unde assumenda harum provident. Autem, dolor! Repellendus tempore cum vel illo quam magni voluptates ratione assumenda consectetur, quod asperiores exercitationem sed blanditiis suscipit ut? Cupiditate, esse ea magnam sequi quis voluptatem eius consequuntur a ducimus aliquid consequatur?</p>
+                            <x-button type="link" href="#" class="item__button">Selengkapnya</x-button>
+                        </div> --}}
+                    </div>
+                    <div class="slide__item">
+                        <img src="{{ asset('img/jumbotron/pict-26.jpg') }}" alt="">
+                        {{-- <div class="item__content">
+                            <h2 class="item__title">Helo a</h2>
+                            <p class="item__subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit temporibus voluptatem ex molestiae! Unde assumenda harum provident. Autem, dolor! Repellendus tempore cum vel illo quam magni voluptates ratione assumenda consectetur, quod asperiores exercitationem sed blanditiis suscipit ut? Cupiditate, esse ea magnam sequi quis voluptatem eius consequuntur a ducimus aliquid consequatur?</p>
+                            <x-button type="link" href="#" class="item__button">Selengkapnya</x-button>
+                        </div> --}}
+                    </div>
+                    <div class="slide__item">
+                        <img src="{{ asset('img/jumbotron/pict-27.jpg') }}" alt="">
+                        {{-- <div class="item__content">
+                            <h2 class="item__title">Helo a</h2>
+                            <p class="item__subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit temporibus voluptatem ex molestiae! Unde assumenda harum provident. Autem, dolor! Repellendus tempore cum vel illo quam magni voluptates ratione assumenda consectetur, quod asperiores exercitationem sed blanditiis suscipit ut? Cupiditate, esse ea magnam sequi quis voluptatem eius consequuntur a ducimus aliquid consequatur?</p>
+                            <x-button type="link" href="#" class="item__button">Selengkapnya</x-button>
+                        </div> --}}
                     </div>
                 </div>
                 <i class="fas fa-angle-right"></i>
@@ -104,8 +296,34 @@
         <img src="{{ asset('img/gedung-unpatti.jpg') }}" alt="">
     </section>
     
+    {{-- Grafik Akreditasi --}}
     <section class="grafik-akreditasi">
         @livewire('chart.akreditasi', compact('akreditasis', 'program_studis'))
+    </section>
+    
+    {{-- Sambutan --}}
+    <section class="sambutan">
+        <div class="sambutan__container">
+            <div class="sambutan__photo">
+                <img src="{{ asset('img/foto-ketua.png') }}" alt="Foto">
+            </div>
+            <div class="sambutan__right">
+                <h2 class="sambutan__title">Sambutan Kepala LPMPP Universitas Pattimura</h2>
+                <h3 class="sambutan__subtitle">James Abrahamsz M.Si</h3>
+                <p class="sambutan__body">
+                    Selamat datang di website resmi Lembaga Penjaminan Mutu dan Pengembangan Pembelajaran (LPMPP) Universitas
+                    Pattimura. Website ini kami hadirkan sebagai media informasi, komunikasi, dan layanan bagi seluruh sivitas
+                    akademika dan masyarakat.
+                    <br><br>
+                    LPMPP memiliki peran strategis dalam mendorong peningkatan mutu pendidikan tinggi melalui penjaminan mutu
+                    internal dan pengembangan pembelajaran yang adaptif serta berkelanjutan.
+                    <br><br>
+                    Kami berkomitmen membangun budaya mutu melalui kolaborasi dan evaluasi berkesinambungan, guna mendukung tercapainya visi Universitas Pattimura sebagai institusi yang unggul dan berdaya saing.
+                    Terima kasih atas kunjungan Anda. Semoga website ini memberikan manfaat dan kemudahan akses informasi yang
+                    dibutuhkan.
+                </p>
+            </div>
+        </div>
     </section>
     
     {{-- Berita --}}

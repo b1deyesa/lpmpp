@@ -4,7 +4,7 @@
     <nav class="second-navbar">
         <div class="second-navbar__container">
             <ul class="second-navbar__menu">
-                <li class="menu__item"><a href="https://sipenjamu-lpmpp-unpatti.id">SIPENJAMU</a></li> 
+                <li class="menu__item"><a href="https://sipenjamu-lpmpp-unpatti.id" target="_blank">SIPENJAMU</a></li> 
                 <li class="menu__item"><a href="#">AMI</a></li> 
                 <li class="menu__item">
                     <a href="#">Arsip</a>

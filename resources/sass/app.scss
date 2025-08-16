@@ -106,11 +106,27 @@ $color-7: #FEFEFE;
             gap: .5em;
 
             .menu__item {
+                position: relative;
                 padding: .3em .8em;
             }
 
             .menu__dropdown {
+                position: absolute;
                 display: none;
+                grid-template-columns: 12em 12em 12em;
+                right: 0;
+                margin-top: 1.82em;
+                padding: 2em;
+                background: lighten($color-5, 10%);
+                
+                .dropdown__item {
+                    height: fit-content;
+                    width: fit-content;
+                    padding: .5em;
+                    &:hover {
+                        background: #DDDDDD10;
+                    }
+                }
             }
         }
     }
@@ -424,7 +440,10 @@ $color-7: #FEFEFE;
         
         .grafik-akreditasi__tab {
             display: flex;
-            gap: 1em;
+            overflow: hidden;
+            border-radius: .8em;
+            border: 1px solid #DDD;
+            // gap: 1em;
             
             .tab__menu {
                 display: flex;
@@ -433,9 +452,7 @@ $color-7: #FEFEFE;
                 text-align: start;
                 width: 400px;
                 padding: 1em;
-                border-radius: .8em;
-                border: 1px solid #DDD;
-                background: $color-6;
+                background: #dbdbdb;
                 
                 
                 button {
@@ -444,7 +461,7 @@ $color-7: #FEFEFE;
                     padding: .3em .8em;
                     cursor: pointer;
                     border-radius: .4em;
-                    color: $color-7;
+                    color: #333333;
                     
                     &.active {
                         background: $color-7;
@@ -459,14 +476,12 @@ $color-7: #FEFEFE;
                 flex-direction: column;
                 width: 100%;
                 overflow: hidden;
-                border-radius: .8em;
-                border: 1px solid #AAA;
                 
                 .content__title {
                     font-weight: bold;
                     padding: .6em 1em;
-                    background: $color-6;
-                    color: $color-7;
+                    background: #ececec;
+                    color: $color-6;
                 }
                 
                 table {
@@ -474,9 +489,10 @@ $color-7: #FEFEFE;
                     
                     tr {
                         th {
+                            font-size: .8em;
                             padding: .5em .8em;
-                            border: 1px solid #AAA;
-                            background: $color-2;
+                            border: 1px solid #dfdfdf;
+                            background: #AAA;
                         }
                         
                         td {
@@ -485,6 +501,64 @@ $color-7: #FEFEFE;
                         }
                     }
                 }
+            }
+        }
+    }
+}
+.sambutan {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    .sambutan__container {
+        display: flex;
+        align-items: center;
+        gap: 4em;
+        padding: 4em 1em;
+        
+        .sambutan__photo {
+            position: relative;
+            
+            img {
+                aspect-ratio: 5/6;
+                object-fit: cover;
+                width: 20em;
+            }
+            
+            &::before {
+                content: '';
+                position: absolute;
+                top: 1em;
+                right: -1em;
+                bottom: -1em;
+                left: 1em;
+                background: $color-4;
+                z-index: -1;
+            }
+        }
+        
+        .sambutan__right {
+            display: flex;
+            flex-direction: column;
+            padding: 2em;
+            gap: .5em;
+            width: 600px;
+            
+            .sambutan__title {
+                font-size: 1.8em;
+                font-weight: bolder;
+                color: $color-5;
+            }
+            
+            .sambutan__subtitle {
+                font-size: 1.5em;
+                font-weight: bold;
+                margin: 0 0 1em;
+                color: darken($color-4, 10%);
+            }
+            
+            .sambutan__body {
+                line-height: 1.8;
             }
         }
     }
@@ -815,7 +889,7 @@ section.post {
     flex-direction: column;
     align-items: center;
 
-    >.header {
+    > .header {
         position: relative;
         display: flex;
         align-items: center;
@@ -845,7 +919,7 @@ section.post {
             bottom: 0;
             left: 0;
             width: 100%;
-            background: linear-gradient(rgba($color-1, 70%), rgba($color-2, 70%));
+            background: linear-gradient(-90deg, rgba($color-2, 70%), rgba($color-3, 70%));
             z-index: -1;
         }
 
