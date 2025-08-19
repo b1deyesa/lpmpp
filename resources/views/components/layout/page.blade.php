@@ -218,7 +218,7 @@
                         <li class="dropdown__item"><a href="#">Renstra LPMPP</a></li>
                     </ul>
                 </li>
-                {{-- <li class="menu__item">
+                <li class="menu__item">
                     <a href="#">Pusat LPMPP</a>
                     <ul class="menu__dropdown">
                         <li class="dropdown__item"><a href="#">Pusat Kurikulum dan Inovasi Instruksional</a></li>
@@ -262,7 +262,7 @@
                             </ul>
                         </li>
                     </ul>
-                </li> --}}
+                </li>
             </ul>
         </div>
     </nav>
