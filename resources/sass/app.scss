@@ -604,6 +604,12 @@ $color-7: #FEFEFE;
                 display: flex;
                 gap: 2em;
                 
+                .post__thumbnail {
+                    aspect-ratio: 5/3;
+                    object-fit: cover;
+                    width: 30em;
+                }
+                
                 .item__right {
                     display: flex;
                     flex-direction: column;

@@ -37,7 +37,7 @@ class BeritaController extends Controller
             return redirect()->back()->withErrors(['title' => 'Title sudah ada'])->withInput();
         }
         
-        if ($request->file) {
+        if ($request->cover) {
             $file = $request->file('cover');
             $filename = time() . '_' . $file->getClientOriginalName();
             Storage::disk('public')->putFileAs('berita', $file, $filename);        
@@ -66,7 +66,9 @@ class BeritaController extends Controller
      */
     public function edit(Berita $beritum)
     {
-        //
+        return view('dashboard.berita.edit', [
+            'berita' => $beritum
+        ]);
     }
 
     /**
@@ -74,7 +76,34 @@ class BeritaController extends Controller
      */
     public function update(Request $request, Berita $beritum)
     {
-        //
+        $slug = Str::slug($request->title);
+
+        $exists = Berita::where('slug', $slug)
+            ->where('id', '!=', $beritum->id)
+            ->exists();
+    
+        if ($exists) {
+            return redirect()->back()->withErrors([
+                'title' => 'Judul sudah digunakan, silakan pilih judul lain.'
+            ]);
+        }
+
+        if ($request->cover) {
+            $file = $request->file('cover');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            Storage::disk('public')->putFileAs('berita', $file, $filename);        
+            $beritum->update([
+                'cover' => $filename ?? null
+            ]);
+        }
+        
+        $beritum->update([
+            'title' => $request->title,
+            'slug' => Str::slug($request->title),
+            'body' => $request->body,
+        ]);
+        
+        return redirect()->route('dashboard.berita.index')->with('success', 'Berhasil Mengedit Berita');
     }
 
     /**

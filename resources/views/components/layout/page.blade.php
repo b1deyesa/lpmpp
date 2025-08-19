@@ -218,7 +218,7 @@
                         <li class="dropdown__item"><a href="#">Renstra LPMPP</a></li>
                     </ul>
                 </li>
-                <li class="menu__item">
+                {{-- <li class="menu__item">
                     <a href="#">Pusat LPMPP</a>
                     <ul class="menu__dropdown">
                         <li class="dropdown__item"><a href="#">Pusat Kurikulum dan Inovasi Instruksional</a></li>
@@ -262,7 +262,7 @@
                             </ul>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
             </ul>
         </div>
     </nav>
@@ -270,5 +270,23 @@
     <section class="{{ $class }}">
         {{ $slot }}
     </section>
+    
+    <script>
+        $(document).ready(function() {
+            // Sembunyikan semua dropdown saat halaman dimuat
+            $(".menu__dropdown").hide();
+            
+            $(".menu__item").hover(
+                function() {
+                    // Mouse enter - show dropdown dengan efek fade
+                    $(this).find(".menu__dropdown").stop(true, true).fadeIn(300);
+                }, 
+                function() {
+                    // Mouse leave - hide dropdown dengan efek fade
+                    $(this).find(".menu__dropdown").stop(true, true).fadeOut(200);
+                }
+            );
+        });
+    </script>        
     
 </x-layout.app>

@@ -18,6 +18,7 @@
                 <td><img src="{{ asset('storage/berita/'. $berita->cover) }}" width="100%"></td>
                 <td>{{ $berita->title }}</td>
                 <td>
+                    <a href="{{ route('dashboard.berita.edit', ['beritum' => $berita]) }}">Edit</a>
                     <form action="{{ route('dashboard.berita.destroy', ['beritum' => $berita]) }}" method="POST">
                         @csrf
                         @method('DELETE')
