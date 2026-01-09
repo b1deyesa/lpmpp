@@ -95,14 +95,14 @@
                             <a href="#" class="menu__item lock">Others</a>
                         </div>
                     </div>
-                    {{-- <div class="menu__dropdown">
+                    <div class="menu__dropdown">
                         <span class="dropdown__label">Layanan</span>
                         <div class="dropdown__menu">
                             <a href="#" class="menu__item lock">PPID</a>
                             <a href="#" class="menu__item lock">BKD</a>
                             <a href="#" class="menu__item lock">Pelatihan</a>
                         </div>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
         </div>
