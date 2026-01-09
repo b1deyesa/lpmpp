@@ -47,15 +47,11 @@
                     </div>
                     <a href="{{ route('guest.pusat') }}" class="menu__item">Pusat LPMPP</a>
                     <div class="menu__dropdown">
-                        <span class="dropdown__label">Informasi</span>
+                        <span class="dropdown__label">Portal</span>
                         <div class="dropdown__menu">
-                            <a href="#" class="menu__item lock">Peraturan Akademik</a>
-                            <a href="#" class="menu__item lock">TV Pendidikan</a>
-                            <a href="#" class="menu__item lock">Pembelajaran</a>
-                            <a href="#" class="menu__item lock">Penjaminan Mutu</a>
-                            <a href="#" class="menu__item lock">Kurikulum</a>
-                            <a href="#" class="menu__item lock">Daring & PJJ</a>
-                            <a href="#" class="menu__item lock">Kampus Berdampak & KTW</a>
+                            <a href="#" class="menu__item lock">PMA</a>
+                            <a href="#" class="menu__item lock">KIP</a>
+                            <a href="#" class="menu__item lock">DLS</a>
                         </div>
                     </div>
                     <div class="menu__dropdown">
@@ -99,14 +95,14 @@
                             <a href="#" class="menu__item lock">Others</a>
                         </div>
                     </div>
-                    <div class="menu__dropdown">
+                    {{-- <div class="menu__dropdown">
                         <span class="dropdown__label">Layanan</span>
                         <div class="dropdown__menu">
                             <a href="#" class="menu__item lock">PPID</a>
                             <a href="#" class="menu__item lock">BKD</a>
                             <a href="#" class="menu__item lock">Pelatihan</a>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
