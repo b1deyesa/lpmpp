@@ -29,7 +29,8 @@
                         <img src="{{ asset('assets/img/logo-lpmpp.png') }}" alt="Logo LPMPP" class="banner__logo">
                     </div>
                     <div class="banner__right">
-                        <h1 class="banner__title">Lembaga Penjaminan Mutu</h1>
+                        <h1 class="banner__title">Lembaga Penjaminan Mutu dan</h1>
+                        <h1 class="banner__title">Pengembangan Pembelajaran</h1>
                         <h2 class="banner__subtitle">Universitas Pattimura</h2>
                     </div>
                 </a>

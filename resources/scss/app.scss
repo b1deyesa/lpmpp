@@ -124,8 +124,8 @@ body {
                             gap: .3em;
 
                             .banner__title {
-                                font-size: 1.4em;
-                                font-weight: 500;
+                                font-size: 1.1em;
+                                font-weight: 600;
                                 text-decoration: none;
                                 color: $color-1;
                             }
@@ -248,10 +248,14 @@ body {
 
                             .banner__right {
 
-                                .banner__title,
-                                .banner__subtitle {
+                                .banner__title {
                                     transition: 200ms;
                                     color: $color-white;
+                                }
+                                
+                                .banner__subtitle {
+                                    transition: 200ms;
+                                    color: rgba($color-white, 80%);
                                 }
                             }
                         }
@@ -840,7 +844,7 @@ body {
                 gap: 1em;
                 min-height: 20em;
                 width: 100%;
-                max-width: 800px;
+                max-width: 1000px;
             }
 
             div.visi-misi {
