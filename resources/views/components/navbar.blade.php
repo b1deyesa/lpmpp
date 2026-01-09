@@ -6,8 +6,8 @@
             <div class="top__left">
                 <div class="top__menu">
                     <a href="" class="menu__item lock">SIMPATTI</a>
-                    <a href="" class="menu__item lock">AMI</a>
-                    <a href="" class="menu__item lock">Kontak</a>
+                    <a href="" class="menu__item lock">SIMPEL</a>
+                    <a href="" class="menu__item lock">ELPATTI</a>
                 </div>
             </div>
             <div class="top__right">

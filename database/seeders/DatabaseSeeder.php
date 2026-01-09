@@ -20,8 +20,8 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->create([
             'name' => 'Admin',
-            'email' => 'admin-lpmpp@gmail.com',
-            'password' => Hash::make('admin-lpmpp2026#')
+            'email' => 'test@gmail.com',
+            'password' => Hash::make('123')
         ]);
     }
 }
