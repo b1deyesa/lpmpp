@@ -59,6 +59,16 @@
                         </div>
                     </div>
                     <div class="menu__dropdown">
+                        <span class="dropdown__label">PPEPP</span>
+                        <div class="dropdown__menu">
+                            <a href="#" class="menu__item lock">Penetapan</a>
+                            <a href="#" class="menu__item lock">Pelaksanaan</a>
+                            <a href="#" class="menu__item lock">Evaluasi</a>
+                            <a href="#" class="menu__item lock">Pengendalian</a>
+                            <a href="#" class="menu__item lock">Peningkatan</a>
+                        </div>
+                    </div>
+                    <div class="menu__dropdown">
                         <span class="dropdown__label">Kerja Sama</span>
                         <div class="dropdown__menu">
                             <a href="#" class="menu__item lock">Program Asuh PTS</a>
