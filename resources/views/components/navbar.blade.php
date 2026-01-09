@@ -47,11 +47,11 @@
                     </div>
                     <a href="{{ route('guest.pusat') }}" class="menu__item">Pusat LPMPP</a>
                     <div class="menu__dropdown">
-                        <span class="dropdown__label">Portal</span>
+                        <span class="dropdown__label">Informasi</span>
                         <div class="dropdown__menu">
-                            <a href="#" class="menu__item lock">PMA</a>
-                            <a href="#" class="menu__item lock">KIP</a>
-                            <a href="#" class="menu__item lock">DLS</a>
+                            <a href="#" class="menu__item lock">Portal PMA</a>
+                            <a href="#" class="menu__item lock">Portal KIP</a>
+                            <a href="#" class="menu__item lock">Portal DLS</a>
                         </div>
                     </div>
                     <div class="menu__dropdown">
