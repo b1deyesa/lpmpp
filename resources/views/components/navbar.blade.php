@@ -13,7 +13,7 @@
             <div class="top__right">
                 <div class="top__menu">
                     <a href="" class="menu__item lock"><i class="fa-solid fa-earth-europe"></i>Explore</a>
-                    <a href="{{ route('auth.login') }}" target="_blank" class="menu__item"><i class="fa-solid fa-lock"></i>Administrator</a>
+                    {{-- <a href="{{ route('auth.login') }}" target="_blank" class="menu__item"><i class="fa-solid fa-lock"></i>Administrator</a> --}}
                 </div>
             </div>
         </div>
