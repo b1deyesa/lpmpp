@@ -2,30 +2,11 @@
     
     {{-- Jumbotron --}}
     <section class="jumbotron">
-        <img src="{{ asset('assets/img/gedung-unpatti.png') }}" alt="Gedung UNPATTI" class="jumbotron__background">
+        <img src="{{ asset('assets/img/gedung-lpmpp.png') }}" alt="Gedung LPMPP" class="jumbotron__background">
         <div class="jumbotron__container">
-            <h1 class="jumbotron__title">LPMPP UNPATTI</h1>
-            <h2 class="jumbotron__subtitle">Official Website</h2>
+            <h1 class="jumbotron__title">Lembaga Penjaminan Mutu dan Pengembangan Pembelajaran (LPMPP)</h1>
+            <h2 class="jumbotron__subtitle">Universitas Pattimura</h2>
             <p class="jumbotron__description">Welcome to the website of the Institute for Quality Assurance and Learning Development (LPMPP), Pattimura University</p>
-        </div>
-    </section>
-    
-    {{-- Parameter --}}
-    <section class="parameter">
-        <div class="parameter__container">
-            <div class="parameter__item">
-                <span class="item__count">0</span>
-                <h6 class="item__title">Jumlah Program Studi</h6>
-            </div>
-            <div class="parameter__item">
-                <span class="item__count">0</span>
-                <h6 class="item__title">Jumlah Terakreditasi Unggul/A
-                </h6>
-            </div>
-            <div class="parameter__item">
-                <span class="item__count">0</span>
-                <h6 class="item__title">Presentase Terakreditasi Unggul/A</h6>
-            </div>
         </div>
     </section>
     
@@ -33,20 +14,63 @@
     <section class="sambutan">
         <div class="sambutan__container">
             <div class="sambutan__left">
-                <img src="{{ asset('assets/img/default.jpg') }}" alt="Foto Ketua" class="sambutan__photo">
+                <img src="{{ asset('assets/img/default.jpg') }}" alt="Foto Ketua" class="sambutan__photo" data-animate data-position="bottom" data-delay="300">
             </div>
             <div class="sambutan__right">
-                <h1 class="sambutan__title">LPMPP Universitas Pattimura</h1>
-                <hr>
-                {!! $sambutan->body ?? '<small class="empty">No content available</small>' !!}
+                <h1 class="sambutan__title" data-animate data-position="left" data-delay="200">LPMPP Universitas Pattimura</h1>
+                <hr data-animate data-position="left" data-delay="300">
+                <span data-animate data-position="left" data-delay="500">
+                    {!! $sambutan->body ?? '<small class="empty">No content available</small>' !!}
+                </span>
                 <ul class="sambutan__menu">
-                   <li class="menu__item"><a href="{{ route('guest.sejarah') }}">Sejarah Singkat LPMPP<i class="fa-solid fa-circle-arrow-right"></i></a></li>
-                   <li class="menu__item"><a href="{{ route('guest.visi-misi') }}">Visi dan Misi LPMPP<i class="fa-solid fa-circle-arrow-right"></i></a></li>
-                   <li class="menu__item"><a href="{{ route('guest.tugas-fungsi') }}">Tugas dan Fungsi LPMPP<i class="fa-solid fa-circle-arrow-right"></i></a></li>
+                   <li class="menu__item" data-animate data-position="left" data-delay="800"><a href="{{ route('guest.sejarah') }}">Sejarah Singkat LPMPP<i class="fa-solid fa-circle-arrow-right"></i></a></li>
+                   <li class="menu__item" data-animate data-position="left" data-delay="900"><a href="{{ route('guest.visi-misi') }}">Visi dan Misi LPMPP<i class="fa-solid fa-circle-arrow-right"></i></a></li>
+                   <li class="menu__item" data-animate data-position="left" data-delay="1000"><a href="{{ route('guest.tugas-fungsi') }}">Tugas dan Fungsi LPMPP<i class="fa-solid fa-circle-arrow-right"></i></a></li>
                 </ul>
             </div>
         </div>
     </section>
+    
+    {{-- Pusat --}}
+    <section class="pusat" id="pusat">
+        <div class="pusat__container">
+            <div class="pusat__header">
+                <h2 class="header__title" data-animate data-position="left" data-delay="300">Pusat Layanan<br>LPMPP</h2>
+            </div>
+            <div class="pusat__list">
+                @forelse ($pusats as $pusat)
+                    <span data-animate data-position="bottom" data-delay="{{ $loop->iteration * 200 + 400 }}">
+                        <div class="list__item">
+                            <img src="{{ asset('assets/img/gedung-lpmpp.png') }}" alt="Background" class="item__background">
+                            <h6 class="item__title">{{ $pusat->nama_bagian }}</h6>
+                        </div>
+                    </span>
+                @empty
+                    <small class="empty" style="text-align: center">No content available</small>
+                @endforelse
+            </div>
+        </div>
+    </section>
+    
+    {{-- Parameter --}}
+    {{-- <section class="parameter">
+        <div class="parameter__container">
+            <div class="parameter__item" data-animate data-position="bottom" data-delay="0">
+                <span class="item__count">0</span>
+                <h6 class="item__title">Jumlah Program Studi</h6>
+            </div>
+    
+            <div class="parameter__item" data-animate data-position="bottom" data-delay="200">
+                <span class="item__count">0</span>
+                <h6 class="item__title">Jumlah Terakreditasi Unggul/A</h6>
+            </div>
+    
+            <div class="parameter__item" data-animate data-position="bottom" data-delay="400">
+                <span class="item__count">0</span>
+                <h6 class="item__title">Presentase Terakreditasi Unggul/A</h6>
+            </div>
+        </div>
+    </section> --}}
     
     {{-- Advertisement --}}
     <section class="advertisement">

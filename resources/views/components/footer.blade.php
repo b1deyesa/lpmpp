@@ -1,4 +1,4 @@
-<footer class="footer">
+<footer>
     <div class="footer__container">
         <div class="footer__left">
             <div class="footer__logo">
@@ -10,14 +10,14 @@
                 <br>Desa Poka, Kecamatan Teluk Ambon
                 <br>Kota Ambon, Maluku
             </p>
-            {{-- <p class="footer__text">
+            <p class="footer__text">
                 Telepon: ...
                 <br>Faks: ...
                 <br>Email: ...
-            </p> --}}
+            </p>
         </div>
         <div class="footer__right">
-            {{-- <p class="footer__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis molestias cumque vero maiores nihil dolor quo facere ut deserunt odit</p> --}}
+            <p class="footer__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis molestias cumque vero maiores nihil dolor quo facere ut deserunt odit</p>
         </div>
     </div>
 </footer>

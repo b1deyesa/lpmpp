@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
 use App\Models\Pusat;
-use App\Models\TenagaPengelola;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\TenagaPengelola;
+use App\Http\Controllers\Controller;
 
 class PusatController extends Controller
 {
@@ -34,14 +35,16 @@ class PusatController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'tenaga_pengelola_id' => 'required',
             'nama_bagian' => 'required'
         ]);
         
         Pusat::create([
-            'tenaga_pengelola_id' => $request->tenaga_pengelola_id,
             'nama_bagian' => $request->nama_bagian,
-            'tugas' => $request->tugas
+            'singkatan_bagian' => Str::lower($request->singkatan_bagian ?? Str::of($request->nama_bagian)->explode(' ')->map(fn ($w) => $w[0])->implode('')),
+            'anggota' => json_encode($request->anggota),
+            'tugas' => $request->tugas,
+            'email' => $request->email,
+            'no_telp' => $request->no_telp
         ]);
         
         return redirect()->route('dashboard.pusat.index')->with('success', 'Success added!');

@@ -2,18 +2,21 @@
 
 namespace App\View\Components;
 
+use App\Models\Pusat;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Navbar extends Component
 {
+    public $pusats = null;
+    
     /**
      * Create a new component instance.
      */
     public function __construct()
     {
-        //
+        $this->pusats = Pusat::all();
     }
 
     /**

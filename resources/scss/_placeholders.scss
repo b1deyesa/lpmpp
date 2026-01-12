@@ -1,8 +1,81 @@
 @use 'variables' as *;
 
-%header-1 {
-    font-size: 1.5em;
-    font-weight: bold;
-    font-family: $font-family-secondary;
-    color: $color-1;
-}
+/* 
+ | ---------------------------------
+ |  Header
+ | ---------------------------------
+ */
+    %header-1 {
+        font-size: 1.5em;
+        font-weight: bold;
+        font-family: $font-family-secondary;
+        color: $color-1;
+    }
+    %header-2 {
+        font-family: $font-family-secondary;
+        font-size: 2em;
+        font-weight: 600;
+        line-height: 1.2;
+        color: $color-1;
+    }
+/* 
+ | ---------------------------------
+ |  Text
+ | ---------------------------------
+ */
+    %text {
+        font-size: 1em;
+        line-height: $line-height-default;
+        color: $color-text;
+    }
+/* 
+ | ---------------------------------
+ |  Table
+ | ---------------------------------
+ */
+    %table {
+        th {
+            font-size: .95em;
+            font-weight: bold;
+            line-height: 1.3;
+            vertical-align: middle;
+            padding: .5em;
+            border: 1px solid rgba($color-black, 30%);
+            color: $color-text;
+            background: $color-4;
+        }
+
+        td {
+            font-size: .95em;
+            line-height: 1.3;
+            vertical-align: middle;
+            padding: .5em;
+            border: 1px solid rgba($color-black, 30%);
+            color: $color-text;
+        }
+    }
+/* 
+ | ---------------------------------
+ |  Animate
+ | ---------------------------------
+ */
+    [data-animate] {
+        opacity: 0;
+        transition: opacity .6s ease, transform .6s ease;
+    }
+    [data-animate][data-position="top"] {
+        transform: translateY(-50px);
+    }
+    [data-animate][data-position="bottom"] {
+        transform: translateY(50px);
+    }
+    [data-animate][data-position="left"] {
+        transform: translateX(-50px);
+    }
+    [data-animate][data-position="right"] {
+        transform: translateX(50px);
+    }
+    [data-animate].is-visible {
+        opacity: 1;
+        transform: translate(0, 0);
+    }

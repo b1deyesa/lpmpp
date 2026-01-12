@@ -122,10 +122,134 @@
                 </ul>
             </div>
             @break
+        @case('select-search-multiple')
+            @if(isset($__livewire))
+                <div
+                    x-data="{
+                        options: @js($options),
+                        q: '',
+                        isFocused: false,
+            
+                        selected: @entangle($wire.'.value'),
+                        selectedKeys: @entangle($wire.'.key'),
+            
+                        filtered() {
+                            return Object.entries(this.options)
+                                .filter(([k, v]) =>
+                                    !this.selectedKeys.includes(k) &&
+                                    v.toLowerCase().includes(this.q.toLowerCase())
+                                );
+                        },
+            
+                        choose(key, val) {
+                            this.selected[key] = val;
+                            this.selectedKeys.push(key);
+                            this.q = '';
+                            this.isFocused = false;
+            
+                            $wire.set('{{ $wire }}.key', this.selectedKeys);
+                            $wire.set('{{ $wire }}.value', this.selected);
+                        },
+            
+                        remove(key) {
+                            delete this.selected[key];
+                            this.selectedKeys = this.selectedKeys.filter(k => k !== key);
+            
+                            $wire.set('{{ $wire }}.key', this.selectedKeys);
+                            $wire.set('{{ $wire }}.value', this.selected);
+                        },
+            
+                        blurHandler() {
+                            setTimeout(() => {
+                                let match = Object.values(this.options)
+                                    .some(v => v.toLowerCase() === this.q.toLowerCase());
+            
+                                if (!match) this.q = '';
+                                this.isFocused = false;
+                            }, 150);
+                        }
+                    }"
+                    class="select-search-multiple"
+                >
+            @else
+                <div
+                    x-data="{
+                        options: @js($options),
+                        q: '',
+                        isFocused: false,
+            
+                        selected: {},
+                        selectedKeys: [],
+            
+                        filtered() {
+                            return Object.entries(this.options)
+                                .filter(([k, v]) =>
+                                    !this.selectedKeys.includes(k) &&
+                                    v.toLowerCase().includes(this.q.toLowerCase())
+                                );
+                        },
+            
+                        choose(key, val) {
+                            this.selected[key] = val;
+                            this.selectedKeys.push(key);
+                            this.q = '';
+                            this.isFocused = false;
+                        },
+            
+                        remove(key) {
+                            delete this.selected[key];
+                            this.selectedKeys = this.selectedKeys.filter(k => k !== key);
+                        },
+            
+                        blurHandler() {
+                            setTimeout(() => {
+                                let match = Object.values(this.options)
+                                    .some(v => v.toLowerCase() === this.q.toLowerCase());
+            
+                                if (!match) this.q = '';
+                                this.isFocused = false;
+                            }, 150);
+                        }
+                    }"
+                    class="select-search-multiple"
+                >
+            @endif
+            
+                <input
+                    type="text"
+                    x-model="q"
+                    @focus="isFocused = true"
+                    @input="isFocused = true"
+                    @blur="blurHandler"
+                    placeholder="{{ $placeholder }}"
+                    class="{{ $class }}"
+                >
+            
+                <div class="selected-wrapper">
+                    <template x-for="(val, key) in selected" :key="key">
+                        <span class="chip">
+                            <span x-text="val"></span>
+                            <button type="button" @click="remove(key)">×</button>
+                        </span>
+                    </template>
+                </div>
+            
+                <template x-for="key in selectedKeys" :key="key">
+                    <input type="hidden" name="{{ $name }}[]" :value="key">
+                </template>
+            
+                <ul x-show="isFocused && filtered().length" x-transition>
+                    <template x-for="[key, val] in filtered()" :key="key">
+                        <li @mousedown.prevent="choose(key, val)" x-text="val"></li>
+                    </template>
+                </ul>
+            
+            </div>
+            @break            
         @case('checkbox')
             <span class="checkbox {{ $class }} @error($name) error @enderror">
                 <input type="hidden" name="{{ $name }}" value="">
-                @foreach ($options as $key => $option)
+                @forelse ($options as $key => $option)
                     <label for="{{ $id }}-{{ $key }}-{{ $uniqid }}">
                         <input
                             type="checkbox"
@@ -138,7 +262,9 @@
                         >
                         {{ $option }}
                     </label>
-                @endforeach
+                @empty
+                    <small class="empty" style="text-align: center">No content available</small>
+                @endforelse
             </span>
             @break
         @case('radio')
@@ -164,7 +290,7 @@
             
             @break
         @case('editor')
-            <textarea class="ckeditor" id="editor-{{ $id }}" name="{{ $name }}">{!! $value !!}</textarea>
+            <textarea class="ckeditor" id="editor-{{ $id }}" name="{{ $name }}">{!! old($name, $value) !!}</textarea>
             @break
         @default
             <input 

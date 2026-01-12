@@ -18,19 +18,22 @@ Route::namespace('App\Http\Controllers')->group(function() {
         Route::get('/sejarah', 'SejarahController@index')->name('sejarah');
         Route::get('/struktur-organisasi', 'StrukturOrganisasiController@index')->name('struktur-organisasi');
         Route::get('/tugas-fungsi', 'TugasFungsiController@index')->name('tugas-fungsi');
-        Route::get('/pusat', 'PusatController@index')->name('pusat');
+        Route::prefix('portal/{pusat:singkatan_bagian}')->name('portal.')->group(function() {
+            Route::get('/', 'PortalController@index')->name('home');
+        });
     });
     
     // Dashboard
     Route::namespace('Dashboard')->prefix('dashboard')->name('dashboard.')->middleware('auth')->group(function() {
         Route::get('/', 'HomeController@index')->name('home');
-        Route::resource('/sambutan', 'SambutanController');
-        Route::resource('/visi-misi', 'VisiMisiController');
-        Route::resource('/sejarah', 'SejarahController');
-        Route::resource('/struktur-organisasi', 'StrukturOrganisasiController');
-        Route::resource('/tenaga-pengelola', 'TenagaPengelolaController');
-        Route::resource('/tugas-fungsi', 'TugasFungsiController');
-        Route::resource('/pusat', 'PusatController');
+        Route::resource('sambutan', 'SambutanController');
+        Route::resource('visi-misi', 'VisiMisiController');
+        Route::resource('sejarah', 'SejarahController');
+        Route::resource('struktur-organisasi', 'StrukturOrganisasiController');
+        Route::resource('tugas-fungsi', 'TugasFungsiController');
+        Route::resource('tenaga-pengelola', 'TenagaPengelolaController');
+        Route::resource('pusat', 'PusatController');
+        Route::resource('pusat.portal', 'PortalController');
     });
 });
 

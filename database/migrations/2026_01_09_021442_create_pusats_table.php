@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('pusats', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('tenaga_pengelola_id')->constrained('tenaga_pengelolas')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('nama_bagian');
+            $table->string('singkatan_bagian')->unique();
+            $table->string('anggota')->nullable();
             $table->text('tugas')->nullable();
+            $table->text('email')->nullable();
+            $table->text('no_telp')->nullable();
             $table->timestamps();
         });
     }
