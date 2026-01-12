@@ -19,9 +19,9 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'test@gmail.com',
-            'password' => Hash::make('123')
+            'name' => 'Mba Indag',
+            'email' => 'sangadjiindah8@gmail.com',
+            'password' => Hash::make('admin-lpmpp$2026##')
         ]);
     }
 }
