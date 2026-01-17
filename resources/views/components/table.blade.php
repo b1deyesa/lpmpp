@@ -1,14 +1,20 @@
-<table class="table {{ $class }}">
-    @if ($head)
-        <thead>
-            <tr>
-                {{ $head }}
-            </tr>
-        </thead>
-    @endif
-    @if ($body)
-    <tbody>
-        {{ $body }}
-    </tbody>
-    @endif
-</table>
+    {{-- Content --}}
+    <div class="table">
+        <table class="{{ $class ?? '' }}">
+            @isset($head)
+                <thead>
+                    <tr>
+                        {{ $head }}
+                    </tr>
+                </thead>
+            @endisset
+    
+            @isset($body)
+                <tbody>
+                    {{ $body }}
+                </tbody>
+            @endisset
+        </table>
+    </div>
+    
+</div>

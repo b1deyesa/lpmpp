@@ -1,7 +1,7 @@
 <x-layout.app class="guest">
     
-    {{-- Navbar --}}
-    <x-navbar />
+    {{-- Navigation --}}
+    <x-navigation.guest />
     
     {{-- Slot --}}
     <section class="{{ $class }}">

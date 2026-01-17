@@ -1,0 +1,35 @@
+@use 'variables' as *;
+
+ul {
+    display: flex;
+    flex-direction: column;
+    gap: .3em;
+    padding: .5em 0 .5em 1em;
+
+    li {
+        list-style-type: disc;
+        line-height: $line-height-default;
+        color: $color-text;
+    }
+}
+
+ol {
+    display: flex;
+    flex-direction: column;
+    gap: .3em;
+    padding: .5em 0 .5em 1em;
+
+    li {
+        list-style-type: decimal;
+        line-height: $line-height-default;
+        color: $color-text;
+    }
+}
+
+strong {
+    font-weight: bold;
+}
+
+i {
+    font-style: italic;
+}

@@ -14,6 +14,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://kit.fontawesome.com/4419d23bf4.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     @vite(['resources/css/app.css', 'resources/scss/app.scss', 'resources/js/app.js'])
     @livewireStyles

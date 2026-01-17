@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Models\Pusat;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\TenagaPengelola;
+use App\Models\Pengelola;
 use App\Http\Controllers\Controller;
 
 class PusatController extends Controller
@@ -16,8 +16,7 @@ class PusatController extends Controller
     public function index()
     {
         return view('dashboard.pusat', [
-            'pusats' => Pusat::all(),
-            'tenaga_pengelolas' => TenagaPengelola::all()->pluck('nama', 'id')->toJson()
+            'pusats' => Pusat::all()
         ]);
     }
 
@@ -34,20 +33,7 @@ class PusatController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nama_bagian' => 'required'
-        ]);
-        
-        Pusat::create([
-            'nama_bagian' => $request->nama_bagian,
-            'singkatan_bagian' => Str::lower($request->singkatan_bagian ?? Str::of($request->nama_bagian)->explode(' ')->map(fn ($w) => $w[0])->implode('')),
-            'anggota' => json_encode($request->anggota),
-            'tugas' => $request->tugas,
-            'email' => $request->email,
-            'no_telp' => $request->no_telp
-        ]);
-        
-        return redirect()->route('dashboard.pusat.index')->with('success', 'Success added!');
+    //    
     }
 
     /**
@@ -80,5 +66,12 @@ class PusatController extends Controller
     public function destroy(Pusat $pusat)
     {
         //
+    }
+    
+    public function truncate(Request $request)
+    {
+        Pusat::query()->delete();
+
+        return redirect()->route('dashboard.pusat.index')->with('success', 'Successfuly deleted all!');
     }
 }

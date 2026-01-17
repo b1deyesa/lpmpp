@@ -73,4 +73,11 @@ class VisiMisiController extends Controller
     {
         //
     }
+    
+    public function truncate(Request $request)
+    {
+        VisiMisi::truncate();
+
+        return redirect()->route('dashboard.visi-misi.index')->with('success', 'Successfuly deleted all!');
+    }
 }

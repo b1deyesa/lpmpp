@@ -2,7 +2,7 @@
     
     {{-- Header --}}
     <div class="header">
-        <h1 class="header__title">{{ $title }}</h1>
+        
     </div>
     
     {{-- Slot --}}

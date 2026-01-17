@@ -51,11 +51,13 @@ table {
 	box-sizing: border-box;
 }
 
-.ck-editor__editable {
-    min-height: 200px;
+.chart-wrapper {
+    width: 100%;
+    position: relative;
 }
 
-.ck-content table {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+.chart-wrapper canvas {
+    width: 100% !important;
+    height: auto !important;
+    display: block;
 }

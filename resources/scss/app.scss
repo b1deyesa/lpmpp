@@ -3,6 +3,7 @@
 @use 'placeholders'as *;
 @use 'components';
 @use 'pages';
+@use 'typography';
 
 :root {
     font-size: 16px;
@@ -88,18 +89,18 @@ body {
             div.struktur-organisasi {
                 max-width: 1000px;
 
-                section.tenaga-pengelola {
+                section.pengelola {
                     display: flex;
                     justify-content: center;
                     margin: 2em 0 0;
 
-                    .tenaga-pengelola__container {
+                    .pengelola__container {
                         display: flex;
                         flex-direction: column;
                         gap: 2em;
                         width: 100%;
 
-                        .tenaga-pengelola__header {
+                        .pengelola__header {
                             display: flex;
                             gap: 2em;
                             align-items: center;
@@ -115,7 +116,7 @@ body {
                             }
                         }
 
-                        .tenaga-pengelola__list {
+                        .pengelola__list {
                             display: grid;
                             grid-template-columns: repeat(3, 1fr);
                             gap: 1.5em;
@@ -348,8 +349,8 @@ body {
  | ---------------------------------
  */
     .guest {
-        
-        > section.pusat {
+
+        >section.pusat {
             display: flex;
             justify-content: center;
             min-height: 20em;
@@ -360,13 +361,13 @@ body {
                 justify-content: space-between;
                 width: 100%;
                 max-width: 1200px;
-                
+
                 .pusat__list {
                     display: flex;
                     flex-direction: column;
                     gap: 1em;
                     width: 100%;
-                    
+
                     .list__item {
                         position: relative;
                         display: flex;
@@ -376,7 +377,7 @@ body {
                         background: linear-gradient(90deg, rgba($color-white, 100%) 50%, rgba($color-white, 50%));
                         border: 1px solid rgba($color-black, 5%);
                         // box-shadow: 2px 2px 8px rgba($color-black, 10%);
-                        
+
                         .item__background {
                             position: absolute;
                             object-fit: cover;
@@ -388,7 +389,7 @@ body {
                             z-index: -1;
                             filter: grayscale(100%);
                         }
-                        
+
                         .item__body {
                             display: flex;
                             flex-direction: column;
@@ -397,14 +398,14 @@ body {
                             width: 100%;
                             max-width: 500px;
                             padding: 4em;
-                            
+
                             .body__title {
                                 font-size: 1.2em;
                                 font-weight: bold;
                                 line-height: 1.4;
                                 color: $color-text;
                             }
-                            
+
                             .body__subtitle {
                                 font-size: .9em;
                                 color: rgba($color-text, 60%);
@@ -421,23 +422,23 @@ body {
  | ---------------------------------
  */
     body.portal {
-        
-        > section.home {
+
+        >section.home {
             position: relative;
             display: flex;
             justify-content: center;
             min-height: 20em;
             padding: 3em 2em;
-            
+
             .home__container {
                 display: flex;
                 flex-direction: column;
                 width: 100%;
                 max-width: 1200px;
-                
+
                 .header {
                     display: flex;
-                    
+
                     .header__container {
                         position: relative;
                         display: flex;
@@ -447,7 +448,7 @@ body {
                         width: 100%;
                         max-width: 1200px;
                         background: linear-gradient(100deg, darken(rgba($color-1, 80%), 5%) 20%, rgba($color-black, 20%));
-                        
+
                         .header__background {
                             position: absolute;
                             object-fit: cover;
@@ -457,7 +458,7 @@ body {
                             z-index: -1;
                             filter: contrast(110%) saturate(110%) hue-rotate(-5deg);
                         }
-                        
+
                         .header__title {
                             @extend %header-2;
                             text-align: center;
@@ -466,35 +467,35 @@ body {
                         }
                     }
                 }
-                
+
                 .headline {
                     display: flex;
                     justify-content: center;
                     padding: 3em 0;
-                    
+
                     .headline__container {
                         display: flex;
                         gap: 1.5em;
-                        
+
                         .headline__left {
                             display: flex;
                             flex-direction: column;
                             gap: 2em;
                             width: 100%;
-                            
+
                             .headline__big {
                                 display: flex;
                                 flex-direction: column;
                                 text-decoration: none;
                                 gap: 1em;
                                 width: 100%;
-                                
+
                                 .post__cover {
                                     aspect-ratio: 16/9;
                                     object-fit: cover;
                                     width: 100%;
                                 }
-                                
+
                                 .post__title {
                                     font-size: 1.8em;
                                     font-weight: bold;
@@ -502,24 +503,24 @@ body {
                                     color: $color-black;
                                 }
                             }
-                            
+
                             .headline__report {
                                 display: flex;
-                                
+
                                 .report__item {
                                     text-decoration: none;
                                     padding: 0 1.5em;
                                     border-right: .01em solid rgba($color-black, 15%);
-                                    
+
                                     &:first-child {
                                         padding-left: 0;
                                     }
-                                    
+
                                     &:last-child {
                                         border: none;
                                         padding-right: 0;
                                     }
-                                    
+
                                     .item__title {
                                         font-size: 1.1em;
                                         font-weight: 500;
@@ -529,67 +530,67 @@ body {
                                 }
                             }
                         }
-                        
+
                         .headline__line {
                             height: 100%;
                             margin: 0;
                             border: none;
                             border-right: .01em solid rgba($color-black, 15%)
                         }
-                        
+
                         .headline__right {
                             display: flex;
                             flex-direction: column;
                             gap: 1.5em;
                             min-width: 25em;
                             max-width: 25em;
-                            
+
                             .right__title {
                                 font-size: 1.2em;
                                 font-weight: bold;
                                 line-height: 1.4;
                                 color: $color-1;
                             }
-                            
+
                             .headline__post {
                                 display: flex;
                                 flex-direction: column;
                                 width: 100%;
                                 max-width: 30em;
-                                
+
                                 .post__item {
                                     display: flex;
                                     text-decoration: none;
                                     gap: .8em;
                                     padding: 1.2em 0;
                                     border-bottom: .01em solid rgba($color-black, 15%);
-                                    
+
                                     &:first-child {
                                         padding-top: 0;
                                     }
-                                    
+
                                     &:last-child {
                                         border: none;
                                         padding-bottom: 0;
                                     }
-                                    
+
                                     .item__cover {
                                         aspect-ratio: 1/1;
                                         object-fit: cover;
                                         width: 5em;
                                     }
-                                    
+
                                     .item__right {
                                         display: flex;
                                         flex-direction: column;
                                         gap: .4em;
-                                        
+
                                         .item__title {
                                             font-size: 1em;
                                             line-height: 1.4;
                                             color: $color-black;
                                         }
-                                        
+
                                         .item__category {
                                             font-size: .85em;
                                             line-height: 1.4;
@@ -604,226 +605,8 @@ body {
             }
         }
     }
-/* 
- | ---------------------------------
- |  Dashboard
- | ---------------------------------
- */
-    body.dashboard {
-        display: flex;
-        height: 100vh;
-        width: 100vw;
 
-        section.dashboard__sidebar {
-            width: 20em;
-            background: $color-1;
 
-            .sidebar__container {
-                display: flex;
-                flex-direction: column;
-                padding: 2em 1em;
-                gap: 1em;
-
-                .sidebar__menu {
-                    display: flex;
-                    flex-direction: column;
-
-                    .menu__item {
-                        line-height: 1.4;
-                        text-decoration: none;
-                        padding: .5em .8em;
-                        color: rgba($color-light, 80%);
-
-                        &:hover {
-                            background: $color-2;
-                            color: $color-light;
-                        }
-                    }
-                    
-                    .menu__line {
-                        width: 90%;
-                        border: none;
-                        border-bottom: .01em solid rgba($color-white, 20%);
-                    }
-                }
-            }
-        }
-
-        section.dashboard__content {
-            width: 100%;
-            overflow-y: scroll;
-
-            .content__container {
-                padding: 2.5em;
-            }
-        }
-        
-        div.dashboard-form {
-            display: flex;
-            flex-direction: column;
-            gap: 2em;
-    
-            .dashboard__section {
-                display: flex;
-                flex-direction: column;
-                gap: 2em;
-                padding: 2em 0 0;
-    
-                .section__header {
-                    display: flex;
-                    align-items: center;
-                    gap: 2em;
-    
-                    .header__title {
-                        font-size: 1.4em;
-                        font-weight: bold;
-                        white-space: nowrap;
-                        color: rgba($color-text, 80%);
-                    }
-    
-                    .header__line {
-                        width: 100%;
-                        border: .01em solid rgba($color-black, 20%);
-                    }
-                }
-            }
-    
-            .header {
-                display: flex;
-    
-                .header__title {
-                    font-size: 1.8em;
-                    font-weight: bold;
-                    color: $color-text;
-                }
-            }
-    
-            .form {
-                display: flex;
-                flex-direction: column;
-                gap: 2em;
-    
-                .form__col {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 2em;
-                }
-                
-                .form__row {
-                    display: flex;
-                    gap: 1.5em;
-                }
-            }
-        }
-        
-        div.pusat {
-            
-            .input {
-                
-                .select-search-multiple {
-                    display: flex;
-                    flex-direction: column;
-                    gap: .5em;
-                    
-                    ul {
-                        margin: 3em 0 0
-                    }
-                    
-                    .remove {
-                        aspect-ratio: 1/1;
-                        width: 2em;
-                        border-radius: 50%;
-                        background: $color-danger;
-                        border: none;
-                        color: $color-white;
-                    }
-                    
-                    .selected-table {
-                        @extend %table;
-                        width: 100%;
-                    }
-                }
-            }
-        }
-        
-        div.portal {
-            display: flex;
-            min-height: 100%;
-            width: 100%;
-            
-            .form {
-                display: flex;
-                gap: 2em;
-                min-height: 100%;
-                width: 100%;
-                
-                .portal__left {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 2em;
-                    width: 100%;
-                    
-                    .portal__header {
-                        display: flex;
-                        justify-content: center;
-                        
-                        .header__container {
-                            display: flex;
-                            justify-content: space-between;
-                            width: 100%;
-                            gap: 2em;
-                            
-                            .header__title {
-                                font-size: 1.8em;
-                                font-weight: bold;
-                                color: $color-text;
-                            }
-                        }
-                    }
-                }
-                
-                .portal__line {
-                    height: 100%;
-                    margin: 0;
-                    border: none;
-                    border-right: 1px solid rgba($color-black, 15%)
-                }
-                
-                .portal__right {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 2em;
-                    width: 100%;
-                    max-width: 20em;
-                    
-                    .portal__category {
-                        position: relative;
-                        display: flex;
-                        align-items: end;
-                        gap: .8em;
-
-                        .input {
-                            
-                            .input__label {
-                                margin: .3em 0 0;
-                            }
-                        }
-                        
-                        .button {
-                            position: absolute;
-                            white-space: nowrap;
-                            top: 0;
-                            left: 5.2em;
-                            font-size: .8em;
-                            padding: .2em .5em;
-                            min-height: fit-content !important;
-                        }
-                    }
-                    
-                    .submit {
-                        margin: 2em 0 0;
-                    }
-                }
-            }
-        }
+    p {
+        @extend %text;
     }

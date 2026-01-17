@@ -72,4 +72,11 @@ class StrukturOrganisasiController extends Controller
     {
         //
     }
+    
+    public function truncate(Request $request)
+    {
+        StrukturOrganisasi::truncate();
+
+        return redirect()->route('dashboard.struktur-organisasi.index')->with('success', 'Successfuly deleted all!');
+    }
 }

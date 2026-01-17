@@ -31,12 +31,33 @@ class SambutanController extends Controller
      */
     public function store(Request $request)
     {
-        Sambutan::updateOrCreate(
-            ['id' => 1],
-            [
-                'body' => $request->body
-            ]
-        );
+        $request->validate([
+            'photo' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        ]);
+        
+        $photoPath = null;
+        
+        if ($request->hasFile('photo')) {
+            $extension = $request->file('photo')->getClientOriginalExtension();
+            $filename  = 'sambutan.' . $extension;
+            $photoPath = $request->file('photo')->storeAs('', $filename, 'public');
+            
+            Sambutan::updateOrCreate(
+                ['id' => 1],
+                [
+                    'body'  => $request->body,
+                    'photo' => $photoPath
+                ]
+            );
+            
+        } else {
+            Sambutan::updateOrCreate(
+                ['id' => 1],
+                [
+                    'body'  => $request->body
+                ]
+            );
+        }
         
         return redirect()->route('dashboard.sambutan.index')->with('success', 'Success Update!');
     }
@@ -71,5 +92,12 @@ class SambutanController extends Controller
     public function destroy(Sambutan $sambutan)
     {
         //
+    }
+    
+    public function truncate(Request $request)
+    {
+        Sambutan::truncate();
+
+        return redirect()->route('dashboard.sambutan.index')->with('success', 'Successfuly deleted all!');
     }
 }

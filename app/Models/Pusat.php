@@ -24,7 +24,7 @@ class Pusat extends Model
         if ($anggotas) {
 
             foreach ($anggotas as $anggota) {
-                $tenaga = TenagaPengelola::find($anggota['tenaga_pengelola_id']);
+                $tenaga = Pengelola::find($anggota['pengelola_id']);
     
                 if ($tenaga) {
                     $result[$tenaga->nama] = $anggota['jabatan'];

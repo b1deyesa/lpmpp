@@ -2,15 +2,12 @@
 
 namespace App\View\Components\Layout;
 
-use App\Models\Pusat;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Dashboard extends Component
-{
-    public $pusats = null;
-    
+{    
     /**
      * Create a new component instance.
      */
@@ -19,7 +16,6 @@ class Dashboard extends Component
     )
     {
         $this->class = $class;
-        $this->pusats = Pusat::all();
     }
 
     /**

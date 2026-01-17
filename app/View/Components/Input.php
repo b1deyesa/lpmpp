@@ -24,7 +24,9 @@ class Input extends Component
         public $required = false,
         public $options = null,
         public $class = null,
-        public $width = null
+        public $width = null,
+        public $height = null,
+        public $toolbar = 'basic'
     )
     {
         $this->uniqid = uniqid();
@@ -45,6 +47,8 @@ class Input extends Component
         $this->options = is_string($options) && $options !== [] ? json_decode($options, true) : ($options ?? []);    
         $this->class = $class;
         $this->width = $width;
+        $this->height = $height;
+        $this->toolbar = $toolbar;
     }
 
     /**

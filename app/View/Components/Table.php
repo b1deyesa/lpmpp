@@ -14,7 +14,7 @@ class Table extends Component
     public function __construct(
         public $class = null,
         public $head = null,
-        public $body = null
+        public $body = null,
     )
     {
         $this->class = $class;

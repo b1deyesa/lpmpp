@@ -72,4 +72,11 @@ class SejarahController extends Controller
     {
         //
     }
+    
+    public function truncate(Request $request)
+    {
+        Sejarah::truncate();
+
+        return redirect()->route('dashboard.sejarah.index')->with('success', 'Successfuly deleted all!');
+    }
 }

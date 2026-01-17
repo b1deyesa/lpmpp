@@ -73,4 +73,11 @@ class TugasFungsiController extends Controller
     {
         //
     }
+    
+    public function truncate(Request $request)
+    {
+        TugasFungsi::truncate();
+
+        return redirect()->route('dashboard.tugas-fungsi.index')->with('success', 'Successfuly deleted all!');
+    }
 }

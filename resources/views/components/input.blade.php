@@ -1,4 +1,4 @@
-<div class="input" {{ $attributes }} style="width: {{ $width }}">
+<div class="input {{ $class }}" style="width: {{ $width }}" {{ $attributes }}>
     
     {{-- Label --}}
     @if($label)<span class="input__label">{{ $label }}</span>@endif
@@ -287,10 +287,82 @@
             </span>
             @break
         @case('textarea')
-            
+            <textarea 
+                id="{{ $id }}" 
+                @if($name) name="{{ $name }}" @endif
+                @if($placeholder) placeholder="{{ $placeholder }}" @endif
+                @required($required)
+                autocomplete="off"
+                autofocus
+                style="height: {{ $height }}"
+                {{ $attributes }}
+                >{!! old($name, $value) !!}</textarea>
             @break
         @case('editor')
-            <textarea class="ckeditor" id="editor-{{ $id }}" name="{{ $name }}">{!! old($name, $value) !!}</textarea>
+            <div class="editor">
+                <textarea  
+                    id="editor-{{ $id }}" 
+                    class="editor-input"
+                    name="{{ $name }}"
+                    @if($wire) wire:model="{{ $wire }}" @endif
+                    data-toolbar="{{ $toolbar }}"
+                    >{!! old($name, $value) !!}</textarea>
+            </div>
+            @break
+        @case('image')
+            @if (!empty($wire))
+                <div class="image {{ $class }}">
+                    <div class="image__preview
+                        {{ !empty($this->{$wire}) ? 'has-image' : 'is-empty' }}">
+            
+                        @if (!empty($this->{$wire}))
+                            <img
+                                src="{{ $this->{$wire}->temporaryUrl() }}"
+                                alt="Preview"
+                                class="image__value"
+                            >
+                        @else
+                            <small class="image__empty">
+                                <i class="fa-regular fa-image"></i>
+                            </small>
+                        @endif
+                    </div>
+                    <input
+                        type="file"
+                        id="{{ $id }}"
+                        name="{{ $name }}"
+                        wire:model.live="{{ $wire }}"
+                        accept="image/*"
+                        @required($required)
+                        class="image__input @error($name) error @enderror"
+                        {{ $attributes }}
+                    >
+                </div>
+            @else
+                <div class="image {{ $class }}">
+                    <div class="image__preview {{ $value ? 'has-image' : 'is-empty' }}">
+                        <img
+                            src="{{ $value ? asset('storage/'.$value) : '' }}"
+                            alt="Preview"
+                            class="image__value"
+                        >
+                        <small class="image__empty">
+                            <i class="fa-regular fa-image"></i>
+                        </small>
+                    </div>
+            
+                    <input
+                        type="file"
+                        id="{{ $id }}"
+                        name="{{ $name }}"
+                        accept="image/*"
+                        data-image-preview
+                        @required($required)
+                        class="image__input @error($name) error @enderror"
+                        {{ $attributes }}
+                    >
+                </div>
+            @endif
             @break
         @default
             <input 
@@ -302,7 +374,7 @@
                 @if($placeholder) placeholder="{{ $placeholder }}" @endif
                 @required($required)
                 autocomplete="off"
-                class="{{ $class }} @error($name) error @enderror"
+                class="@error($name) error @enderror"
                 autofocus
                 {{ $attributes }}
                 >

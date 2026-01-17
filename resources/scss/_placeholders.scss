@@ -18,6 +18,13 @@
         line-height: 1.2;
         color: $color-1;
     }
+    %header-3 {
+        font-family: $font-family-secondary;
+        font-size: 1.2em;
+        font-weight: 600;
+        line-height: 1.4;
+        color: $color-1;
+    }
 /* 
  | ---------------------------------
  |  Text
@@ -27,6 +34,44 @@
         font-size: 1em;
         line-height: $line-height-default;
         color: $color-text;
+    }
+/* 
+ | ---------------------------------
+ |  Menu
+ | ---------------------------------
+ */
+    %menu {
+        position: relative;
+        display: flex;
+        align-items: center;
+        font-size: .95em;
+        font-weight: $font-family-default;
+        line-height: $line-height-default;
+        text-decoration: none;
+        gap: .4em;
+        padding: .2em .5em;
+        cursor: pointer;
+        opacity: 80%;
+        z-index: 10;
+        color: $color-1;
+        
+        &:hover {
+            opacity: 100%;
+        }
+        
+        .menu__icon {
+            font-size: .9em;
+            opacity: 80%;
+        }
+        
+        .menu__icon__dropdown {
+            font-size: .8em;
+            opacity: 50%;
+        }
+        
+        &.menu__highlight {
+            color: $color-6;
+        }
     }
 /* 
  | ---------------------------------

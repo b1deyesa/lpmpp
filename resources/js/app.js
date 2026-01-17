@@ -1,5 +1,131 @@
 import './bootstrap';
 
+document.addEventListener('DOMContentLoaded', function () {
+
+    window.ckeditors = window.ckeditors || {};
+
+    const toolbarPresets = {
+        basic: [
+            'bold', 'italic',
+            'bulletedList', 'numberedList'
+        ],
+        full: [
+            'undo', 'redo', '|',
+            'bold', 'italic', '|',
+            'bulletedList', 'numberedList', '|',
+            'fontFamily', 'fontSize',
+            'fontColor', 'fontBackgroundColor', '|',
+            'insertTable', '|',
+            'uploadImage'
+        ],
+        table: [
+            'undo', 'redo', '|',
+            'insertTable'
+        ]
+    };
+
+    function initEditors() {
+
+        document.querySelectorAll('.editor-input').forEach(el => {
+
+            if (el.dataset.initialized) return;
+            el.dataset.initialized = true;
+
+            const toolbarType = el.dataset.toolbar || 'basic';
+
+            CKEDITOR.ClassicEditor.create(el, {
+                licenseKey: 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3Njk4MTc1OTksImp0aSI6IjRhNGVkNWRlLTllYTEtNGEyYi04Mjg2LWY2MTc2MzhjOGNkMCIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6IjMzOGZhNzQ3In0.B_OlDNys0y9YBtobv0vQqUObO5B6vumgBaLM9p2g4bSUEbEb6ppSCjylVYny-u5ZD2J4b78HBox73fRJFI1lqQ',
+
+                plugins: [
+                    CKEDITOR.Essentials,
+                    CKEDITOR.Paragraph,
+                    CKEDITOR.Bold,
+                    CKEDITOR.Italic,
+                    CKEDITOR.Font,
+
+                    CKEDITOR.List,
+                    CKEDITOR.Table,
+                    CKEDITOR.TableToolbar,
+                    CKEDITOR.TableProperties,
+
+                    CKEDITOR.Image,
+                    CKEDITOR.ImageToolbar,
+                    CKEDITOR.ImageCaption,
+                    CKEDITOR.ImageStyle,
+                    CKEDITOR.ImageResize,
+                    CKEDITOR.ImageUpload,
+
+                    CKEDITOR.SimpleUploadAdapter
+                ],
+
+                toolbar: toolbarPresets[toolbarType],
+
+                table: {
+                    contentToolbar: [
+                        'tableColumn',
+                        'tableRow',
+                        'mergeTableCells',
+                        'tableProperties'
+                    ]
+                },
+
+                image: {
+                    toolbar: [
+                        'imageStyle:inline',
+                        'imageStyle:block',
+                        'imageStyle:side',
+                        '|',
+                        'toggleImageCaption',
+                        'imageTextAlternative'
+                    ]
+                },
+
+                simpleUpload: {
+                    uploadUrl: '/ckeditor/upload',
+                    headers: {
+                        'X-CSRF-TOKEN': document
+                            .querySelector('meta[name="csrf-token"]')
+                            .getAttribute('content')
+                    }
+                }
+
+            }).then(editor => {
+
+                window.ckeditors[el.id] = editor;
+
+                // 🔑 SYNC CKEDITOR → LIVEWIRE
+                editor.model.document.on('change:data', () => {
+
+                    const wireRoot = el.closest('[wire\\:id]');
+                    if (!wireRoot) return;
+
+                    const wireId = wireRoot.getAttribute('wire:id');
+                    const property = el.getAttribute('name');
+
+                    if (!wireId || !property) return;
+
+                    Livewire.find(wireId)
+                        ?.set(property, editor.getData());
+                });
+
+            }).catch(error => {
+                console.error('CKEditor init error:', error);
+            });
+        });
+    }
+
+    // INIT FIRST LOAD
+    initEditors();
+
+    // LIVEWIRE 3 RE-INIT AFTER DOM MORPH
+    document.addEventListener('livewire:init', () => {
+        Livewire.hook('commit', ({ succeed }) => {
+            succeed(() => initEditors());
+        });
+    });
+
+});
+
 new Swiper('.swiper', {
     loop: true,
     autoplay: {
@@ -10,16 +136,32 @@ new Swiper('.swiper', {
 
 $(function () {
 
-    if (!$('section').hasClass('home')) return;
+    const $body = $('body.guest');
 
-    const $navbar = $('.navbar');
-    const trigger = 50;
+    if (!$body.find('section.home').length) return;
+
+    const $navbar = $('.navigation.guest');
+    const trigger = 0;
+
+    $navbar.css({
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        zIndex: 999
+    });
+
+    if ($(window).scrollTop() <= trigger) {
+        $navbar.addClass('transparent');
+    } else {
+        $navbar.removeClass('transparent');
+    }
 
     $(window).on('scroll', function () {
         if ($(this).scrollTop() > trigger) {
-            $navbar.addClass('is-scrolled');
+            $navbar.removeClass('transparent');
         } else {
-            $navbar.removeClass('is-scrolled');
+            $navbar.addClass('transparent');
         }
     });
 
@@ -27,44 +169,29 @@ $(function () {
 
 $(function () {
 
-    const $window = $(window);
-    const $jumbotron = $('.jumbotron');
     const $bg = $('.jumbotron__background');
+    const el = document.querySelector('.jumbotron');
 
-    if (!$jumbotron.length) return;
+    if (!el) return;
 
-    let latestScroll = 0;
-    let ticking = false;
+    let active = false;
 
-    function onScroll() {
-        latestScroll = $window.scrollTop();
-        requestTick();
-    }
+    const observer = new IntersectionObserver(
+        ([entry]) => active = entry.isIntersecting,
+        { threshold: 0 }
+    );
 
-    function requestTick() {
-        if (!ticking) {
-            requestAnimationFrame(updateParallax);
-            ticking = true;
-        }
-    }
+    observer.observe(el);
 
-    function updateParallax() {
-        const offsetTop = $jumbotron.offset().top;
-        const height = $jumbotron.outerHeight();
-        const windowHeight = window.innerHeight;
+    window.addEventListener('scroll', () => {
+        if (!active) return;
 
-        if (
-            latestScroll + windowHeight > offsetTop &&
-            latestScroll < offsetTop + height
-        ) {
-            const yPos = (latestScroll - offsetTop) * 0.35;
-            $bg.css('transform', `translate3d(0, ${yPos}px, 0)`);
-        }
-
-        ticking = false;
-    }
-
-    $window.on('scroll', onScroll);
+        requestAnimationFrame(() => {
+            const rect = el.getBoundingClientRect();
+            const y = -rect.top * 0.25;
+            $bg.css('transform', `translate3d(0, ${y}px, 0)`);
+        });
+    }, { passive: true });
 
 });
 
@@ -93,6 +220,94 @@ $(function () {
 
     $elements.each(function () {
         observer.observe(this);
+    });
+
+});
+
+$(function () {
+
+    function isInViewport($el) {
+        const elementTop    = $el.offset().top;
+        const elementBottom = elementTop + $el.outerHeight();
+
+        const viewportTop    = $(window).scrollTop();
+        const viewportBottom = viewportTop + $(window).height();
+
+        return elementBottom > viewportTop && elementTop < viewportBottom;
+    }
+
+    function animateCount($el) {
+        const target = parseInt($el.data('animate-count'), 10) || 0;
+
+        $el.data('animated', true);
+
+        $({ count: 0 }).animate(
+            { count: target },
+            {
+                duration: 2500,
+                easing: 'swing',
+                step: function (now) {
+                    $el.text(Math.floor(now));
+                },
+                complete: function () {
+                    $el.text(target);
+                }
+            }
+        );
+    }
+
+    function resetCount($el) {
+        $el.text(0);
+        $el.data('animated', false);
+    }
+
+    $(window).on('scroll load', function () {
+        $('[data-animate-count]').each(function () {
+            const $el = $(this);
+
+            if (isInViewport($el)) {
+                if (!$el.data('animated')) {
+                    animateCount($el);
+                }
+            } else {
+                resetCount($el);
+            }
+        });
+    });
+
+});
+
+$(function () {
+
+    $(document).on('change', '[data-image-preview]', function () {
+        const input = this;
+        const file  = input.files[0];
+
+        if (!file) return;
+
+        // validasi file image
+        if (!file.type.startsWith('image/')) {
+            alert('File harus berupa gambar');
+            input.value = '';
+            return;
+        }
+
+        const reader = new FileReader();
+
+        const $container = $(input).closest('.image');
+        const $preview   = $container.find('.image__preview');
+        const $img       = $preview.find('.image__value');
+        const $empty     = $preview.find('.image__empty');
+
+        reader.onload = function (e) {
+            $img
+                .attr('src', e.target.result)
+                .fadeIn(200);
+
+            $empty.hide();
+        };
+
+        reader.readAsDataURL(file);
     });
 
 });

@@ -14,7 +14,7 @@ class PortalController extends Controller
      */
     public function index(Pusat $pusat)
     {
-        return view('dashboard.portal.index', [
+        return view('dashboard.portal', [
             'pusats' => Pusat::all(),
             'pusat' => $pusat
         ]);
