@@ -57,11 +57,11 @@
                     }
         
                     .jumbotron__description {
-                        font-size: 1.4em;
+                        font-size: 1.2em;
                         line-height: 1.7;
                         margin: 1em 0 0;
-                        color: rgba($color-white, 80%);
-                        width: 20em;
+                        color: rgba($color-5, 80%);
+                        width: 25em;
                         max-width: 600px;
                     }
                 }
@@ -508,7 +508,7 @@
  |  Dashboard
  | ---------------------------------
  */
-    body.dashboard {
+    body.dashboard { 
         display: flex;
         height: 100vh;
         width: 100vw;
@@ -586,6 +586,34 @@
                         object-fit: cover;
                         width: 4em;
                         margin: 0;
+                    }
+                }
+            }
+            
+            &.survey-form {
+                
+                .form {
+                
+                    .form__bottom {
+                        justify-content: space-between;
+                        width: 100%;
+                    }
+                    
+                    .form__items {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 1em;
+                        
+                        .item {
+                            display: flex;
+                            align-items: end;
+                            gap: .5em;
+                            
+                            .remove__button {
+                                width: fit-content;
+                                min-width: fit-content;
+                            }
+                        }
                     }
                 }
             }
@@ -699,6 +727,50 @@
                         }
                     }
                 }
+            }
+        }
+    }
+/* 
+ | ---------------------------------
+ |  Maintenance
+ | ---------------------------------
+ */
+    body.maintenance {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100vw;
+        padding: 2em;
+        
+        .maintenance__container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1em;
+            
+            .maintenance__logo {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 1.5em;
+                margin: 0 0 1em;
+                
+                .logo__image {
+                    height: 5em;
+                }
+            }
+            
+            .maintenance__title {
+                @extend %header-1;
+                text-align: center;
+            }
+            
+            .maintenance__description {
+                @extend %text;
+                text-align: center;
+                width: 22em;
+                opacity: 80%;
             }
         }
     }

@@ -15,7 +15,7 @@
 /node_modules
 # /public/build
 /public/hot
-/database/seeders/DatabaseSeeder.png
+# /database/seeders/DatabaseSeeder
 /public/storage
 /storage/*.key
 /storage/pail

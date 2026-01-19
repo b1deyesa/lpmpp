@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
 use App\Models\MateriKegiatan;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class MateriKegiatanController extends Controller
 {
@@ -13,7 +14,9 @@ class MateriKegiatanController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.materi-kegiatan', [
+            'materi_kegiatans' => MateriKegiatan::all()
+        ]);
     }
 
     /**
@@ -62,5 +65,30 @@ class MateriKegiatanController extends Controller
     public function destroy(MateriKegiatan $materiKegiatan)
     {
         //
+    }
+
+    /**
+     * Truncate all records in the table.
+     */
+    public function truncate(Request $request)
+    {
+        MateriKegiatan::truncate();
+
+        return redirect()->route('dashboard.materi-kegiatan.index')->with('success', 'Successfully deleted all!');
+    }
+
+    /**
+     * Download a specific file.
+     */
+    public function download(Request $request, MateriKegiatan $materiKegiatan)
+    {
+        if (!Storage::disk('public')->exists($materiKegiatan->file)) {
+            abort(404, 'File not found.');
+        }
+
+        $extension = pathinfo($materiKegiatan->file, PATHINFO_EXTENSION);
+        $filename = str($materiKegiatan->title)->slug() . '.' . $extension;
+
+        return Storage::disk('public')->download($materiKegiatan->file, $filename);
     }
 }

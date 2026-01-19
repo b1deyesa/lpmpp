@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('instrumen_akreditasi_nasionals', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('file');
             $table->timestamps();
         });
     }

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
 use App\Models\PeraturanRektor;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class PeraturanRektorController extends Controller
 {
@@ -13,7 +14,9 @@ class PeraturanRektorController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.peraturan-rektor', [
+            'peraturan_rektors' => PeraturanRektor::all()
+        ]);
     }
 
     /**
@@ -62,5 +65,30 @@ class PeraturanRektorController extends Controller
     public function destroy(PeraturanRektor $peraturanRektor)
     {
         //
+    }
+
+    /**
+     * Truncate all records in the table.
+     */
+    public function truncate(Request $request)
+    {
+        PeraturanRektor::truncate();
+
+        return redirect()->route('dashboard.peraturan-rektor.index')->with('success', 'Successfully deleted all!');
+    }
+
+    /**
+     * Download a specific file.
+     */
+    public function download(Request $request, PeraturanRektor $peraturanRektor)
+    {
+        if (!Storage::disk('public')->exists($peraturanRektor->file)) {
+            abort(404, 'File not found.');
+        }
+
+        $extension = pathinfo($peraturanRektor->file, PATHINFO_EXTENSION);
+        $filename = str($peraturanRektor->title)->slug() . '.' . $extension;
+
+        return Storage::disk('public')->download($peraturanRektor->file, $filename);
     }
 }

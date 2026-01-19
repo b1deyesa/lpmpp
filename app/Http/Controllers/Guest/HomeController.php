@@ -13,6 +13,8 @@ class HomeController extends Controller
 {
     public function index()
     {
+        return view('guest.maintenance');
+        
         return view('guest.home', [
             'sambutan' => Sambutan::first(),
             'pusats' => Pusat::all(),

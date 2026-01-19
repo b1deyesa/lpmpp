@@ -13,7 +13,9 @@ class AkreditasiInstitusiController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.akreditasi-institusi', [
+            'akreditasi_institusi' => AkreditasiInstitusi::first()
+        ]);
     }
 
     /**
@@ -29,7 +31,14 @@ class AkreditasiInstitusiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        AkreditasiInstitusi::updateOrCreate(
+            ['id' => 1],
+            [
+                'body' => $request->body
+            ]
+        );
+
+        return redirect()->route('dashboard.akreditasi-institusi.index')->with('success', 'Success Update!');
     }
 
     /**
@@ -62,5 +71,12 @@ class AkreditasiInstitusiController extends Controller
     public function destroy(AkreditasiInstitusi $akreditasiInstitusi)
     {
         //
+    }
+
+    public function truncate(Request $request)
+    {
+        AkreditasiInstitusi::truncate();
+
+        return redirect()->route('dashboard.akreditasi-institusi.index')->with('success', 'Successfuly deleted all!');
     }
 }

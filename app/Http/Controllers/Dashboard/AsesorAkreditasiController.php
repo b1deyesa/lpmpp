@@ -13,7 +13,9 @@ class AsesorAkreditasiController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.asesor-akreditasi', [
+            'asesor_akreditasi' => AsesorAkreditasi::first()
+        ]);
     }
 
     /**
@@ -29,7 +31,14 @@ class AsesorAkreditasiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        AsesorAkreditasi::updateOrCreate(
+            ['id' => 1],
+            [
+                'body' => $request->body
+            ]
+        );
+        
+        return redirect()->route('dashboard.asesor-akreditasi.index')->with('success', 'Success Update!');
     }
 
     /**
@@ -62,5 +71,12 @@ class AsesorAkreditasiController extends Controller
     public function destroy(AsesorAkreditasi $asesorAkreditasi)
     {
         //
+    }
+    
+    public function truncate(Request $request)
+    {
+        AsesorAkreditasi::truncate();
+
+        return redirect()->route('dashboard.asesor-akreditasi.index')->with('success', 'Successfuly deleted all!');
     }
 }

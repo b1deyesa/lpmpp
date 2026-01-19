@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class DokumenKurikulum extends Model
 {
-    //
+    protected $guarded = ['id'];
 }

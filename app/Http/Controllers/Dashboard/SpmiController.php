@@ -13,7 +13,9 @@ class SpmiController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.spmi', [
+            'spmi' => Spmi::first()
+        ]);
     }
 
     /**
@@ -29,7 +31,14 @@ class SpmiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Spmi::updateOrCreate(
+            ['id' => 1],
+            [
+                'body' => $request->body
+            ]
+        );
+        
+        return redirect()->route('dashboard.spmi.index')->with('success', 'Success Update!');
     }
 
     /**
@@ -62,5 +71,12 @@ class SpmiController extends Controller
     public function destroy(Spmi $spmi)
     {
         //
+    }
+    
+    public function truncate(Request $request)
+    {
+        Spmi::truncate();
+
+        return redirect()->route('dashboard.spmi.index')->with('success', 'Successfuly deleted all!');
     }
 }

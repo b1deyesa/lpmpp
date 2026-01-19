@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('pendampingan_akreditasi_nasionals', function (Blueprint $table) {
             $table->id();
+            $table->text('body')->nullable();
             $table->timestamps();
         });
     }

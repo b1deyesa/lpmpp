@@ -9,6 +9,7 @@
                 <a href="" class="menu__item">SIMPATTI</a>
                 <a href="" class="menu__item">SIMPEL</a>
                 <a href="" class="menu__item">ELPATTI</a>
+                <a href="" class="menu__item">PPEPP</a>
             </div>
             
             {{-- Menu --}}
@@ -32,7 +33,7 @@
                 </div>
                 <div class="banner__right">
                     <h1 class="banner__title">LPMPP UNPATTI</h1>
-                    <h2 class="banner__subtitle">Meningkatkan Mutu UNPATTI Menuju WCU</h2>
+                    <h2 class="banner__subtitle">Menggerakkan Budaya Mutu Menuju WCU</h2>
                 </div>
             </a>
             

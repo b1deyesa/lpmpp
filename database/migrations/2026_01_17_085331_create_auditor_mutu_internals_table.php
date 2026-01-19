@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('auditor_mutu_internals', function (Blueprint $table) {
             $table->id();
+            $table->text('body')->nullable();
             $table->timestamps();
         });
     }

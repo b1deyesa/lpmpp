@@ -13,7 +13,9 @@ class InovasiPembelajaranController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.inovasi-pembelajaran', [
+            'inovasi_pembelajaran' => InovasiPembelajaran::first()
+        ]);
     }
 
     /**
@@ -29,7 +31,14 @@ class InovasiPembelajaranController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        InovasiPembelajaran::updateOrCreate(
+            ['id' => 1],
+            [
+                'body' => $request->body
+            ]
+        );
+        
+        return redirect()->route('dashboard.inovasi-pembelajaran.index')->with('success', 'Success Update!');
     }
 
     /**
@@ -62,5 +71,12 @@ class InovasiPembelajaranController extends Controller
     public function destroy(InovasiPembelajaran $inovasiPembelajaran)
     {
         //
+    }
+    
+    public function truncate(Request $request)
+    {
+        InovasiPembelajaran::truncate();
+
+        return redirect()->route('dashboard.inovasi-pembelajaran.index')->with('success', 'Successfuly deleted all!');
     }
 }

@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('dokumen_mbkms', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('file');
             $table->timestamps();
         });
     }

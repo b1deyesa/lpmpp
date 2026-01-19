@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('akreditasi_prodi_internasionals', function (Blueprint $table) {
             $table->id();
+            $table->text('body')->nullable();
             $table->timestamps();
         });
     }

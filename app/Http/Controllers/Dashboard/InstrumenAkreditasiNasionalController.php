@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
 use App\Models\InstrumenAkreditasiNasional;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class InstrumenAkreditasiNasionalController extends Controller
 {
@@ -13,7 +14,9 @@ class InstrumenAkreditasiNasionalController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.instrumen-akreditasi-nasional', [
+            'instrumen_akreditasi_nasionals' => InstrumenAkreditasiNasional::all()
+        ]);
     }
 
     /**
@@ -62,5 +65,30 @@ class InstrumenAkreditasiNasionalController extends Controller
     public function destroy(InstrumenAkreditasiNasional $instrumenAkreditasiNasional)
     {
         //
+    }
+
+    /**
+     * Truncate all records in the table.
+     */
+    public function truncate(Request $request)
+    {
+        InstrumenAkreditasiNasional::truncate();
+
+        return redirect()->route('dashboard.instrumen-akreditasi-nasional.index')->with('success', 'Successfully deleted all!');
+    }
+
+    /**
+     * Download a specific file.
+     */
+    public function download(Request $request, InstrumenAkreditasiNasional $instrumenAkreditasiNasional)
+    {
+        if (!Storage::disk('public')->exists($instrumenAkreditasiNasional->file)) {
+            abort(404, 'File not found.');
+        }
+
+        $extension = pathinfo($instrumenAkreditasiNasional->file, PATHINFO_EXTENSION);
+        $filename = str($instrumenAkreditasiNasional->title)->slug() . '.' . $extension;
+
+        return Storage::disk('public')->download($instrumenAkreditasiNasional->file, $filename);
     }
 }

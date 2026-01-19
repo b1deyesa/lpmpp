@@ -13,7 +13,9 @@ class KerjaSamaDalamNegeriController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.kerja-sama-dalam-negeri', [
+            'kerja_sama_dalam_negeri' => KerjaSamaDalamNegeri::first()
+        ]);
     }
 
     /**
@@ -29,7 +31,14 @@ class KerjaSamaDalamNegeriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        KerjaSamaDalamNegeri::updateOrCreate(
+            ['id' => 1],
+            [
+                'body' => $request->body
+            ]
+        );
+        
+        return redirect()->route('dashboard.kerja-sama-dalam-negeri.index')->with('success', 'Success Update!');
     }
 
     /**
@@ -62,5 +71,12 @@ class KerjaSamaDalamNegeriController extends Controller
     public function destroy(KerjaSamaDalamNegeri $kerjaSamaDalamNegeri)
     {
         //
+    }
+    
+    public function truncate(Request $request)
+    {
+        KerjaSamaDalamNegeri::truncate();
+
+        return redirect()->route('dashboard.kerja-sama-dalam-negeri.index')->with('success', 'Successfuly deleted all!');
     }
 }

@@ -3,17 +3,19 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\SurveyKepuasanUnitKerja;
+use App\Models\Survey;
 use Illuminate\Http\Request;
 
-class SurveyKepuasanUnitKerjaController extends Controller
+class SurveyController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('dashboard.survey', [
+            'surveys' => Survey::all()
+        ]);
     }
 
     /**
@@ -35,7 +37,7 @@ class SurveyKepuasanUnitKerjaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(SurveyKepuasanUnitKerja $surveyKepuasanUnitKerja)
+    public function show(Survey $survey)
     {
         //
     }
@@ -43,7 +45,7 @@ class SurveyKepuasanUnitKerjaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(SurveyKepuasanUnitKerja $surveyKepuasanUnitKerja)
+    public function edit(Survey $survey)
     {
         //
     }
@@ -51,7 +53,7 @@ class SurveyKepuasanUnitKerjaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SurveyKepuasanUnitKerja $surveyKepuasanUnitKerja)
+    public function update(Request $request, Survey $survey)
     {
         //
     }
@@ -59,8 +61,15 @@ class SurveyKepuasanUnitKerjaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SurveyKepuasanUnitKerja $surveyKepuasanUnitKerja)
+    public function destroy(Survey $survey)
     {
         //
+    }
+    
+    public function truncate(Request $request)
+    {
+        Survey::query()->delete();
+
+        return redirect()->route('dashboard.survey.index')->with('success', 'Successfuly deleted all!');
     }
 }

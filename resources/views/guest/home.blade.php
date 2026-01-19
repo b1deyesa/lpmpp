@@ -6,7 +6,7 @@
         <div class="jumbotron__container">
             <h1 class="jumbotron__title">Lembaga Penjaminan Mutu dan Pengembangan Pembelajaran (LPMPP)</h1>
             <h2 class="jumbotron__subtitle">Universitas Pattimura</h2>
-            <p class="jumbotron__description">Meningkatkan Mutu Universitas Pattimura Menuju <i>World Class University</i></p>
+            <p class="jumbotron__description">Menggerakkan Budaya Mutu Universitas Pattimura Menuju <i>World Class University</i></p>
         </div>
     </section>
     

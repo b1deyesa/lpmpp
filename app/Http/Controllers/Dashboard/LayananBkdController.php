@@ -13,7 +13,9 @@ class LayananBkdController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.layanan-bkd', [
+            'layanan_bkd' => LayananBkd::first()
+        ]);
     }
 
     /**
@@ -29,7 +31,14 @@ class LayananBkdController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        LayananBkd::updateOrCreate(
+            ['id' => 1],
+            [
+                'body' => $request->body
+            ]
+        );
+        
+        return redirect()->route('dashboard.layanan-bkd.index')->with('success', 'Success Update!');
     }
 
     /**
@@ -62,5 +71,12 @@ class LayananBkdController extends Controller
     public function destroy(LayananBkd $layananBkd)
     {
         //
+    }
+    
+    public function truncate(Request $request)
+    {
+        LayananBkd::truncate();
+
+        return redirect()->route('dashboard.layanan-bkd.index')->with('success', 'Successfuly deleted all!');
     }
 }

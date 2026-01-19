@@ -13,7 +13,9 @@ class PelatihanController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.pelatihan', [
+            'pelatihan' => Pelatihan::first()
+        ]);
     }
 
     /**
@@ -29,7 +31,14 @@ class PelatihanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Pelatihan::updateOrCreate(
+            ['id' => 1],
+            [
+                'body' => $request->body
+            ]
+        );
+        
+        return redirect()->route('dashboard.pelatihan.index')->with('success', 'Success Update!');
     }
 
     /**
@@ -62,5 +71,12 @@ class PelatihanController extends Controller
     public function destroy(Pelatihan $pelatihan)
     {
         //
+    }
+    
+    public function truncate(Request $request)
+    {
+        Pelatihan::truncate();
+
+        return redirect()->route('dashboard.pelatihan.index')->with('success', 'Successfuly deleted all!');
     }
 }

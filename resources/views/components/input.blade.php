@@ -11,7 +11,7 @@
                     id="{{ $id }}"
                     name="{{ $name }}"
                     @if($class) class="{{ $class }}" @endif
-                    @if($wire) wire:model="{{ $wire }}" @endif
+                    @if($wire) wire:model.live="{{ $wire }}" @endif
                     {{ $attributes }}
                     >
                     @if($placeholder) <option value="" selected>{{ $placeholder }}</option> @endif

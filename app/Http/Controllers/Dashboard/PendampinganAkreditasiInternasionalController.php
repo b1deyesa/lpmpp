@@ -13,7 +13,9 @@ class PendampinganAkreditasiInternasionalController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.pendampingan-akreditasi-internasional', [
+            'pendampingan_akreditasi_internasional' => PendampinganAkreditasiInternasional::first()
+        ]);
     }
 
     /**
@@ -29,7 +31,14 @@ class PendampinganAkreditasiInternasionalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        PendampinganAkreditasiInternasional::updateOrCreate(
+            ['id' => 1],
+            [
+                'body' => $request->body
+            ]
+        );
+        
+        return redirect()->route('dashboard.pendampingan-akreditasi-internasional.index')->with('success', 'Success Update!');
     }
 
     /**
@@ -62,5 +71,12 @@ class PendampinganAkreditasiInternasionalController extends Controller
     public function destroy(PendampinganAkreditasiInternasional $pendampinganAkreditasiInternasional)
     {
         //
+    }
+    
+    public function truncate(Request $request)
+    {
+        PendampinganAkreditasiInternasional::truncate();
+
+        return redirect()->route('dashboard.pendampingan-akreditasi-internasional.index')->with('success', 'Successfuly deleted all!');
     }
 }

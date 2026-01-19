@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('survey_pemahaman_visi_misis', function (Blueprint $table) {
+        Schema::create('survey_forms', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('survey_id')->constrained('surveys')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->string('title');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('survey_pemahaman_visi_misis');
+        Schema::dropIfExists('survey_forms');
     }
 };

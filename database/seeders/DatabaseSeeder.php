@@ -16,12 +16,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test',
-            'email' => 'test@gmail.com',
-            'password' => Hash::make('123')
+        $this->call([
+            UserSeeder::class,
+            FieldSeeder::class,
+            SurveySeeder::class,
         ]);
     }
 }

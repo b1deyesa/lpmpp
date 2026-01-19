@@ -13,7 +13,9 @@ class PendampinganKurikulumController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.pendampingan-kurikulum', [
+            'pendampingan_kurikulum' => PendampinganKurikulum::first()
+        ]);
     }
 
     /**
@@ -29,7 +31,14 @@ class PendampinganKurikulumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        PendampinganKurikulum::updateOrCreate(
+            ['id' => 1],
+            [
+                'body' => $request->body
+            ]
+        );
+        
+        return redirect()->route('dashboard.pendampingan-kurikulum.index')->with('success', 'Success Update!');
     }
 
     /**
@@ -62,5 +71,12 @@ class PendampinganKurikulumController extends Controller
     public function destroy(PendampinganKurikulum $pendampinganKurikulum)
     {
         //
+    }
+    
+    public function truncate(Request $request)
+    {
+        PendampinganKurikulum::truncate();
+
+        return redirect()->route('dashboard.pendampingan-kurikulum.index')->with('success', 'Successfuly deleted all!');
     }
 }

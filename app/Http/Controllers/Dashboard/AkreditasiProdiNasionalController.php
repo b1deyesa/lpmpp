@@ -13,7 +13,9 @@ class AkreditasiProdiNasionalController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.akreditasi-prodi-nasional', [
+            'akreditasi_prodi_nasional' => AkreditasiProdiNasional::first()
+        ]);
     }
 
     /**
@@ -29,7 +31,14 @@ class AkreditasiProdiNasionalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        AkreditasiProdiNasional::updateOrCreate(
+            ['id' => 1],
+            [
+                'body' => $request->body
+            ]
+        );
+        
+        return redirect()->route('dashboard.akreditasi-prodi-nasional.index')->with('success', 'Success Update!');
     }
 
     /**
@@ -62,5 +71,12 @@ class AkreditasiProdiNasionalController extends Controller
     public function destroy(AkreditasiProdiNasional $akreditasiProdiNasional)
     {
         //
+    }
+    
+    public function truncate(Request $request)
+    {
+        AkreditasiProdiNasional::truncate();
+
+        return redirect()->route('dashboard.akreditasi-prodi-nasional.index')->with('success', 'Successfully deleted all!');
     }
 }

@@ -13,7 +13,9 @@ class AuditorMutuInternalController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.auditor-mutu-internal', [
+            'auditor_mutu_internal' => AuditorMutuInternal::first()
+        ]);
     }
 
     /**
@@ -29,7 +31,14 @@ class AuditorMutuInternalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        AuditorMutuInternal::updateOrCreate(
+            ['id' => 1],
+            [
+                'body' => $request->body
+            ]
+        );
+        
+        return redirect()->route('dashboard.auditor-mutu-internal.index')->with('success', 'Success Update!');
     }
 
     /**
@@ -62,5 +71,12 @@ class AuditorMutuInternalController extends Controller
     public function destroy(AuditorMutuInternal $auditorMutuInternal)
     {
         //
+    }
+    
+    public function truncate(Request $request)
+    {
+        AuditorMutuInternal::truncate();
+
+        return redirect()->route('dashboard.auditor-mutu-internal.index')->with('success', 'Successfuly deleted all!');
     }
 }

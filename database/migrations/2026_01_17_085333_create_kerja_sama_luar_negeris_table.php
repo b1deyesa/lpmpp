@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('kerja_sama_luar_negeris', function (Blueprint $table) {
             $table->id();
+            $table->text('body')->nullable();
             $table->timestamps();
         });
     }

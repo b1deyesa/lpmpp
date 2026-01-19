@@ -13,7 +13,9 @@ class RenstraController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.renstra', [
+            'renstra' => Renstra::first()
+        ]);
     }
 
     /**
@@ -29,7 +31,14 @@ class RenstraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Renstra::updateOrCreate(
+            ['id' => 1],
+            [
+                'body' => $request->body
+            ]
+        );
+        
+        return redirect()->route('dashboard.renstra.index')->with('success', 'Success Update!');
     }
 
     /**
@@ -62,5 +71,12 @@ class RenstraController extends Controller
     public function destroy(Renstra $renstra)
     {
         //
+    }
+    
+    public function truncate(Request $request)
+    {
+        Renstra::truncate();
+
+        return redirect()->route('dashboard.renstra.index')->with('success', 'Successfuly deleted all!');
     }
 }

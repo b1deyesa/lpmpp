@@ -13,7 +13,9 @@ class LaporanSurveyController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.laporan-survey', [
+            'laporan_survey' => LaporanSurvey::first()
+        ]);
     }
 
     /**
@@ -62,5 +64,12 @@ class LaporanSurveyController extends Controller
     public function destroy(LaporanSurvey $laporanSurvey)
     {
         //
+    }
+    
+    public function truncate(Request $request)
+    {
+        LaporanSurvey::truncate();
+
+        return redirect()->route('dashboard.laporan-survey.index')->with('success', 'Successfuly deleted all!');
     }
 }
