@@ -50,6 +50,11 @@
                 min-height: fit-content;
             }
             
+            &[type="file"] {
+                padding: .6em .8em;
+                cursor: pointer;
+            }
+            
             &.error {
                 border-color: red !important;
             }
@@ -276,10 +281,28 @@
                 width: 100%;
                 font-family: $font-family-default;
                 color: $color-text;
+                
+                p {
+                    margin: 1em 0;
+                }
+                
+                blockquote {
+                    margin: 1em 0;
+                    
+                    p {
+                        margin: 0;
+                    }
+                }
+                
+                ul {
+                    margin: 1em 0;
+                    padding-top: 0;
+                    padding-bottom: 0;
+                }
             }
         }
         
-        .image {
+        > .image {
             position: relative;
             display: flex;
             flex-direction: column;
@@ -880,12 +903,12 @@
                                 flex-direction: column;
                                 align-items: start;
                                 right: 0;
-                                padding: 1.78em 0 0;
+                                padding: 1.76em 0 0;
 
                                 &::before {
                                     content: '';
                                     position: fixed;
-                                    top: 8.69em;
+                                    top: 8.68em;
                                     right: 0;
                                     bottom: 0;
                                     left: 0;

@@ -51,22 +51,57 @@
     <section class="pusat" id="pusat">
         <div class="pusat__container">
             <div class="pusat__header">
-                <h2 class="header__title" data-animate data-position="left" data-delay="300">Pusat Layanan<br>LPMPP</h2>
+                <h2 class="header__title" data-animate data-position="left" data-delay="300">Pusat Layanan LPMPP</h2>
             </div>
             <div class="pusat__list">
                 @forelse ($pusats as $pusat)
                     <span data-animate data-position="bottom" data-delay="{{ $loop->iteration * 200 + 400 }}">
                         <div class="list__item">
-                            @if ($pusat?->photo)
-                                <img src="{{ asset('storage/'. $pusat->photo) }}" alt="Background" class="item__background">
-                            @else
-                                <img src="{{ asset('assets/img/default.jpg') }}" alt="Default Image" class="item__background">
-                            @endif
+                            <img src="{{ asset($pusat?->photo ? 'storage/'.$pusat->photo : 'assets/img/default.jpg') }}" alt="Background" class="item__background">
                             <h6 class="item__title">{{ $pusat->nama_bagian }}</h6>
                         </div>
                     </span>
                 @empty
                     <small class="empty" style="text-align: center">No content available</small>
+                @endforelse
+            </div>
+        </div>
+    </section>
+    
+    <section class="ivos">
+        <img src="{{ asset('assets/img/ivos-lobby.jpg') }}" class="ivos__lobby">
+        <img src="{{ asset('assets/img/ivos-texture.jpg') }}" class="ivos__texture">
+        <div class="ivos__container">
+            <img src="{{ asset('assets/img/ivos-qr.jpg') }}" alt="i-Vos QR" class="ivos__qr">
+            <div class="ivos__header">
+                <h2 class="header__title">I-VoS</h2>
+                <h3 class="header__subtitle">Innovation for Virtual Office Services</h3>
+                <small class="header__tagline">Siap Melayani dengan Profesionalisme Digital</small>
+            </div>
+            <div class="ivos__time">
+                <p>08.00 - 16.30 WIT <span>(Senin - Kamis)</span></p>
+                <p>08.00 - 17.00 WIT <span>(Jumat)</span></p>
+            </div>
+        </div>
+    </section>
+    
+    {{-- Pengelola --}}
+    <section class="pengelola">
+        <div class="pengelola__container">
+            <div class="pengelola__header">
+                <h2 class="header__title" data-animate data-position="left" data-delay="300">Tenaga Pengelola<br>LPMPP</h2>
+            </div>
+            <div class="pengelola__list">
+                @forelse ($pengelolas as $pengelola)
+                    <div class="list__item">
+                        <img src="{{ asset($pengelola?->photo ? 'storage/'. $pengelola->photo : 'assets/img/default.jpg') }}" alt="Photo" class="item__photo">
+                        <div class="item__bottom">
+                            <h5 class="item__subtitle">{{ $pengelola->jabatan }}</h5>
+                            <h4 class="item__title">{{ $pengelola->nama }}</h4>
+                        </div>
+                    </div>
+                @empty
+                    <small class="empty">No content available</small> 
                 @endforelse
             </div>
         </div>

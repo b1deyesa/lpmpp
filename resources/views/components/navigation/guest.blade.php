@@ -60,7 +60,7 @@
                 </div>
                 
                 {{-- Pusat --}}
-                <a href="#pusat" class="menu__item menu__highlight">Pusat-Pusat</a>
+                <a href="{{ route('guest.home') }}#pusat" class="menu__item menu__highlight">Pusat-Pusat</a>
                 
                 {{-- Kerja Sama --}}
                 <div class="menu__dropdown">
@@ -106,7 +106,7 @@
                 <div class="menu__dropdown">
                     <span class="dropdown__label">Download<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></span>
                     <div class="dropdown__menu">
-                        <a href="#" class="menu__item">Laporan</a>
+                        <a href="{{ route('guest.laporan') }}" class="menu__item">Laporan</a>
                         <a href="#" class="menu__item">Peraturan Perundang-undangan</a>
                         <div class="menu__dropdown">
                             <span class="dropdown__label">Peraturan Rektor<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></span>

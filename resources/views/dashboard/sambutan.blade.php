@@ -12,8 +12,8 @@
                     <h6 class="term__title">Upload Rules:</h6>
                     <ul>
                         <li>The uploaded file must be an image format (e.g., JPG, JPEG, or PNG).</li>
-                        <li>The maximum allowed file size is <strong>2 MB</strong>.</li>
-                        <li>The image must have an aspect ratio of <strong>4:3</strong>.</li>
+                        <li>The maximum allowed file size is <strong>1 MB</strong>.</li>
+                        <li>The image must have an aspect ratio of <strong>1/1</strong>.</li>
                         <li>Files that do not meet these requirements may be rejected or automatically adjusted.</li>
                         <li>You are responsible for ensuring the file meets all upload specifications before submission.</li>
                     </ul>

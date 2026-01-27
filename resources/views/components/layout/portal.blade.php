@@ -11,4 +11,7 @@
     {{-- Footer --}}
     <x-footer />
     
+    {{-- Loading --}}
+    <x-loading />
+    
 </x-layout.app>

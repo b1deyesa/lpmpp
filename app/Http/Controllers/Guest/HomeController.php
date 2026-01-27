@@ -8,6 +8,7 @@ use App\Models\Akreditasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Pengelola;
 use App\Models\PortalPost;
 use App\Models\Website;
 
@@ -22,6 +23,7 @@ class HomeController extends Controller
                 'website' => Website::first(),
                 'sambutan' => Sambutan::first(),
                 'pusats' => Pusat::all(),
+                'pengelolas' => Pengelola::all(),
                 'jenjangs' => Akreditasi::where('status', true)->select('jenjang', DB::raw('count(*) as total'))->groupBy('jenjang')->orderByDesc('total')->pluck('total', 'jenjang')->toArray(),
                 'akreditasis' => Akreditasi::where('status', true)->selectRaw("CASE WHEN nilai = 'Terakreditasi Sementara' THEN 'Sementara' WHEN nilai = 'Belum Terakreditasi' THEN 'Belum' ELSE nilai END as nilai_label, COUNT(*) as total")->groupBy('nilai_label')->orderByRaw("FIELD(nilai_label, 'Unggul', 'A', 'Baik Sekali', 'B', 'Baik', 'Sementara', 'Belum')")->pluck('total', 'nilai_label')->toArray(),
                 'posts' => PortalPost::orderBy('id', 'desc')->paginate(4),

@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const toolbarPresets = {
         basic: [
             'bold', 'italic',
-            'bulletedList', 'numberedList'
+            'bulletedList', 'numberedList',
+            'blockQuote'
         ],
         full: [
             'undo', 'redo', '|',
@@ -42,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     CKEDITOR.Bold,
                     CKEDITOR.Italic,
                     CKEDITOR.Font,
+                    CKEDITOR.BlockQuote,
 
                     CKEDITOR.List,
                     CKEDITOR.Table,
