@@ -63,7 +63,7 @@
             gap: .5em
         }
         .btn-yes{
-            background:#2e7d32;
+            background:#071f32;
             color:#fff;
             padding:10px 22px;
             border:none;
@@ -114,18 +114,17 @@
             <div class="buttons">
                 <button
                     type="button"
-                    class="btn-yes"
-                    wire:click="launch"
-                >
-                    Ya
-                </button>
-    
-                <button
-                    type="button"
                     class="btn-no"
                     @click="open = false"
                 >
                     Batal
+                </button>
+                <button
+                    type="button"
+                    class="btn-yes"
+                    wire:click="launch"
+                >
+                    Launch
                 </button>
             </div>
         </div>
