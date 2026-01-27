@@ -9,7 +9,7 @@
             width:240px;
             height:240px;
             border-radius:50%;
-            background:#1a4c72;
+            background:#071f32;
             color:#fff;
             border:none;
             font-size:24px;
@@ -18,18 +18,18 @@
             align-items:center;
             justify-content:center;
             cursor:pointer;
-            box-shadow:0 14px 35px rgba(211,47,47,.5);
+            box-shadow:0 14px 35px rgba(12, 49, 108, 0.5);
             transition:transform .15s ease, box-shadow .15s ease;
         }
 
         .btn-launch:hover{
             transform:scale(1.05);
-            box-shadow:0 20px 45px rgba(211,47,47,.65);
+            box-shadow:0 20px 45px rgba(12, 49, 108,.65);
         }
 
         .btn-launch:active{
             transform:scale(.94);
-            box-shadow:0 8px 20px rgba(211,47,47,.4);
+            box-shadow:0 8px 20px rgba(12, 49, 108,.4);
         }
 
         .overlay{
