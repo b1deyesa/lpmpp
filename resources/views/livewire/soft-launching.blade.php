@@ -2,10 +2,14 @@
 
     <style>
         .btn-launch{
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width:240px;
             height:240px;
             border-radius:50%;
-            background:#d32f2f;
+            background:#1a4c72;
             color:#fff;
             border:none;
             font-size:24px;
@@ -77,6 +81,12 @@
             cursor:pointer;
             width: 10em;
         }
+        
+        .logo__lpmpp {
+            position: absolute;
+            width: 7em;
+            opacity: 30%;
+        }
     </style>
 
     <button
@@ -84,7 +94,8 @@
         class="btn-launch"
         @click="open = true"
     >
-        SOFT<br>LAUNCHING
+    <img src="{{ asset('assets/img/logo-lpmpp.png') }}" alt="" class="logo__lpmpp">
+        <span style="display: block; z-index:2">SOFT<br>LAUNCHING</span>
     </button>
 
     <div
