@@ -8,4 +8,10 @@
         {{ $slot }}
     </section>
     
+    {{-- Alert --}}
+    <x-alert />
+    
+    {{-- Loading --}}
+    {{-- <x-loading /> --}}
+    
 </x-layout.app>

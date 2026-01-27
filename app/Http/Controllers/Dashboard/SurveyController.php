@@ -70,6 +70,6 @@ class SurveyController extends Controller
     {
         Survey::query()->delete();
 
-        return redirect()->route('dashboard.survey.index')->with('success', 'Successfuly deleted all!');
+        return redirect()->route('dashboard.survey.index')->with('success', 'Successfully deleted all!');
     }
 }

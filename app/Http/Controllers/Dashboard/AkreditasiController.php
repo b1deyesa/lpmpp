@@ -72,6 +72,6 @@ class AkreditasiController extends Controller
     {
         Akreditasi::query()->delete();
 
-        return redirect()->route('dashboard.akreditasi.index')->with('success', 'Successfuly deleted all!');
+        return redirect()->route('dashboard.akreditasi.index')->with('success', 'Successfully deleted all!');
     }
 }

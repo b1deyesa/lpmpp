@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
-use App\Models\PortalPost;
 use App\Models\Pusat;
+use App\Models\PortalPost;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PortalController extends Controller
 {
@@ -14,9 +15,14 @@ class PortalController extends Controller
      */
     public function index(Pusat $pusat)
     {
+        $portal_posts = PortalPost::whereHas('categories', function ($q) use ($pusat) {
+            $q->where('pusat_id', $pusat->id);
+        })->get();
+        
         return view('dashboard.portal', [
             'pusats' => Pusat::all(),
-            'pusat' => $pusat
+            'pusat' => $pusat,
+            'portal_posts' => $portal_posts
         ]);
     }
 
@@ -39,14 +45,23 @@ class PortalController extends Controller
             'portal_categories' => 'required'
         ]);
         
+        $coverPath = null;
+
+        if ($request->hasFile('cover')) {
+            $extension = $request->file('cover')->getClientOriginalExtension();
+            $filename  = Str::uuid()->toString() . '.' . $extension;
+            $coverPath = $request->file('cover')->storeAs('portal', $filename, 'public');
+        }
+
         $portal_post = PortalPost::create([
             'title' => $request->title,
-            'body' => $request->body
+            'body'  => $request->body,
+            'cover' => $coverPath,
         ]);
         
         $portal_post->categories()->sync(array_keys($request->portal_categories));
         
-        return redirect()->route('dashboard.pusat.portal.index', ['pusat' => $pusat])->with('success', 'Success added!');
+        return redirect()->route('dashboard.pusat.portal.index', ['pusat' => $pusat])->with('success', 'Successfully added!');
     }
 
     /**

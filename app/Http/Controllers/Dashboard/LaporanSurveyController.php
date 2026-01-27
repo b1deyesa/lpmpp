@@ -70,6 +70,6 @@ class LaporanSurveyController extends Controller
     {
         LaporanSurvey::truncate();
 
-        return redirect()->route('dashboard.laporan-survey.index')->with('success', 'Successfuly deleted all!');
+        return redirect()->route('dashboard.laporan-survey.index')->with('success', 'Successfully deleted all!');
     }
 }

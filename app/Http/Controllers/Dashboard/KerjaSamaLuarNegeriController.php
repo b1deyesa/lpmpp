@@ -38,7 +38,7 @@ class KerjaSamaLuarNegeriController extends Controller
             ]
         );
         
-        return redirect()->route('dashboard.kerja-sama-luar-negeri.index')->with('success', 'Success Update!');
+        return redirect()->route('dashboard.kerja-sama-luar-negeri.index')->with('success', 'Successfully Update!');
     }
 
     /**
@@ -77,6 +77,6 @@ class KerjaSamaLuarNegeriController extends Controller
     {
         KerjaSamaLuarNegeri::truncate();
 
-        return redirect()->route('dashboard.kerja-sama-luar-negeri.index')->with('success', 'Successfuly deleted all!');
+        return redirect()->route('dashboard.kerja-sama-luar-negeri.index')->with('success', 'Successfully deleted all!');
     }
 }

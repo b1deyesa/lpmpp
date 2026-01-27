@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Pusat extends Model
@@ -15,28 +16,13 @@ class Pusat extends Model
         return 'singkatan_bagian';
     }
     
-    public function getAnggotaAttribute()
-    {
-        $result = [];
-
-        $anggotas = json_decode($this->attributes['anggota'] ?? '[]', true);
-
-        if ($anggotas) {
-
-            foreach ($anggotas as $anggota) {
-                $tenaga = Pengelola::find($anggota['pengelola_id']);
-    
-                if ($tenaga) {
-                    $result[$tenaga->nama] = $anggota['jabatan'];
-                }
-            }
-        }
-
-        return $result;
-    }
-    
     public function portalCategories(): HasMany
     {
         return $this->hasMany(PortalCategory::class);
+    }
+    
+    public function pengelolas(): BelongsToMany
+    {
+        return $this->belongsToMany(Pengelola::class, 'pengelola_pusat', 'pusat_id', 'pengelola_id')->withPivot('jabatan')->withTimestamps();
     }
 }

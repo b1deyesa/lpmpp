@@ -38,7 +38,7 @@ class PelatihanController extends Controller
             ]
         );
         
-        return redirect()->route('dashboard.pelatihan.index')->with('success', 'Success Update!');
+        return redirect()->route('dashboard.pelatihan.index')->with('success', 'Successfully Update!');
     }
 
     /**
@@ -77,6 +77,6 @@ class PelatihanController extends Controller
     {
         Pelatihan::truncate();
 
-        return redirect()->route('dashboard.pelatihan.index')->with('success', 'Successfuly deleted all!');
+        return redirect()->route('dashboard.pelatihan.index')->with('success', 'Successfully deleted all!');
     }
 }

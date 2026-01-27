@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const toolbarType = el.dataset.toolbar || 'basic';
 
             CKEDITOR.ClassicEditor.create(el, {
-                licenseKey: 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3Njk4MTc1OTksImp0aSI6IjRhNGVkNWRlLTllYTEtNGEyYi04Mjg2LWY2MTc2MzhjOGNkMCIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6IjMzOGZhNzQ3In0.B_OlDNys0y9YBtobv0vQqUObO5B6vumgBaLM9p2g4bSUEbEb6ppSCjylVYny-u5ZD2J4b78HBox73fRJFI1lqQ',
+                licenseKey: 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NzAzMzU5OTksImp0aSI6IjA2NWY5OTkwLTg4Y2UtNGM5Zi05ZTEwLTMzMDA1YzZlZDk3MSIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6IjIxY2E4NWJlIn0.JWnrCEU9BpDYH2cJA-Tf1i6Rar_QuQdcGBguEv6sMzi-VSihOLYhvukDPQhyWVcYxf8l13ve2Y0qD6HtCG9BHw',
 
                 plugins: [
                     CKEDITOR.Essentials,
@@ -124,6 +124,34 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+});
+
+window.addEventListener('load', function () {
+    const loader = document.getElementById('loading');
+
+    setTimeout(function () {
+        loader.classList.add('hide');
+
+        setTimeout(function () {
+            loader.remove();
+        }, 400);
+    }, 1000);
+});
+
+$(function () {
+    const $alert = $('.alert');
+
+    if ($alert.length) {
+        $alert.addClass('show');
+
+        setTimeout(function () {
+            $alert.removeClass('show');
+
+            setTimeout(function () {
+                $alert.remove();
+            }, 400);
+        }, 3000);
+    }
 });
 
 new Swiper('.swiper', {
@@ -325,6 +353,7 @@ $(function () {
 
         if (hasActive) {
             $menu.show();
+            $label.css('color', 'white');
             $label.css('font-weight', 'bold');
             $icon.css('transform', 'rotate(180deg)');
             $label.data('locked', true);
@@ -346,11 +375,13 @@ $(function () {
 
         if (isOpen) {
             $menu.slideUp(200);
+            $label.css('color', '#FFFFFFCC');
             $label.css('font-weight', 'normal');
             $icon.css('transform', 'rotate(0deg)');
             $label.data('open', false);
         } else {
             $menu.slideDown(200);
+            $label.css('color', 'white');
             $label.css('font-weight', 'bold');
             $icon.css('transform', 'rotate(180deg)');
             $label.data('open', true);

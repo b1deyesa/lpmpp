@@ -11,18 +11,60 @@ Route::namespace('App\Http\Controllers')->group(function() {
     Route::namespace('Auth')->name('auth.')->group(function() {
         Route::get('/login', 'LoginController@index')->name('login.index');
         Route::post('/login', 'LoginController@post')->name('login.post');
+        Route::post('/logout', 'LogoutController@post')->name('logout.post');
     });
     
     // Guest
     Route::namespace('Guest')->name('guest.')->group(function() {
+        
         Route::get('/', 'HomeController@index')->name('home');
+        
+        // Profil
+        Route::get('/sambutan', 'SambutanController@index')->name('sambutan');
         Route::get('/visi-misi', 'VisiMisiController@index')->name('visi-misi');
         Route::get('/sejarah', 'SejarahController@index')->name('sejarah');
         Route::get('/struktur-organisasi', 'StrukturOrganisasiController@index')->name('struktur-organisasi');
         Route::get('/tugas-fungsi', 'TugasFungsiController@index')->name('tugas-fungsi');
+
+        // Kerja Sama
+        Route::get('/kerja-sama-luar-negeri', 'KerjaSamaLuarNegeriController@index')->name('kerja-sama-luar-negeri');
+        Route::get('/kerja-sama-dalam-negeri', 'KerjaSamaDalamNegeriController@index')->name('kerja-sama-dalam-negeri');
+
+        // Informasi
         Route::prefix('portal/{pusat:singkatan_bagian}')->name('portal.')->group(function() {
-            Route::get('/', 'PortalController@index')->name('home');
+            Route::get('/', 'PortalController@index')->name('index');
         });
+
+        // Survey
+        Route::get('/survey', 'SurveyController@index')->name('survey');
+        Route::get('/survey/{survey}/form', 'SurveyFormController@index')->name('survey-form');
+        Route::get('/laporan-survey', 'LaporanSurveyController@index')->name('laporan-survey');
+
+        // Download
+        Route::get('/laporan', 'LaporanController@index')->name('laporan');
+        Route::get('/peraturan-perundang-undangan', 'PeraturanPerundangUndanganController@index')->name('peraturan-perundang-undangan');
+        Route::get('/peraturan-rektor', 'PeraturanRektorController@index')->name('peraturan-rektor');
+        Route::get('/surat-keputusan', 'SuratKeputusanController@index')->name('surat-keputusan');
+        Route::get('/sertifikat', 'SertifikatController@index')->name('sertifikat');
+        Route::get('/materi-kegiatan', 'MateriKegiatanController@index')->name('materi-kegiatan');
+        Route::get('/dokumen-kurikulum', 'DokumenKurikulumController@index')->name('dokumen-kurikulum');
+        Route::get('/dokumen-mbkm', 'DokumenMbkmController@index')->name('dokumen-mbkm');
+
+        // Layanan
+        Route::get('/spmi', 'SpmiController@index')->name('spmi');
+        Route::get('/pendampingan-akreditasi-nasional', 'PendampinganAkreditasiNasionalController@index')->name('pendampingan-akreditasi-nasional');
+        Route::get('/pendampingan-akreditasi-internasional', 'PendampinganAkreditasiInternasionalController@index')->name('pendampingan-akreditasi-internasional');
+        Route::get('/pendampingan-kurikulum', 'PendampinganKurikulumController@index')->name('pendampingan-kurikulum');
+        Route::get('/inovasi-pembelajaran', 'InovasiPembelajaranController@index')->name('inovasi-pembelajaran');
+        Route::get('/layanan-bkd', 'LayananBkdController@index')->name('layanan-bkd');
+        Route::get('/pelatihan', 'PelatihanController@index')->name('pelatihan');
+
+        // Akreditasi
+        Route::get('/akreditasi-institusi', 'AkreditasiInstitusiController@index')->name('akreditasi-institusi');
+        Route::get('/akreditasi-prodi-nasional', 'AkreditasiProdiNasionalController@index')->name('akreditasi-prodi-nasional');
+        Route::get('/akreditasi-prodi-internasional', 'AkreditasiProdiInternasionalController@index')->name('akreditasi-prodi-internasional');
+        Route::get('/instrumen-akreditasi-nasional', 'InstrumenAkreditasiNasionalController@index')->name('instrumen-akreditasi-nasional');
+        Route::get('/instrumen-akreditasi-internasional', 'InstrumenAkreditasiInternasionalController@index')->name('instrumen-akreditasi-internasional');
     });
     
     // Dashboard
@@ -38,7 +80,6 @@ Route::namespace('App\Http\Controllers')->group(function() {
         Route::resource('sejarah', 'SejarahController');
         Route::resource('pengelola', 'PengelolaController');
         Route::resource('pusat', 'PusatController');
-        Route::resource('pusat.portal', 'PortalController');
         Route::resource('akreditasi', 'AkreditasiController');
         Route::resource('renstra', 'RenstraController');
         Route::resource('auditor-mutu-internal', 'AuditorMutuInternalController');
@@ -49,6 +90,7 @@ Route::namespace('App\Http\Controllers')->group(function() {
         Route::resource('kerja-sama-dalam-negeri', 'KerjaSamaDalamNegeriController');
         
         // Informasi
+        Route::resource('pusat.portal', 'PortalController');
         Route::resource('portal-informasi', 'PortalInformasiController');
         
         // Survey
@@ -82,6 +124,11 @@ Route::namespace('App\Http\Controllers')->group(function() {
         Route::resource('instrumen-akreditasi-nasional', 'InstrumenAkreditasiNasionalController');
         Route::resource('instrumen-akreditasi-internasional', InstrumenAkreditasiInternasionalController::class )->parameters(['instrumen-akreditasi-internasional' => 'instrumen']);
         Route::post('/akreditasi/import', 'AkreditasiController@import')->name('akreditasi.import');
+        
+        // Setting
+        Route::resource('role', 'RoleController');
+        Route::resource('user', 'UserController');
+        Route::resource('website', 'WebsiteController');
         
         // Truncate
         Route::post('/sambutan/truncate', 'SambutanController@truncate')->name('sambutan.truncate');
@@ -122,7 +169,11 @@ Route::namespace('App\Http\Controllers')->group(function() {
         Route::post('/akreditasi-prodi-internasional/truncate', 'AkreditasiProdiInternasionalController@truncate')->name('akreditasi-prodi-internasional.truncate');
         Route::post('/instrumen-akreditasi-nasional/truncate', 'InstrumenAkreditasiNasionalController@truncate')->name('instrumen-akreditasi-nasional.truncate');
         Route::post('/instrumen-akreditasi-internasional/truncate', 'InstrumenAkreditasiInternasionalController@truncate')->name('instrumen-akreditasi-internasional.truncate');
+        Route::post('/role/truncate', 'RoleController@truncate')->name('role.truncate');
+        Route::post('/user/truncate', 'UserController@truncate')->name('user.truncate');
+        Route::post('/website/truncate', 'WebsiteController@truncate')->name('website.truncate');
         
+        // Download
         Route::get('/laporan/{laporan}/download', 'LaporanController@download')->name('laporan.download');
         Route::get('/peraturan-perundang-undangan/{peraturanPerundangUndangan}/download', 'PeraturanPerundangUndanganController@download')->name('peraturan-perundang-undangan.download');
         Route::get('/peraturan-rektor/{peraturanRektor}/download', 'PeraturanRektorController@download')->name('peraturan-rektor.download');

@@ -2,29 +2,41 @@
     
     {{-- Jumbotron --}}
     <section class="jumbotron">
-        <img src="{{ asset('assets/img/gedung-lpmpp.jpg') }}" alt="Gedung LPMPP" class="jumbotron__background">
+        @if ($website->jumbotron_background)
+            <img src="{{ asset('storage/'. $website->jumbotron_background) }}" alt="Gedung LPMPP" class="jumbotron__background">
+        @else
+            <img src="{{ asset('assets/img/default.jpg') }}" alt="Gedung LPMPP" class="jumbotron__background">
+        @endif
         <div class="jumbotron__container">
-            <h1 class="jumbotron__title">Lembaga Penjaminan Mutu dan Pengembangan Pembelajaran (LPMPP)</h1>
-            <h2 class="jumbotron__subtitle">Universitas Pattimura</h2>
-            <p class="jumbotron__description">Menggerakkan Budaya Mutu Universitas Pattimura Menuju <i>World Class University</i></p>
+            <h1 class="jumbotron__title">{{ $website->jumbotron_title }}</h1>
+            <h2 class="jumbotron__subtitle">{{ $website->jumbotron_subtitle }}</h2>
+            <p class="jumbotron__description">{{ $website->jumbotron_description }}</p>
         </div>
     </section>
     
     {{-- Sambutan --}}
     <section class="sambutan">
         <div class="sambutan__container">
-            @if ($sambutan?->photo)
-                <img src="{{ asset('storage/'. $sambutan->photo) }}" alt="Foto Ketua" class="sambutan__photo" data-animate data-position="bottom" data-delay="300">
-            @else
-                <img src="{{ asset('assets/img/default.jpg') }}" alt="Default Image" class="sambutan__photo" data-animate data-position="bottom" data-delay="300">
-            @endif
+            <img src="{{ asset('storage/'.($sambutan?->photo ?? '')) ?: asset('assets/img/default.jpg') }}" alt="Foto Ketua" class="sambutan__photo" data-animate data-position="bottom" data-delay="300">
             <div class="sambutan__right">
-                <h1 class="sambutan__title" data-animate data-position="left" data-delay="200">LPMPP Universitas Pattimura</h1>
-                <hr class="sambutan__line" data-animate data-position="left" data-delay="300">
+                <h1 class="sambutan__title" data-animate data-position="left" data-delay="200">Sambutan Ketua LPMPP<br>Universitas Pattimura</h1>
+                <h3 class="sambutan__author" data-animate data-position="left" data-delay="300">
+                    {{ $sambutan?->author ?: 'Unidentified Author' }}
+                </h3>
                 @if($sambutan?->body)
-                    <p data-animate data-position="left" data-delay="500">{{ $sambutan->body }}</p> 
+                    @php
+                        $text  = html_entity_decode($sambutan->body);
+                        $clean = trim(preg_replace('/\s+/u', ' ', strip_tags($text)));
+                        $words = Str::wordCount($clean);
+                    @endphp
+                    <p data-animate data-position="left" data-delay="500" class="sambutan__body">
+                        {{ Str::words($clean, 85) }}
+                        @if($words > 85)
+                            <a href="{{ route('guest.sambutan') }}" class="body__readmore">Read More</a>
+                        @endif
+                    </p>
                 @else
-                    <small class="empty">No content available</small>
+                    <small class="empty" style="padding: 5em 0">No content available</small>
                 @endif
                 <div class="sambutan__menu">
                    <a class="menu__item" href="{{ route('guest.sejarah') }}" data-animate data-position="left" data-delay="800">Sejarah Singkat LPMPP<i class="fa-solid fa-circle-arrow-right"></i></a>
@@ -45,7 +57,11 @@
                 @forelse ($pusats as $pusat)
                     <span data-animate data-position="bottom" data-delay="{{ $loop->iteration * 200 + 400 }}">
                         <div class="list__item">
-                            <img src="{{ asset('assets/img/gedung-lpmpp.png') }}" alt="Background" class="item__background">
+                            @if ($pusat?->photo)
+                                <img src="{{ asset('storage/'. $pusat->photo) }}" alt="Background" class="item__background">
+                            @else
+                                <img src="{{ asset('assets/img/default.jpg') }}" alt="Default Image" class="item__background">
+                            @endif
                             <h6 class="item__title">{{ $pusat->nama_bagian }}</h6>
                         </div>
                     </span>
@@ -164,34 +180,15 @@
                 <hr class="header__line">
             </div>
             <div class="berita__list">
-                <a href="" class="list__item">
-                    <img src="{{ asset('assets/img/default.jpg') }}" alt="" class="item__cover">
-                    <div class="item__text">
-                        <h4 class="text__title">Lorem ipsum dolor sit amet</h4>
-                        <small class="text__date"><i class="fa-regular fa-clock"></i>24 November 2026</small>
-                    </div>
-                </a>
-                <a href="" class="list__item">
-                    <img src="{{ asset('assets/img/default.jpg') }}" alt="" class="item__cover">
-                    <div class="item__text">
-                        <h4 class="text__title">Lorem ipsum dolor sit amet</h4>
-                        <small class="text__date"><i class="fa-regular fa-clock"></i>24 November 2026</small>
-                    </div>
-                </a>
-                <a href="" class="list__item">
-                    <img src="{{ asset('assets/img/default.jpg') }}" alt="" class="item__cover">
-                    <div class="item__text">
-                        <h4 class="text__title">Lorem ipsum dolor sit amet</h4>
-                        <small class="text__date"><i class="fa-regular fa-clock"></i>24 November 2026</small>
-                    </div>
-                </a>
-                <a href="" class="list__item">
-                    <img src="{{ asset('assets/img/default.jpg') }}" alt="" class="item__cover">
-                    <div class="item__text">
-                        <h4 class="text__title">Lorem ipsum dolor sit amet</h4>
-                        <small class="text__date"><i class="fa-regular fa-clock"></i>24 November 2026</small>
-                    </div>
-                </a>
+                @foreach ($posts as $post)
+                    <a href="" class="list__item">
+                        <img src="{{ $post->cover ? asset('storage/'. $post->cover) : asset('assets/img/default.jpg') }}" class="item__cover">
+                        <div class="item__bottom">
+                            <h3 class="item__title">{{ $post->title }}</h3>
+                            <small class="item__date">{{ $post->created_at->translatedFormat('d F Y') }}</small>    
+                        </div>
+                    </a>
+                @endforeach
             </div>
         </div>
     </section>

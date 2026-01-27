@@ -39,7 +39,7 @@ class VisiMisiController extends Controller
             ]
         );
         
-        return redirect()->route('dashboard.visi-misi.index')->with('success', 'Success Update!');
+        return redirect()->route('dashboard.visi-misi.index')->with('success', 'Successfully Update!');
     }
 
     /**
@@ -78,6 +78,6 @@ class VisiMisiController extends Controller
     {
         VisiMisi::truncate();
 
-        return redirect()->route('dashboard.visi-misi.index')->with('success', 'Successfuly deleted all!');
+        return redirect()->route('dashboard.visi-misi.index')->with('success', 'Successfully deleted all!');
     }
 }

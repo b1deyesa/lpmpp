@@ -27,7 +27,7 @@ class Create extends Component
             'file' => $file
         ]);
         
-        return redirect()->route('dashboard.instrumen-akreditasi-nasional.index')->with('success', 'Success added!');
+        return redirect()->route('dashboard.instrumen-akreditasi-nasional.index')->with('success', 'Successfully added!');
     }
     
     public function render()

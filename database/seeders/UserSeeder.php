@@ -11,25 +11,35 @@ class UserSeeder extends Seeder
 {
     public $users = [
         [
+            'role_id' => 1,
             'name' => 'Imagodeo Bideyesa Laimeheriwa',
-            'email' => 'bideyesa@gmail.com'
+            'email' => 'bideyesa@gmail.com',
+            'password' => 'magox1905'
         ],
         [
+            'role_id' => 2,
             'name' => 'James Abrahamsz',
-            'email' => 'james.abrahamsz@gmail.com'
+            'email' => 'james.abrahamsz@gmail.com',
+            'password' => 'lpmpp-user#2026'
         ],
         [
+            'role_id' => 2,
             'name' => 'Raysdjuf',
-            'email' => 'raysdjuf@gmail.com'
+            'email' => 'raysdjuf@gmail.com',
+            'password' => 'lpmpp-user#2026'
         ],
         [
+            'role_id' => 1,
             'name' => 'Bruri Melky Laimeheriwa',
-            'email' => 'bruripenabur@gmail.com'
+            'email' => 'bruripenabur@gmail.com',
+            'password' => 'lpmpp-user#2026'
         ],
         [
+            'role_id' => 2,
             'name' => 'Indah Sangadji',
-            'email' => 'sangadjiindah8@gmail.com'
-        ],
+            'email' => 'sangadjiindah8@gmail.com',
+            'password' => 'lpmpp-user#2026'
+        ]
     ];
     
     /**
@@ -39,9 +49,10 @@ class UserSeeder extends Seeder
     {
         foreach ($this->users as $user) {
             User::create([
+                'role_id' => $user['role_id'],
                 'name' => $user['name'],
                 'email' => $user['email'],
-                'password' => Hash::make('lpmpp-user#2026'),
+                'password' => Hash::make($user['password'])
             ]);
         }
     }

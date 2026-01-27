@@ -26,7 +26,7 @@ class Create extends Component
             'slug' => Str::slug($this->title)
         ]);
         
-        return redirect()->route('dashboard.survey.index')->with('success', 'Success added!');
+        return redirect()->route('dashboard.survey.index')->with('success', 'Successfully added!');
     }
     
     public function render()

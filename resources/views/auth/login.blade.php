@@ -1,5 +1,7 @@
 <x-layout.app class="login">
+    
     <img src="{{ asset('assets/img/gedung-unpatti.png') }}" class="login__background">
+    
     <div class="login__container">
         <div class="login__logo">
             <img src="{{ asset('assets/img/logo-lpmpp.png') }}" alt="Logo LPMPP">

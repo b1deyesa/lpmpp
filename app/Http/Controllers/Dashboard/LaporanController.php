@@ -71,7 +71,7 @@ class LaporanController extends Controller
     {
         Laporan::truncate();
 
-        return redirect()->route('dashboard.laporan.index')->with('success', 'Successfuly deleted all!');
+        return redirect()->route('dashboard.laporan.index')->with('success', 'Successfully deleted all!');
     }
     
     public function download(Request $request, Laporan $laporan)

@@ -66,17 +66,17 @@
                 <div class="menu__dropdown">
                     <span class="dropdown__label">Kerja Sama<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></span>
                     <div class="dropdown__menu" style="left: 0">
-                        <a href="#" class="menu__item">Luar Negeri</a>
-                        <a href="#" class="menu__item">Dalam Negeri</a>
+                        <a href="{{ route('guest.kerja-sama-luar-negeri') }}" class="menu__item">Luar Negeri</a>
+                        <a href="{{ route('guest.kerja-sama-dalam-negeri') }}" class="menu__item">Dalam Negeri</a>
                     </div>
                 </div>
                 
                 {{-- Informasi --}}
                 <div class="menu__dropdown">
-                    <span class="dropdown__label">Informasi</span>
+                    <span class="dropdown__label">Informasi<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></span>
                     <div class="dropdown__menu">
                         @foreach ($pusats as $pusat)
-                            <a href="{{ route('guest.portal.home', compact('pusat')) }}" class="menu__item">Portal {{ $pusat->nama_bagian }}</a>
+                            <a href="{{ route('guest.portal.index', compact('pusat')) }}" class="menu__item">Portal {{ $pusat->nama_bagian }}</a>
                         @endforeach
                     </div>
                 </div>

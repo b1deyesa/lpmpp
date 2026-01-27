@@ -19,7 +19,10 @@
                     </ul>
                 </div>
             </div>
-            <x-input label="Isi Sambutan" type="textarea" name="body" value="{{ $sambutan?->body }}" />
+            <div class="form__col">
+                <x-input label="Author" type="text" name="author" value="{{ $sambutan?->author }}" />
+                <x-input label="Isi Sambutan" type="editor" name="body" value="{{ $sambutan?->body }}" />
+            </div>
         </div>
         <x-slot:bottom>
             <x-modal>

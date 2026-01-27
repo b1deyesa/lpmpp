@@ -1,7 +1,14 @@
 <div class="input {{ $class }}" style="width: {{ $width }}" {{ $attributes }}>
     
     {{-- Label --}}
-    @if($label)<span class="input__label">{{ $label }}</span>@endif
+    @if ($label)
+        <label for="{{ $id }}" class="input__label">
+            {{ $label }}
+            @if ($required)
+                <span class="label__required">*</span>
+            @endif
+        </label>
+    @endif
     
     {{-- Inputs --}}
     @switch($type)
@@ -245,7 +252,21 @@
                 </ul>
             
             </div>
-            @break            
+            @break
+        @case('switch')
+            <label class="switch">
+                <input 
+                    type="checkbox"
+                    value="{{ old($name, $value) }}"
+                    id="{{ $id }}"
+                    @if($wire) wire:model.live="{{ $wire }}" @endif
+                    @if($name) name="{{ $name }}" @endif
+                    @if($placeholder) placeholder="{{ $placeholder }}" @endif
+                    @required($required)
+                    >
+                <span class="slider round"></span>
+            </label>
+            @break
         @case('checkbox')
             <span class="checkbox {{ $class }} @error($name) error @enderror">
                 <input type="hidden" name="{{ $name }}" value="">
@@ -339,7 +360,7 @@
                     >
                 </div>
             @else
-                <div class="image {{ $class }}">
+                <div class="image">
                     <div class="image__preview {{ $value ? 'has-image' : 'is-empty' }}">
                         <img
                             src="{{ $value ? asset('storage/'.$value) : '' }}"

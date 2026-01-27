@@ -27,17 +27,15 @@
         {{-- Table --}}
         <x-table>
             <x-slot:head>
+                <th>Photo</th>
                 <th>Nama Pusat</th>
-                <th>Anggota Pusat</th>
+                <th>Pengelola Pusat</th>
             </x-slot:head>
 
             <x-slot:body>
                 @forelse ($pusats ?? [] as $pusat)
                     @php
-                        $anggotaText = collect($pusat->anggota)
-                            ->map(fn ($jabatan, $nama) => $nama.' '.$jabatan)
-                            ->implode(' ');
-
+                        $anggotaText = $pusat->pengelolas->map(fn ($p) => $p->nama.' '.$p->pivot->jabatan)->implode(' ');
                         $searchable = strtolower(
                             implode(' ', [
                                 $pusat->nama_bagian,
@@ -47,16 +45,15 @@
                     @endphp
 
                     <tr x-show="search === '' || '{{ $searchable }}'.includes(search.toLowerCase())">
+                        <td width="1%"><img src="{{ $pusat->photo ? asset('storage/'.$pusat->photo) : asset('assets/img/default.jpg') }}" class="photo"></td>
                         <td x-html="highlight('{{ addslashes($pusat->nama_bagian) }}')"></td>
-                        <td>
+                        <td width="40%">
                             <ul>
-                                @forelse ($pusat->anggota as $nama => $jabatan)
+                                @forelse ($pusat->pengelolas as $pengelola)
                                     <li>
-                                        <span x-html="highlight('{{ addslashes($nama) }}')"></span>
-                                        @if($jabatan)
-                                            (
-                                            <span x-html="highlight('{{ addslashes($jabatan) }}')"></span>
-                                            )
+                                        <span x-html="highlight('{{ addslashes($pengelola->nama) }}')"></span>
+                                        @if($pengelola->pivot->jabatan)
+                                            (<span x-html="highlight('{{ addslashes($pengelola->pivot->jabatan) }}')"></span>)
                                         @endif
                                     </li>
                                 @empty

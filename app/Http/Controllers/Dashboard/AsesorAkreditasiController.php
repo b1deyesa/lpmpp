@@ -38,7 +38,7 @@ class AsesorAkreditasiController extends Controller
             ]
         );
         
-        return redirect()->route('dashboard.asesor-akreditasi.index')->with('success', 'Success Update!');
+        return redirect()->route('dashboard.asesor-akreditasi.index')->with('success', 'Successfully Update!');
     }
 
     /**
@@ -77,6 +77,6 @@ class AsesorAkreditasiController extends Controller
     {
         AsesorAkreditasi::truncate();
 
-        return redirect()->route('dashboard.asesor-akreditasi.index')->with('success', 'Successfuly deleted all!');
+        return redirect()->route('dashboard.asesor-akreditasi.index')->with('success', 'Successfully deleted all!');
     }
 }

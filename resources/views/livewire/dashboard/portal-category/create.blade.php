@@ -1,5 +1,5 @@
 <div class="portal__category">
-    <x-input label="Category" type="checkbox" class="header__category" name="portal_categories" :options="$categories" />
+    <x-input label="Category" type="checkbox" class="category__input" name="portal_categories" :options="$categories" />
     <x-modal>
         <x-slot:trigger>
             <x-button class="button__outline category__button">Add Category</x-button>

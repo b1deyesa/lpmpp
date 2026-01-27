@@ -27,7 +27,7 @@ class Create extends Component
             'file' => $file
         ]);
         
-        return redirect()->route('dashboard.laporan.index')->with('success', 'Success added!');
+        return redirect()->route('dashboard.laporan.index')->with('success', 'Successfully added!');
     }
     
     public function render()

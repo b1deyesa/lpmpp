@@ -74,6 +74,6 @@ class SurveyFormController extends Controller
     {
         SurveyForm::where('survey_id', $survey->id)->query()->delete();
 
-        return redirect()->route('dashboard.visi-misi.index')->with('success', 'Successfuly deleted all!');
+        return redirect()->route('dashboard.visi-misi.index')->with('success', 'Successfully deleted all!');
     }
 }

@@ -1,23 +1,41 @@
-<footer>
-    <div class="footer__container">
-        <div class="footer__left">
-            <div class="footer__logo">
-                <img src="{{ asset('assets/img/logo-lpmpp.png') }}" alt="Logo LPMPP">
-                <img src="{{ asset('assets/img/logo-unpatti.png') }}" alt="Logo UNPATTI">
+<section class="footer">
+    
+    {{-- Footer --}}
+    <footer class="footer">
+        <div class="footer__container">
+            <div class="footer__col">
+                <h2 class="footer__title">{{ $website->jumbotron_title }}</h2>
+                @if($website->address)<p>{!! nl2br(e($website->address)) !!}</p>@endif
+                <ul>
+                    @if($website->phone)<li><a href="https://wa.me/{{ $website->phone }}"><i class="fa-brands fa-whatsapp"></i>{{ $website->phone }}</a></li>@endif
+                    @if($website->email)<li><a href="mailto:{{ $website->email }}"><i class="fa-regular fa-envelope"></i>{{ $website->email }}</a></li>@endif
+                    @if($website->fax)<li><a href="tel:{{ $website->fax }}"><i class="fa-solid fa-fax"></i>{{ $website->fax }}</a></li>@endif
+                </ul>
             </div>
-            <p class="footer__text">
-                Kampus Universitas Pattimura
-                <br>Desa Poka, Kecamatan Teluk Ambon
-                <br>Kota Ambon, Maluku
-            </p>
-            <p class="footer__text">
-                Telepon: ...
-                <br>Faks: ...
-                <br>Email: ...
-            </p>
+            <div class="footer__col">
+                <div class="footer__logo">
+                    <img src="{{ asset('assets/img/logo-unpatti.png') }}" alt="Logo UNPATTI">
+                    <img src="{{ asset('assets/img/logo-lpmpp.png') }}" alt="Logo LPMPP">
+                    <img src="{{ asset('assets/img/logo-dikstis.png') }}" alt="Logo DIKSTIS">
+                    <img src="{{ asset('assets/img/logo-blu.png') }}" alt="Logo BLU">
+                </div>
+                <p>
+                    @php
+                        $text  = html_entity_decode($sambutan->body);
+                        $clean = trim(preg_replace('/\s+/u', ' ', strip_tags($text)));
+                        $words = Str::wordCount($clean);
+                    @endphp
+                    {{ Str::words($clean, 50) }}
+                </p>
+            </div>
         </div>
-        <div class="footer__right">
-            <p class="footer__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis molestias cumque vero maiores nihil dolor quo facere ut deserunt odit</p>
+    </footer>
+    
+    {{-- Copyright --}}
+    <footer class="copyright">
+        <div class="copyright__container">
+            © Hak Cipta 2026 - Lembaga Penjaminan Mutu dan Pengembangan Pembelajaran (LPMPP) - Universitas Pattimura | Konten terakhir dimutakhirkan {{ $website->created_at->translatedFormat('d F Y') }}
         </div>
-    </div>
-</footer>
+    </footer>
+    
+</section>

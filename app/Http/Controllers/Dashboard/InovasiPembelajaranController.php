@@ -38,7 +38,7 @@ class InovasiPembelajaranController extends Controller
             ]
         );
         
-        return redirect()->route('dashboard.inovasi-pembelajaran.index')->with('success', 'Success Update!');
+        return redirect()->route('dashboard.inovasi-pembelajaran.index')->with('success', 'Successfully Update!');
     }
 
     /**
@@ -77,6 +77,6 @@ class InovasiPembelajaranController extends Controller
     {
         InovasiPembelajaran::truncate();
 
-        return redirect()->route('dashboard.inovasi-pembelajaran.index')->with('success', 'Successfuly deleted all!');
+        return redirect()->route('dashboard.inovasi-pembelajaran.index')->with('success', 'Successfully deleted all!');
     }
 }

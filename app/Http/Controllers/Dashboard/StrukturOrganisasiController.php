@@ -38,7 +38,7 @@ class StrukturOrganisasiController extends Controller
             ]
         );
         
-        return redirect()->route('dashboard.struktur-organisasi.index')->with('success', 'Success Update!');
+        return redirect()->route('dashboard.struktur-organisasi.index')->with('success', 'Successfully Update!');
     }
 
     /**
@@ -77,6 +77,6 @@ class StrukturOrganisasiController extends Controller
     {
         StrukturOrganisasi::truncate();
 
-        return redirect()->route('dashboard.struktur-organisasi.index')->with('success', 'Successfuly deleted all!');
+        return redirect()->route('dashboard.struktur-organisasi.index')->with('success', 'Successfully deleted all!');
     }
 }

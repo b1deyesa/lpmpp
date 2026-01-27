@@ -27,7 +27,7 @@ class Create extends Component
             'file' => $file
         ]);
         
-        return redirect()->route('dashboard.dokumen-mbkm.index')->with('success', 'Success added!');
+        return redirect()->route('dashboard.dokumen-mbkm.index')->with('success', 'Successfully added!');
     }
     
     public function render()

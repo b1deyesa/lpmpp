@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Pengelola extends Model
 {
     protected $guarded = ['id'];
     
-    public function pusat(): HasMany
+    public function pusats(): BelongsToMany
     {
-        return $this->hasMany(Pusat::class);
+        return $this->belongsToMany(Pusat::class, 'pengelola_pusat', 'pengelola_id', 'pusat_id')->withPivot('jabatan')->withTimestamps();
     }
 }

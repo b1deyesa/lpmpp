@@ -15,13 +15,13 @@ class Input extends Component
      */
     public function __construct(
         public $label = null,
+        public $required = false,
         public $type = 'text',
         public $id = null,
         public $name = null,
         public $wire = null,
         public $value = null,
         public $placeholder = null,
-        public $required = false,
         public $options = null,
         public $class = null,
         public $width = null,
@@ -31,6 +31,7 @@ class Input extends Component
     {
         $this->uniqid = uniqid();
         $this->label = $label;
+        $this->required = $required;
         $this->type = $type;
         $this->wire = $wire;
         
@@ -43,7 +44,6 @@ class Input extends Component
         $this->id = $id ?? $this->name;
         $this->value = $value;
         $this->placeholder = $placeholder;
-        $this->required = $required;
         $this->options = is_string($options) && $options !== [] ? json_decode($options, true) : ($options ?? []);    
         $this->class = $class;
         $this->width = $width;

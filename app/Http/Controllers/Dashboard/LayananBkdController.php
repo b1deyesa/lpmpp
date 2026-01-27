@@ -38,7 +38,7 @@ class LayananBkdController extends Controller
             ]
         );
         
-        return redirect()->route('dashboard.layanan-bkd.index')->with('success', 'Success Update!');
+        return redirect()->route('dashboard.layanan-bkd.index')->with('success', 'Successfully Update!');
     }
 
     /**
@@ -77,6 +77,6 @@ class LayananBkdController extends Controller
     {
         LayananBkd::truncate();
 
-        return redirect()->route('dashboard.layanan-bkd.index')->with('success', 'Successfuly deleted all!');
+        return redirect()->route('dashboard.layanan-bkd.index')->with('success', 'Successfully deleted all!');
     }
 }

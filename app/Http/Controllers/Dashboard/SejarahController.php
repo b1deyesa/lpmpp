@@ -38,7 +38,7 @@ class SejarahController extends Controller
             ]
         );
         
-        return redirect()->route('dashboard.sejarah.index')->with('success', 'Success Update!');
+        return redirect()->route('dashboard.sejarah.index')->with('success', 'Successfully Update!');
     }
 
     /**
@@ -77,6 +77,6 @@ class SejarahController extends Controller
     {
         Sejarah::truncate();
 
-        return redirect()->route('dashboard.sejarah.index')->with('success', 'Successfuly deleted all!');
+        return redirect()->route('dashboard.sejarah.index')->with('success', 'Successfully deleted all!');
     }
 }

@@ -72,6 +72,6 @@ class PusatController extends Controller
     {
         Pusat::query()->delete();
 
-        return redirect()->route('dashboard.pusat.index')->with('success', 'Successfuly deleted all!');
+        return redirect()->route('dashboard.pusat.index')->with('success', 'Successfully deleted all!');
     }
 }

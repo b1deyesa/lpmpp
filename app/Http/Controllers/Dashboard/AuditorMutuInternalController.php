@@ -38,7 +38,7 @@ class AuditorMutuInternalController extends Controller
             ]
         );
         
-        return redirect()->route('dashboard.auditor-mutu-internal.index')->with('success', 'Success Update!');
+        return redirect()->route('dashboard.auditor-mutu-internal.index')->with('success', 'Successfully Update!');
     }
 
     /**
@@ -77,6 +77,6 @@ class AuditorMutuInternalController extends Controller
     {
         AuditorMutuInternal::truncate();
 
-        return redirect()->route('dashboard.auditor-mutu-internal.index')->with('success', 'Successfuly deleted all!');
+        return redirect()->route('dashboard.auditor-mutu-internal.index')->with('success', 'Successfully deleted all!');
     }
 }

@@ -70,6 +70,6 @@ class PengelolaController extends Controller
     {
         Pengelola::query()->delete();
 
-        return redirect()->route('dashboard.pengelola.index')->with('success', 'Successfuly deleted all!');
+        return redirect()->route('dashboard.pengelola.index')->with('success', 'Successfully deleted all!');
     }
 }

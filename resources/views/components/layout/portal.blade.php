@@ -1,7 +1,7 @@
 <x-layout.app class="portal">
     
     {{-- Navbar --}}
-    <x-portal-navbar />
+    <x-navigation.portal />
     
     {{-- Slot --}}
     <section class="{{ $class }}">
@@ -10,8 +10,5 @@
     
     {{-- Footer --}}
     <x-footer />
-    
-    {{-- Copyright --}}
-    <x-copyright />
     
 </x-layout.app>

@@ -38,7 +38,7 @@ class RenstraController extends Controller
             ]
         );
         
-        return redirect()->route('dashboard.renstra.index')->with('success', 'Success Update!');
+        return redirect()->route('dashboard.renstra.index')->with('success', 'Successfully Update!');
     }
 
     /**
@@ -77,6 +77,6 @@ class RenstraController extends Controller
     {
         Renstra::truncate();
 
-        return redirect()->route('dashboard.renstra.index')->with('success', 'Successfuly deleted all!');
+        return redirect()->route('dashboard.renstra.index')->with('success', 'Successfully deleted all!');
     }
 }

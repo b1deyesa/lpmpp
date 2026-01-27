@@ -44,22 +44,19 @@ class SambutanController extends Controller
             
             Sambutan::updateOrCreate(
                 ['id' => 1],
-                [
-                    'body'  => $request->body,
-                    'photo' => $photoPath
-                ]
+                ['photo' => $photoPath]
             );
-            
-        } else {
-            Sambutan::updateOrCreate(
-                ['id' => 1],
-                [
-                    'body'  => $request->body
-                ]
-            );
-        }
+        } 
         
-        return redirect()->route('dashboard.sambutan.index')->with('success', 'Success Update!');
+        Sambutan::updateOrCreate(
+            ['id' => 1],
+            [
+                'body'  => $request->body,
+                'author'  => $request->author
+            ]
+        );
+        
+        return redirect()->route('dashboard.sambutan.index')->with('success', 'Successfully Update!');
     }
 
     /**
@@ -98,6 +95,6 @@ class SambutanController extends Controller
     {
         Sambutan::truncate();
 
-        return redirect()->route('dashboard.sambutan.index')->with('success', 'Successfuly deleted all!');
+        return redirect()->route('dashboard.sambutan.index')->with('success', 'Successfully deleted all!');
     }
 }

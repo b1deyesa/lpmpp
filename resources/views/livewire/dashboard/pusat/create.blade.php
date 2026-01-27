@@ -4,14 +4,19 @@
     </x-slot:trigger>
     <x-form wire="store()">
         <div class="form__row">
-            <x-input label="Nama Pusat" type="text" wire="nama_bagian" />
-            <x-input label="Singkatan" type="text" wire="singkatan_bagian" width="50%" />
+            <x-input label="Photo" type="image" wire="photo" />
+            <div class="form__col">
+                <div class="form__row">
+                    <x-input label="Nama Pusat" type="text" wire="nama_bagian" />
+                    <x-input label="Singkatan" type="text" wire="singkatan_bagian" width="50%" />
+                </div>
+                <div class="form__row">
+                    <x-input label="Email Pusat" type="text" wire="email" />
+                    <x-input label="No. Telp Pusat" type="text" wire="no_telp" />
+                </div>
+            </div>
         </div>
         <x-input label="Tugas dan Fungsi" type="editor" wire="tugas" wire:ignore />
-        <div class="form__row">
-            <x-input label="Email Pusat" type="text" wire="email" />
-            <x-input label="No. Telp Pusat" type="text" wire="no_telp" />
-        </div>
         <div class="form__row" style="align-items: end">
             <x-input label="Anggota" type="select" wire="selectedPengelola" placeholder="Pilih dan tambah" :options="json_encode($pengelolas)" />
             <x-button wire="add" class="button__outline">Add</x-button>

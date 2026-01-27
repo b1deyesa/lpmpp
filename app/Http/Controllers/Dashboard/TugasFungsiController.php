@@ -39,7 +39,7 @@ class TugasFungsiController extends Controller
             ]
         );
         
-        return redirect()->route('dashboard.tugas-fungsi.index')->with('success', 'Success Update!');
+        return redirect()->route('dashboard.tugas-fungsi.index')->with('success', 'Successfully Update!');
     }
 
     /**
@@ -78,6 +78,6 @@ class TugasFungsiController extends Controller
     {
         TugasFungsi::truncate();
 
-        return redirect()->route('dashboard.tugas-fungsi.index')->with('success', 'Successfuly deleted all!');
+        return redirect()->route('dashboard.tugas-fungsi.index')->with('success', 'Successfully deleted all!');
     }
 }

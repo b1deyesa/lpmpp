@@ -38,7 +38,7 @@ class SpmiController extends Controller
             ]
         );
         
-        return redirect()->route('dashboard.spmi.index')->with('success', 'Success Update!');
+        return redirect()->route('dashboard.spmi.index')->with('success', 'Successfully Update!');
     }
 
     /**
@@ -77,6 +77,6 @@ class SpmiController extends Controller
     {
         Spmi::truncate();
 
-        return redirect()->route('dashboard.spmi.index')->with('success', 'Successfuly deleted all!');
+        return redirect()->route('dashboard.spmi.index')->with('success', 'Successfully deleted all!');
     }
 }

@@ -38,7 +38,7 @@ class AkreditasiInstitusiController extends Controller
             ]
         );
 
-        return redirect()->route('dashboard.akreditasi-institusi.index')->with('success', 'Success Update!');
+        return redirect()->route('dashboard.akreditasi-institusi.index')->with('success', 'Successfully Update!');
     }
 
     /**
@@ -77,6 +77,6 @@ class AkreditasiInstitusiController extends Controller
     {
         AkreditasiInstitusi::truncate();
 
-        return redirect()->route('dashboard.akreditasi-institusi.index')->with('success', 'Successfuly deleted all!');
+        return redirect()->route('dashboard.akreditasi-institusi.index')->with('success', 'Successfully deleted all!');
     }
 }

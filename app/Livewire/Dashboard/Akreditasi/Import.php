@@ -20,7 +20,7 @@ class Import extends Component
 
         Excel::import(new AkreditasiImport, $this->file);
 
-        return redirect()->route('dashboard.akreditasi.index')->with('success', 'Successfuly imported!');
+        return redirect()->route('dashboard.akreditasi.index')->with('success', 'Successfully imported!');
     }
     
     public function render()

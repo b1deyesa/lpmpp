@@ -9,6 +9,7 @@
         $direction: vertical, 
         $color: dark
     ) {
+        margin: 0;
         border: .5px solid
             if($color == light, rgba($color-light, 10%), rgba($color-dark, 10%));
 

@@ -42,8 +42,8 @@
                     // backdrop-filter: blur(1px);
         
                     .jumbotron__title {
-                        font-size: 3em;
-                        font-weight: bolder;
+                        font-size: 3.2em;
+                        font-weight: 700;
                         line-height: 1.1;
                         max-width: 12em;
                         color: $color-white;
@@ -52,24 +52,29 @@
                     .jumbotron__subtitle {
                         font-family: $font-family-secondary;
                         font-size: 2.2em;
-                        font-weight: bolder;
-                        color: $color-3;
+                        font-weight: 700;
+                        color: $color-5;
                     }
         
                     .jumbotron__description {
-                        font-size: 1.2em;
-                        line-height: 1.7;
-                        margin: 1em 0 0;
-                        color: rgba($color-5, 80%);
+                        font-size: 1.3em;
+                        font-weight: 500;
+                        line-height: 1.5;
                         width: 25em;
                         max-width: 600px;
+                        margin: 1em 0 0;
+                        padding: .5em 1em;
+                        border-radius: .8em;
+                        backdrop-filter: blur(2px);
+                        background: linear-gradient(120deg, rgba($color-3, 50%), rgba($color-3, 30%), rgba($color-3, 40%));
+                        color: $color-white;
                     }
                 }
             }
             section.sambutan {
                 display: flex;
                 justify-content: center;
-                padding: 6em 2em;
+                padding: 8em 2em;
         
                 .sambutan__container {
                     display: flex;
@@ -80,10 +85,10 @@
                     max-width: 1200px;
         
                     .sambutan__photo {
-                        aspect-ratio: 4/3;
+                        aspect-ratio: 1/1;
                         object-fit: cover;
                         width: 100%;
-                        max-width: 35em;
+                        max-width: 32em;
                     }
                     
                     .sambutan__right {
@@ -93,18 +98,34 @@
                         width: 100%;
         
                         .sambutan__title {
-                            @extend %header-2
+                            @extend %header-2;
                         }
-        
-                        .sambutan__line {
-                            align-self: flex-start;
-                            width: 3em;
-                            margin: 0;
-                            border: .2em solid $color-1;
+                        
+                        .sambutan__author {
+                            font-size: 1em;
+                            font-weight: 600;
+                            width: fit-content;
+                            margin: 0 0 1em;
+                            padding: .5em .8em;
+                            background: $color-4;
+                            color: $color-dark;
                         }
-        
+                        
                         .sambutan__body {
                             @extend %text;
+                            text-align: justify;
+                            hyphens: auto;
+                            -webkit-hyphens: auto;
+                            -ms-hyphens: auto;
+                            word-break: normal;
+                            margin: 0 0 .6em;
+                            
+                            .body__readmore {
+                                @extend %text;
+                                font-weight: 500;
+                                text-decoration: none;
+                                color: $color-2;
+                            }
                         }
         
                         .sambutan__menu {
@@ -115,10 +136,11 @@
                                 display: flex;
                                 align-items: center;
                                 justify-content: space-between;
+                                font-weight: 400;
                                 text-decoration: none;
-                                padding: .8em;
+                                padding: .8em 0;
                                 border-bottom: .01em solid rgba($color-dark, 25%);
-                                color: $color-text
+                                color: $color-dark;
                             }
                         }
                     }
@@ -152,7 +174,7 @@
                         display: grid;
                         grid-auto-flow: column;
                         grid-auto-columns: 1fr;
-                        gap: 1em;
+                        gap: 1.5em;
                         width: 100%;
             
                         .list__item {
@@ -165,8 +187,15 @@
                             height: 25em;
                             width: 100%;
                             padding: 2em;
+                            cursor: pointer;
                             background: linear-gradient(190deg, transparent, darken($color-dark, 10%) 90%);
-                            // box-shadow: 2px 2px 8px rgba($color-black, 5%);
+                            
+                            &:hover {
+                                
+                                .item__background {
+                                    filter: grayscale(0);
+                                }
+                            }
                             
                             .item__background {
                                 position: absolute;
@@ -177,7 +206,7 @@
                                 width: 100%;
                                 height: 100%;
                                 z-index: -1;
-                                // filter: grayscale(100%);
+                                filter: grayscale(100%);
                             }
                             
                             .item__title {
@@ -335,9 +364,8 @@
                     }
         
                     .berita__list {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
+                        display: grid;
+                        grid-template-columns: repeat(4, 1fr);
                         gap: 1.5em;
         
                         .list__item {
@@ -351,7 +379,7 @@
                                 width: 100%;
                             }
         
-                            .item__text {
+                            .item__bottom {
                                 position: absolute;
                                 display: flex;
                                 flex-direction: column;
@@ -359,15 +387,16 @@
                                 inset: 0;
                                 gap: .5em;
                                 padding: 1em;
-                                background: linear-gradient(transparent 50%, rgba($color-black, 60%));
+                                background: linear-gradient(transparent 30%, rgba($color-black, 80%));
         
-                                .text__title {
-                                    font-size: 1em;
-                                    font-weight: semibold;
+                                .item__title {
+                                    @extend %text;
+                                    font-weight: bold;
+                                    line-height: 1.4;
                                     color: $color-white;
                                 }
         
-                                .text__date {
+                                .item__date {
                                     display: flex;
                                     align-items: center;
                                     gap: .3em;
@@ -505,10 +534,97 @@
     }
 /* 
  | ---------------------------------
+ |  Portal
+ | ---------------------------------
+ */
+    body.portal {
+
+        section.index {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            min-height: 40em;
+            padding: 5em 2em 7em;
+
+            .index__container {
+                display: flex;
+                flex-direction: column;
+                gap: 4em;
+                width: 100%;
+                max-width: 1200px;
+
+                .header {
+                    display: flex;
+
+                    .header__container {
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 100%;
+                        max-width: 1200px;
+
+                        .header__title {
+                            @extend %header-2;
+                            text-align: center;
+                        }
+                    }
+                }
+                
+                .list {
+                    display: grid;
+                    grid-template-columns: repeat(4, 1fr);
+                    gap: 2em;
+                    
+                    .list__item {
+                        display: flex;
+                        flex-direction: column;
+                        text-decoration: none;
+                        gap: 1.5em;
+                        
+                        .item__cover {
+                            aspect-ratio: 4/3;
+                            object-fit: cover;
+                            width: 100%;
+                        }
+                        
+                        .item__bottom {
+                            display: flex;
+                            flex-direction: column;
+                            gap: .4em;
+                            
+                            .item__title {
+                                @extend %header-3;
+                                font-size: 1em;
+                            }
+                            
+                            .item__date {
+                                @extend %text;
+                                font-size: .9em;
+                            }
+                            
+                            .item__excerpt {
+                                @extend %text;
+                                font-size: .9em;
+                                line-height: 1.4;
+                                hyphens: auto;
+                                -webkit-hyphens: auto;
+                                -ms-hyphens: auto;
+                                word-break: normal;
+                                opacity: 80%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+/* 
+ | ---------------------------------
  |  Dashboard
  | ---------------------------------
  */
-    body.dashboard { 
+    body.dashboard {
         display: flex;
         height: 100vh;
         width: 100vw;
@@ -518,20 +634,14 @@
             flex-direction: column;
             justify-content: start;
             gap: 2em;
-            height: 100%;
+            height: 100vh;
             width: 100%;
             padding: 2.5em;
             overflow-y: scroll;
             
-            .dashboard__title {
-                @extend %header-1;
-                color: $color-dark;
-            }
-            
             .dashboard__row {
                 display: flex;
                 gap: 2.5em;
-                height: 100%;
                 
                 .dashboard__line {
                     @include line();
@@ -548,10 +658,32 @@
                 }
             }
             
+            .dashboard__title {
+                @extend %header-1;
+                color: $color-dark;
+            }
+            
+            .dashboard__header {
+                display: flex;
+                align-items: center;
+                gap: 1em;
+                
+                .header__title {
+                    @extend %header-1;
+                    font-size: 1.2em;
+                    white-space: nowrap;
+                    color: $color-2;
+                }
+                
+                .header__line {
+                    @include line(horizontal);
+                }
+            }
+            
             .dashboard__table {
                 display: flex;
                 flex-direction: column;
-                gap: 1.5em;
+                gap: 2em;
                 
                 .table__features {
                     display: flex;
@@ -568,11 +700,11 @@
             &.sambutan {
             
                 .input:has(.image) {
-                    aspect-ratio: 4/3;
+                    aspect-ratio: 1/1;
                     
                     .image__preview {
                         object-fit: cover;
-                        aspect-ratio: 4/3;
+                        aspect-ratio: 1/1;
                     }
                 }
             }
@@ -586,6 +718,72 @@
                         object-fit: cover;
                         width: 4em;
                         margin: 0;
+                    }
+                }
+            }
+            
+            &.pusat {
+                
+                .table {
+                    
+                    .photo {
+                        aspect-ratio: 11/12;
+                        object-fit: cover;
+                        width: 10em;
+                        margin: 0;
+                    }
+                }
+            }
+            
+            &.portal {
+                
+                .form {
+                    height: 100%;
+                    
+                    > .form__row {
+                        height: 100%;
+                        
+                        .form__col:last-child {
+                            max-width: 15em;
+                            
+                            .input:has(.image) {
+                                aspect-ratio: 4/3;
+                                
+                                .image__preview {
+                                    aspect-ratio: 4/3;
+                                    object-fit: cover;
+                                }
+                            }
+                            
+                            .portal__category {
+                                position: relative;
+                                
+                                .category__input {
+                                    
+                                    .input__label {
+                                        margin: .4em 0 1em;
+                                    }
+                                }
+                                
+                                .category__button {
+                                    position: absolute;
+                                    font-size: .8em;
+                                    top: 0;
+                                    left: 5em;
+                                    min-height: fit-content;
+                                    padding: .2em .4em;
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                .table {
+                    
+                    .cover {
+                        aspect-ratio: 4/3;
+                        object-fit: cover;
+                        width: 5em;
                     }
                 }
             }
@@ -617,6 +815,63 @@
                     }
                 }
             }
+            
+            &.website {
+                
+                .form {
+                    height: fit-content;
+                }
+                
+                .form__active {
+                    height: fit-content;
+                    width: 30em;
+                }
+                
+                .jumbotron_background {
+                    width: 24em;
+                    height: fit-content;
+                    
+                    .image__preview {
+                        object-fit: cover;
+                        aspect-ratio: 16/9;
+                    }
+                }
+                
+                .page__background {
+                    
+                    .image__preview {
+                        object-fit: cover;
+                        aspect-ratio: 16/4;
+                    }
+                }
+                
+                .active__field {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1em;
+                    padding: 1.5em;
+                    max-width: 20em;
+                    background: $color-white;
+                    border: .08em solid rgba($color-black, 10%);
+                    
+                    .field__input {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        width: 100%;
+                        
+                        .input {
+                            width: fit-content;
+                        }
+                        
+                        .input__label {
+                            font-size: 1.1em;
+                            font-weight: bold;
+                            color: $color-1;
+                        }
+                    }
+                }
+            }
         }
         
         .modal {
@@ -624,15 +879,31 @@
             &.pengelola {
             
                 .input:has(.image) {
-                    width: 17.6em;
+                    width: 7.4em;
                     
                     .image__preview {
                         height: 7.4em;
+                        
+                        .image__empty {
+                            font-size: 1.8em;
+                        }
                     }
                 }
             }
             
             &.pusat {
+                
+                .input:has(.image) {
+                    width: 9em;
+                    
+                    .image__preview {
+                        height: 7.4em;
+                        
+                        .image__empty {
+                            font-size: 1.8em;
+                        }
+                    }
+                }
                 
                 .selected-table {
                     display: flex;
@@ -726,6 +997,38 @@
                             }
                         }
                     }
+                }
+            }
+        }
+    }
+/* 
+ | ---------------------------------
+ |  Maintenance
+ | ---------------------------------
+ */
+    body.soft-launching {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100vw;
+        padding: 2em;
+        
+        .soft-launching__container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1em;
+            
+            .soft-launching__logo {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 1.5em;
+                margin: 0 0 1em;
+                
+                .logo__image {
+                    height: 5em;
                 }
             }
         }

@@ -30,10 +30,6 @@
                 <th>Photo</th>
                 <th>Nama</th>
                 <th>Jabatan</th>
-                <th>NIP</th>
-                <th>NIDN</th>
-                <th>Email</th>
-                <th>No. Telp</th>
             </x-slot:head>
             <x-slot:body>
                 @forelse ($pengelolas ?? [] as $pengelola)
@@ -41,22 +37,14 @@
                         $searchable = strtolower(
                             implode(' ', [
                                 $pengelola->nama,
-                                $pengelola->jabatan,
-                                $pengelola->nip,
-                                $pengelola->nidn,
-                                $pengelola->email,
-                                $pengelola->no_telp,
+                                $pengelola->jabatan
                             ])
                         );
                     @endphp
                     <tr x-show="search === '' || '{{ $searchable }}'.includes(search.toLowerCase())">
                         <td width="1%"><img src="{{ $pengelola->photo ? asset('storage/'.$pengelola->photo) : asset('assets/img/default.jpg') }}" class="photo"></td>
                         <td x-html="highlight('{{ addslashes($pengelola->nama) }}')"></td>
-                        <td x-html="highlight('{{ addslashes($pengelola->jabatan) }}')"></td>
-                        <td align="center" x-html="highlight('{{ $pengelola->nip }}')"></td>
-                        <td align="center" x-html="highlight('{{ $pengelola->nidn }}')"></td>
-                        <td x-html="highlight('{{ addslashes($pengelola->email) }}')"></td>
-                        <td align="center" x-html="highlight('{{ $pengelola->no_telp }}')"></td>
+                        <td x-html="highlight('{{ addslashes($pengelola->jabatan) }}')" width="20%"></td>
                     </tr>
                 @empty
                     <tr>

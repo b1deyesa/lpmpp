@@ -38,7 +38,7 @@ class PendampinganAkreditasiNasionalController extends Controller
             ]
         );
         
-        return redirect()->route('dashboard.pendampingan-akreditasi-nasional.index')->with('success', 'Success Update!');
+        return redirect()->route('dashboard.pendampingan-akreditasi-nasional.index')->with('success', 'Successfully Update!');
     }
 
     /**
@@ -77,6 +77,6 @@ class PendampinganAkreditasiNasionalController extends Controller
     {
         PendampinganAkreditasiNasional::truncate();
 
-        return redirect()->route('dashboard.pendampingan-akreditasi-nasional.index')->with('success', 'Successfuly deleted all!');
+        return redirect()->route('dashboard.pendampingan-akreditasi-nasional.index')->with('success', 'Successfully deleted all!');
     }
 }

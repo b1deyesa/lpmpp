@@ -11,7 +11,10 @@
     {{-- Footer --}}
     <x-footer />
     
-    {{-- Copyright --}}
-    <x-copyright />
+    {{-- Alert --}}
+    <x-alert />
+    
+    {{-- Loading --}}
+    <x-loading />
     
 </x-layout.app>

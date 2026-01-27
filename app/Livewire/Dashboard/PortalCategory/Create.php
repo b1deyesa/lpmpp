@@ -35,7 +35,7 @@ class Create extends Component
             'slug'     => Str::slug($this->title),
         ]);
         
-        return redirect()->route('dashboard.pusat.portal.index', ['pusat' => $this->pusat])->with('success', 'Success added!');
+        return redirect()->route('dashboard.pusat.portal.index', ['pusat' => $this->pusat])->with('success', 'Successfully added!');
     }
     
     public function render()

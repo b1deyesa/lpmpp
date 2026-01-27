@@ -38,7 +38,7 @@ class PendampinganKurikulumController extends Controller
             ]
         );
         
-        return redirect()->route('dashboard.pendampingan-kurikulum.index')->with('success', 'Success Update!');
+        return redirect()->route('dashboard.pendampingan-kurikulum.index')->with('success', 'Successfully Update!');
     }
 
     /**
@@ -77,6 +77,6 @@ class PendampinganKurikulumController extends Controller
     {
         PendampinganKurikulum::truncate();
 
-        return redirect()->route('dashboard.pendampingan-kurikulum.index')->with('success', 'Successfuly deleted all!');
+        return redirect()->route('dashboard.pendampingan-kurikulum.index')->with('success', 'Successfully deleted all!');
     }
 }

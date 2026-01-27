@@ -50,7 +50,7 @@ class Create extends Component
             'tugas' => $this->tugas
         ]);
         
-        return redirect()->route('dashboard.pengelola.index')->with('success', 'Success added!');
+        return redirect()->route('dashboard.pengelola.index')->with('success', 'Successfully added!');
     }
     
     public function render()

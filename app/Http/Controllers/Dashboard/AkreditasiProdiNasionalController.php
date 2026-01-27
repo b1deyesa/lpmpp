@@ -38,7 +38,7 @@ class AkreditasiProdiNasionalController extends Controller
             ]
         );
         
-        return redirect()->route('dashboard.akreditasi-prodi-nasional.index')->with('success', 'Success Update!');
+        return redirect()->route('dashboard.akreditasi-prodi-nasional.index')->with('success', 'Successfully Update!');
     }
 
     /**

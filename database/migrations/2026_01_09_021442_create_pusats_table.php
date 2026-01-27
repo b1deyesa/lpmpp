@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('nama_bagian');
             $table->string('singkatan_bagian')->unique();
-            $table->string('anggota')->nullable();
             $table->text('tugas')->nullable();
             $table->text('email')->nullable();
             $table->text('no_telp')->nullable();
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }
