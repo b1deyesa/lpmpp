@@ -226,10 +226,10 @@
                             </div>
                         </div>
                         <div class="menu__dropdown">
-                            <a href="{{ route('guest.pelatihan') }}" class="dropdown__label">Pelatihan<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></a>
+                            <a href="{{ route('guest.pelatihan.index') }}" class="dropdown__label">Pelatihan<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></a>
                             <div class="dropdown__menu" style="left: -100%">
-                                @foreach ($pelatihan_categories as $pelatihan_category)
-                                    <a href="{{ route('guest.pelatihan-category', compact('pelatihan_category')) }}" class="menu__item">{{ $pelatihan_category->title }}</a>
+                                @foreach ($pelatihans as $pelatihan)
+                                    <a href="{{ route('guest.pelatihan.show', compact('pelatihan')) }}" class="menu__item">{{ $pelatihan->title }}</a>
                                 @endforeach
                             </div>
                         </div>

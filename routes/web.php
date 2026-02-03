@@ -72,8 +72,8 @@ Route::namespace('App\Http\Controllers')->group(function() {
         Route::get('/inovasi-pembelajaran/{inovasi_pembelajaran_category}', 'InovasiPembelajaranController@show')->name('inovasi-pembelajaran-category');
         Route::get('/layanan-bkd', 'LayananBkdController@index')->name('layanan-bkd');
         Route::get('/layanan-bkd/{layanan_bkd_category}', 'LayananBkdController@show')->name('layanan-bkd-category');
-        Route::get('/pelatihan', 'PelatihanController@index')->name('pelatihan');
-        Route::get('/pelatihan/{pelatihan_category}', 'PelatihanController@show')->name('pelatihan-category');
+        Route::get('/pelatihan', 'PelatihanController@index')->name('pelatihan.index');
+        Route::get('/pelatihan/{pelatihan}', 'PelatihanController@show')->name('pelatihan.show');
 
         // Akreditasi
         Route::get('/akreditasi-institusi', 'AkreditasiInstitusiController@index')->name('akreditasi-institusi');
@@ -93,15 +93,14 @@ Route::namespace('App\Http\Controllers')->group(function() {
         Route::get('/sertifikat/{sertifikat}/download', 'SertifikatController@download')->name('sertifikat.download');
         Route::get('/materi-kegiatan/{materiKegiatan}/download', 'MateriKegiatanController@download')->name('materi-kegiatan.download');
         Route::get('/dokumen-kurikulum/{dokumenKurikulum}/download', 'DokumenKurikulumController@download')->name('dokumen-kurikulum.download');
-        Route::get('/dokumen-mbkm/{dokumenMbkm}/download', 'DokumenMbkmController@download')->name('dokumen-mbkm.download');        
-        Route::get('/pendampingan-akreditasi-nasional/{pendampinganAkreditasiNasional}/download', 'PendampinganAkreditasiNasionalController@download')->name('pendampingan-akreditasi-nasional.download');        
-        Route::get('/pendampingan-akreditasi-internasional/{pai}/download', 'PendampinganAkreditasiInternasionalController@download')->name('pendampingan-akreditasi-internasional.download');        
-        Route::get('/pendampingan-kurikulum/{pk}/download', 'PendampinganKurikulumController@download')->name('pendampingan-kurikulum.download');        
-        Route::get('/inovasi-pembelajaran/{inovasiPembelajaran}/download', 'InovasiPembelajaranController@download')->name('inovasi-pembelajaran.download');        
-        Route::get('/layanan-bkd/{layanan_bkd}/download', 'LayananBkdController@download')->name('layanan-bkd.download');        
-        Route::get('/pelatihan/{pelatihan}/download', 'PelatihanController@download')->name('pelatihan.download');        
-        Route::get('/instrumen-akreditasi-nasional/{instrumenAkreditasiNasional}/download', 'InstrumenAkreditasiNasionalController@download')->name('instrumen-akreditasi-nasional.download');        
-        Route::get('/instrumen-akreditasi-internasional/{instrumenAkreditasiInternasional}/download', 'InstrumenAkreditasiInternasionalController@download')->name('instrumen-akreditasi-internasional.download');  
+        Route::get('/dokumen-mbkm/{dokumenMbkm}/download', 'DokumenMbkmController@download')->name('dokumen-mbkm.download');
+        Route::get('/pendampingan-akreditasi-nasional/{pendampinganAkreditasiNasional}/download', 'PendampinganAkreditasiNasionalController@download')->name('pendampingan-akreditasi-nasional.download');
+        Route::get('/pendampingan-akreditasi-internasional/{pai}/download', 'PendampinganAkreditasiInternasionalController@download')->name('pendampingan-akreditasi-internasional.download');
+        Route::get('/pendampingan-kurikulum/{pk}/download', 'PendampinganKurikulumController@download')->name('pendampingan-kurikulum.download');
+        Route::get('/inovasi-pembelajaran/{inovasiPembelajaran}/download', 'InovasiPembelajaranController@download')->name('inovasi-pembelajaran.download');
+        Route::get('/layanan-bkd/{layanan_bkd}/download', 'LayananBkdController@download')->name('layanan-bkd.download');
+        Route::get('/instrumen-akreditasi-nasional/{instrumenAkreditasiNasional}/download', 'InstrumenAkreditasiNasionalController@download')->name('instrumen-akreditasi-nasional.download');
+        Route::get('/instrumen-akreditasi-internasional/{instrumenAkreditasiInternasional}/download', 'InstrumenAkreditasiInternasionalController@download')->name('instrumen-akreditasi-internasional.download');
     });
     
     // Dashboard
@@ -167,7 +166,6 @@ Route::namespace('App\Http\Controllers')->group(function() {
         Route::resource('layanan-bkd', 'LayananBkdController');
         Route::resource('layanan-bkd-category', 'LayananBkdCategoryController');
         Route::resource('pelatihan', 'PelatihanController');
-        Route::resource('pelatihan-category', 'PelatihanCategoryController');
         
         // Akreditasi
         Route::resource('akreditasi-institusi', 'AkreditasiInstitusiController');
@@ -232,7 +230,6 @@ Route::namespace('App\Http\Controllers')->group(function() {
         Route::post('/layanan-bkd/truncate', 'LayananBkdController@truncate')->name('layanan-bkd.truncate');
         Route::post('/layanan-bkd/truncate/{layanan_bkd_category}', 'LayananBkdCategoryController@truncate')->name('layanan-bkd-category.truncate');
         Route::post('/pelatihan/truncate', 'PelatihanController@truncate')->name('pelatihan.truncate');
-        Route::post('/pelatihan/truncate/{pelatihan_category}', 'PelatihanCategoryController@truncate')->name('pelatihan-category.truncate');
         Route::post('/akreditasi-institusi/truncate', 'AkreditasiInstitusiController@truncate')->name('akreditasi-institusi.truncate');
         Route::post('/akreditasi-prodi-nasional/truncate', 'AkreditasiProdiNasionalController@truncate')->name('akreditasi-prodi-nasional.truncate');
         Route::post('/akreditasi-prodi-internasional/truncate', 'AkreditasiProdiInternasionalController@truncate')->name('akreditasi-prodi-internasional.truncate');
@@ -253,15 +250,14 @@ Route::namespace('App\Http\Controllers')->group(function() {
         Route::get('/sertifikat/{sertifikat}/download', 'SertifikatController@download')->name('sertifikat.download');
         Route::get('/materi-kegiatan/{materi_kegiatan}/download', 'MateriKegiatanController@download')->name('materi-kegiatan.download');
         Route::get('/dokumen-kurikulum/{dokumen_kurikulum}/download', 'DokumenKurikulumController@download')->name('dokumen-kurikulum.download');
-        Route::get('/dokumen-mbkm/{dokumen_mbkm}/download', 'DokumenMbkmController@download')->name('dokumen-mbkm.download');        
-        Route::get('/pendampingan-akreditasi-nasional/{pan}/download', 'PendampinganAkreditasiNasionalController@download')->name('pendampingan-akreditasi-nasional.download');        
-        Route::get('/pendampingan-akreditasi-internasional/{pai}/download', 'PendampinganAkreditasiInternasionalController@download')->name('pendampingan-akreditasi-internasional.download');        
-        Route::get('/pendampingan-kurikulum/{pk}/download', 'PendampinganKurikulumController@download')->name('pendampingan-kurikulum.download');        
-        Route::get('/inovasi-pembelajaran/{inovasi_pembelajaran}/download', 'InovasiPembelajaranController@download')->name('inovasi-pembelajaran.download');        
-        Route::get('/layanan-bkd/{layanan_bkd}/download', 'LayananBkdController@download')->name('layanan-bkd.download');        
-        Route::get('/pelatihan/{pelatihan}/download', 'PelatihanController@download')->name('pelatihan.download');        
-        Route::get('/instrumen-akreditasi-nasional/{ian}/download', 'InstrumenAkreditasiNasionalController@download')->name('instrumen-akreditasi-nasional.download');        
-        Route::get('/instrumen-akreditasi-internasional/{iai}/download', 'InstrumenAkreditasiInternasionalController@download')->name('instrumen-akreditasi-internasional.download'); 
+        Route::get('/dokumen-mbkm/{dokumen_mbkm}/download', 'DokumenMbkmController@download')->name('dokumen-mbkm.download');
+        Route::get('/pendampingan-akreditasi-nasional/{pan}/download', 'PendampinganAkreditasiNasionalController@download')->name('pendampingan-akreditasi-nasional.download');
+        Route::get('/pendampingan-akreditasi-internasional/{pai}/download', 'PendampinganAkreditasiInternasionalController@download')->name('pendampingan-akreditasi-internasional.download');
+        Route::get('/pendampingan-kurikulum/{pk}/download', 'PendampinganKurikulumController@download')->name('pendampingan-kurikulum.download');
+        Route::get('/inovasi-pembelajaran/{inovasi_pembelajaran}/download', 'InovasiPembelajaranController@download')->name('inovasi-pembelajaran.download');
+        Route::get('/layanan-bkd/{layanan_bkd}/download', 'LayananBkdController@download')->name('layanan-bkd.download');
+        Route::get('/instrumen-akreditasi-nasional/{ian}/download', 'InstrumenAkreditasiNasionalController@download')->name('instrumen-akreditasi-nasional.download');
+        Route::get('/instrumen-akreditasi-internasional/{iai}/download', 'InstrumenAkreditasiInternasionalController@download')->name('instrumen-akreditasi-internasional.download');
     });
 });
 

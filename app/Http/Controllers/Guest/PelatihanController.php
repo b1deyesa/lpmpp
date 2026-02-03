@@ -5,22 +5,21 @@ namespace App\Http\Controllers\Guest;
 use App\Models\Pelatihan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\PelatihanCategory;
 use Illuminate\Support\Facades\Storage;
 
 class PelatihanController extends Controller
 {
     public function index()
     {
-        return view('guest.pelatihan', [
+        return view('guest.pelatihan.index', [
             'pelatihans' => Pelatihan::all()
         ]);
     }
     
-    public function show(PelatihanCategory $pelatihanCategory)
+    public function show(Pelatihan $pelatihan)
     {
-        return view('guest.pelatihan-category', [
-            'pelatihan_category' => $pelatihanCategory
+        return view('guest.pelatihan.show', [
+            'pelatihan' => $pelatihan
         ]);
     }
     

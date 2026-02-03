@@ -2136,78 +2136,26 @@
                     @include flex-layout(column);
                     
                     .pelatihan__list {
-                        display: flex;
-                        flex-direction: column;
-                        gap: .8em;
-                        width: 100%;
+                        @include flex-layout(column, $gap: 4em);
                         
                         .list__item {
-                            display: flex;
-                            justify-content: space-between;
-                            align-items: center;
-                            width: 100%;
-                            padding: .8em .8em .8em 1.2em;
-                            background: $color-white;
-                            border: .8px solid rgba($color-black, 20%);
+                            @include flex-layout(column, $gap: 1em);   
                             
                             .item__title {
-                                @extend %text;
-                                color: $color-2;
+                                @extend %header-4;
                             }
                             
-                            .item__right {
-                                display: flex;
-                                gap: .5em;
-                                
-                                .item__download {
-                                    min-height: fit-content;
-                                }
-                                
-                                .item__view {
-                                    min-height: fit-content;
-                                    min-width: fit-content;
-                                }
+                            .item__content {
+                                @include flex-layout(column, $gap: 1em);
                             }
                         }
                     }
                 }
-                &.pelatihan-category {
+                &.pelatihan-show {
                     @include flex-layout(column);
                     
-                    .pelatihan-category__list {
-                        display: flex;
-                        flex-direction: column;
-                        gap: .8em;
-                        width: 100%;
-                        
-                        .list__item {
-                            display: flex;
-                            justify-content: space-between;
-                            align-items: center;
-                            width: 100%;
-                            padding: .8em .8em .8em 1.2em;
-                            background: $color-white;
-                            border: .8px solid rgba($color-black, 20%);
-                            
-                            .item__title {
-                                @extend %text;
-                                color: $color-2;
-                            }
-                            
-                            .item__right {
-                                display: flex;
-                                gap: .5em;
-                                
-                                .item__download {
-                                    min-height: fit-content;
-                                }
-                                
-                                .item__view {
-                                    min-height: fit-content;
-                                    min-width: fit-content;
-                                }
-                            }
-                        }
+                    .pelatihan__content {
+                        @include flex-layout(column, $gap: 1em);
                     }
                 }
                 &.instrumen-akreditasi-nasional {
@@ -2605,6 +2553,15 @@
                                     padding: .4em;
                                     background: $color-danger;
                                     border-color: $color-danger;
+                                }
+                                
+                                .button__link {
+                                    font-size: .82em;
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                    padding: .4em .8em;
+                                    background: $color-info;
+                                    border-color: $color-info;
                                 }
                             }
                         }

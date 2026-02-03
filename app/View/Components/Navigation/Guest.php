@@ -7,7 +7,6 @@ use App\Models\Pusat;
 use Illuminate\View\Component;
 use App\Models\LaporanCategory;
 use App\Models\RenstraCategory;
-use App\Models\PelatihanCategory;
 use App\Models\LayananBkdCategory;
 use App\Models\SertifikatCategory;
 use App\Models\DokumenMbkmCategory;
@@ -22,6 +21,7 @@ use App\Models\PeraturanPerundangUndanganCategory;
 use App\Models\InstrumenAkreditasiNasionalCategory;
 use App\Models\PendampinganAkreditasiNasionalCategory;
 use App\Models\InstrumenAkreditasiInternasionalCategory;
+use App\Models\Pelatihan;
 use App\Models\PendampinganAkreditasiInternasionalCategory;
 
 class Guest extends Component
@@ -41,7 +41,7 @@ class Guest extends Component
     public $pendampingan_kurikulum_categories = null;
     public $inovasi_pembelajaran_categories = null;
     public $layanan_bkd_categories = null;
-    public $pelatihan_categories = null;
+    public $pelatihans = null;
     public $instrumen_akreditasi_nasional_categories = null;
     public $instrumen_akreditasi_internasional_categories = null;
     
@@ -65,7 +65,7 @@ class Guest extends Component
         $this->pendampingan_kurikulum_categories = PendampinganKurikulumCategory::all();
         $this->inovasi_pembelajaran_categories = InovasiPembelajaranCategory::all();
         $this->layanan_bkd_categories = LayananBkdCategory::all();
-        $this->pelatihan_categories = PelatihanCategory::all();
+        $this->pelatihans = Pelatihan::all();
         $this->instrumen_akreditasi_nasional_categories = InstrumenAkreditasiNasionalCategory::all();
         $this->instrumen_akreditasi_internasional_categories = InstrumenAkreditasiInternasionalCategory::all();
     }

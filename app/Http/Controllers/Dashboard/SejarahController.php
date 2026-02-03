@@ -38,7 +38,7 @@ class SejarahController extends Controller
             ]
         );
         
-        return redirect()->route('dashboard.sejarah.index')->with('success', 'Successfully Update!');
+        return redirect()->route('dashboard.sejarah.index')->with('success', 'Successfully Updated!');
     }
 
     /**

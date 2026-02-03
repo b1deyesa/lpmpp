@@ -15,9 +15,8 @@ class PelatihanController extends Controller
      */
     public function index()
     {
-        return view('dashboard.pelatihan', [
-            'pelatihan_categories' => PelatihanCategory::all(),
-            'pelatihans' => Pelatihan::whereNull('pelatihan_category_id')->get()
+        return view('dashboard.pelatihan.index', [
+            'pelatihans' => Pelatihan::all()
         ]);
     }
 
@@ -34,7 +33,7 @@ class PelatihanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // 
     }
 
     /**
@@ -42,7 +41,9 @@ class PelatihanController extends Controller
      */
     public function show(Pelatihan $pelatihan)
     {
-        //
+        return view('dashboard.pelatihan.show', [
+            'pelatihan' => $pelatihan
+        ]);
     }
 
     /**
@@ -58,7 +59,11 @@ class PelatihanController extends Controller
      */
     public function update(Request $request, Pelatihan $pelatihan)
     {
-        //
+        $pelatihan->update([
+            'body' => $request->body
+        ]);
+        
+        return redirect()->route('dashboard.pelatihan.show', compact('pelatihan'))->with('success', 'Successfully Updated!');
     }
 
     /**
@@ -73,22 +78,8 @@ class PelatihanController extends Controller
 
     public function truncate(Request $request)
     {
-        PelatihanCategory::query()->delete();
         Pelatihan::truncate();
 
         return redirect()->route('dashboard.pelatihan.index')->with('success', 'Successfully deleted all!');
-    }
-
-    public function download(Request $request, Pelatihan $pelatihan)
-    {
-        if (!Storage::disk('public')->exists($pelatihan->file)) {
-            abort(404, 'File not found.');
-        }
-
-        $extension = pathinfo($pelatihan->file, PATHINFO_EXTENSION);
-
-        $filename = str($pelatihan->title)->slug() . '.' . $extension;
-
-        return Storage::disk('public')->download($pelatihan->file, $filename);
     }
 }
