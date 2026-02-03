@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
 use App\Models\LayananBkd;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\LayananBkdCategory;
+use Illuminate\Support\Facades\Storage;
 
 class LayananBkdController extends Controller
 {
@@ -14,7 +16,8 @@ class LayananBkdController extends Controller
     public function index()
     {
         return view('dashboard.layanan-bkd', [
-            'layanan_bkd' => LayananBkd::first()
+            'layanan_bkd_categories' => LayananBkdCategory::all(),
+            'layanan_bkds' => LayananBkd::whereNull('layanan_bkd_category_id')->get()
         ]);
     }
 
@@ -31,14 +34,7 @@ class LayananBkdController extends Controller
      */
     public function store(Request $request)
     {
-        LayananBkd::updateOrCreate(
-            ['id' => 1],
-            [
-                'body' => $request->body
-            ]
-        );
-        
-        return redirect()->route('dashboard.layanan-bkd.index')->with('success', 'Successfully Update!');
+        //
     }
 
     /**
@@ -70,13 +66,29 @@ class LayananBkdController extends Controller
      */
     public function destroy(LayananBkd $layananBkd)
     {
-        //
+        $layananBkd->delete();
+        
+        return redirect()->route('dashboard.layanan-bkd.index')->with('success', 'Successfully deleted!');
     }
-    
+
     public function truncate(Request $request)
     {
+        LayananBkdCategory::query()->delete();
         LayananBkd::truncate();
 
         return redirect()->route('dashboard.layanan-bkd.index')->with('success', 'Successfully deleted all!');
+    }
+
+    public function download(Request $request, LayananBkd $layananBkd)
+    {
+        if (!Storage::disk('public')->exists($layananBkd->file)) {
+            abort(404, 'File not found.');
+        }
+
+        $extension = pathinfo($layananBkd->file, PATHINFO_EXTENSION);
+
+        $filename = str($layananBkd->title)->slug() . '.' . $extension;
+
+        return Storage::disk('public')->download($layananBkd->file, $filename);
     }
 }

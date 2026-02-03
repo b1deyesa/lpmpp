@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
 use App\Models\Pelatihan;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\PelatihanCategory;
+use Illuminate\Support\Facades\Storage;
 
 class PelatihanController extends Controller
 {
@@ -14,7 +16,8 @@ class PelatihanController extends Controller
     public function index()
     {
         return view('dashboard.pelatihan', [
-            'pelatihan' => Pelatihan::first()
+            'pelatihan_categories' => PelatihanCategory::all(),
+            'pelatihans' => Pelatihan::whereNull('pelatihan_category_id')->get()
         ]);
     }
 
@@ -31,14 +34,7 @@ class PelatihanController extends Controller
      */
     public function store(Request $request)
     {
-        Pelatihan::updateOrCreate(
-            ['id' => 1],
-            [
-                'body' => $request->body
-            ]
-        );
-        
-        return redirect()->route('dashboard.pelatihan.index')->with('success', 'Successfully Update!');
+        //
     }
 
     /**
@@ -70,13 +66,29 @@ class PelatihanController extends Controller
      */
     public function destroy(Pelatihan $pelatihan)
     {
-        //
+        $pelatihan->delete();
+        
+        return redirect()->route('dashboard.pelatihan.index')->with('success', 'Successfully deleted!');
     }
-    
+
     public function truncate(Request $request)
     {
+        PelatihanCategory::query()->delete();
         Pelatihan::truncate();
 
         return redirect()->route('dashboard.pelatihan.index')->with('success', 'Successfully deleted all!');
+    }
+
+    public function download(Request $request, Pelatihan $pelatihan)
+    {
+        if (!Storage::disk('public')->exists($pelatihan->file)) {
+            abort(404, 'File not found.');
+        }
+
+        $extension = pathinfo($pelatihan->file, PATHINFO_EXTENSION);
+
+        $filename = str($pelatihan->title)->slug() . '.' . $extension;
+
+        return Storage::disk('public')->download($pelatihan->file, $filename);
     }
 }

@@ -5,6 +5,9 @@
     <x-form wire="store()">
         <x-input label="File Name" type="text" wire="title" />
         <x-input label="File" type="file" wire="file" />
+        @if ($materi_kegiatan_categories !== '[]')
+            <x-input label="Folder" type="select" wire="materi_kegiatan_category_id" :options="$materi_kegiatan_categories" placeholder="Choose Folder" />
+        @endif
         <x-slot:bottom>
             <x-button type="button" class="button__outline" onclick="window.location.reload()">Cancel</x-button>
             <x-button type="submit">Save</x-button>

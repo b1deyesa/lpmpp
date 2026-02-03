@@ -30,6 +30,7 @@
                 <th>Photo</th>
                 <th>Nama</th>
                 <th>Jabatan</th>
+                <th></th>
             </x-slot:head>
             <x-slot:body>
                 @forelse ($pengelolas ?? [] as $pengelola)
@@ -45,6 +46,23 @@
                         <td width="1%"><img src="{{ $pengelola->photo ? asset('storage/'.$pengelola->photo) : asset('assets/img/default.jpg') }}" class="photo"></td>
                         <td x-html="highlight('{{ addslashes($pengelola->nama) }}')"></td>
                         <td x-html="highlight('{{ addslashes($pengelola->jabatan) }}')" width="20%"></td>
+                        <td width="1%">
+                            <div class="table__action">
+                                @livewire('dashboard.pengelola.edit', compact('pengelola'), key($pengelola->id))
+                                <x-modal>
+                                    <x-slot:trigger>
+                                        <x-button class="button__outline"><i class="fa-solid fa-trash"></i></x-button>
+                                    </x-slot:trigger>
+                                    <p>Are you sure you want to delete it?</p>
+                                    <x-form action="{{ route('dashboard.pengelola.destroy', compact('pengelola')) }}" method="DELETE">
+                                        <x-slot:bottom>
+                                            <x-button type="button" class="button__outline" onclick="window.location.reload()">Cancel</x-button>
+                                            <x-button type="submit">Delete</x-button>
+                                        </x-slot:bottom>
+                                    </x-form>
+                                </x-modal>
+                            </div>
+                        </td>
                     </tr>
                 @empty
                     <tr>

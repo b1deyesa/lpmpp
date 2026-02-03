@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('dokumen_kurikulums', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('dokumen_kurikulum_category_id')->nullable()->constrained()->nullOnDelete();
             $table->string('title');
             $table->string('file');
             $table->timestamps();

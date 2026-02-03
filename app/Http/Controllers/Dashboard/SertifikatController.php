@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Models\Sertifikat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\SertifikatCategory;
 use Illuminate\Support\Facades\Storage;
 
 class SertifikatController extends Controller
@@ -15,7 +16,8 @@ class SertifikatController extends Controller
     public function index()
     {
         return view('dashboard.sertifikat', [
-            'sertifikats' => Sertifikat::all()
+            'sertifikat_categories' => SertifikatCategory::all(),
+            'sertifikats' => Sertifikat::whereNull('sertifikat_category_id')->get()
         ]);
     }
 
@@ -64,22 +66,19 @@ class SertifikatController extends Controller
      */
     public function destroy(Sertifikat $sertifikat)
     {
-        //
+        $sertifikat->delete();
+        
+        return redirect()->route('dashboard.sertifikat.index')->with('success', 'Successfully deleted!');
     }
 
-    /**
-     * Truncate all records in the table.
-     */
     public function truncate(Request $request)
     {
+        SertifikatCategory::query()->delete();
         Sertifikat::truncate();
 
         return redirect()->route('dashboard.sertifikat.index')->with('success', 'Successfully deleted all!');
     }
 
-    /**
-     * Download a specific file.
-     */
     public function download(Request $request, Sertifikat $sertifikat)
     {
         if (!Storage::disk('public')->exists($sertifikat->file)) {
@@ -87,6 +86,7 @@ class SertifikatController extends Controller
         }
 
         $extension = pathinfo($sertifikat->file, PATHINFO_EXTENSION);
+
         $filename = str($sertifikat->title)->slug() . '.' . $extension;
 
         return Storage::disk('public')->download($sertifikat->file, $filename);

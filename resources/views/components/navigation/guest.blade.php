@@ -48,7 +48,14 @@
                         <a href="{{ route('guest.struktur-organisasi') }}" class="menu__item">Struktur Organisasi dan Personalia</a>
                         <a href="{{ route('guest.tugas-fungsi') }}" class="menu__item">Tugas dan Fungsi</a>
                         <a href="{{ route('guest.sejarah') }}" class="menu__item">Sejarah</a>
-                        <a href="#" class="menu__item">Rensra</a>
+                        <div class="menu__dropdown">
+                            <a href="{{ route('guest.renstra') }}" class="dropdown__label">Renstra<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></a>
+                            <div class="dropdown__menu" style="left: -100%">
+                                @foreach ($renstra_categories as $renstra_category)
+                                    <a href="{{ route('guest.renstra-category', compact('renstra_category')) }}" class="menu__item">{{ $renstra_category->title }}</a>
+                                @endforeach
+                            </div>
+                        </div>
                         <div class="menu__dropdown">
                             <span class="dropdown__label">Auditor/Asesor<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></span>
                             <div class="dropdown__menu">
@@ -106,29 +113,68 @@
                 <div class="menu__dropdown">
                     <span class="dropdown__label">Download<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></span>
                     <div class="dropdown__menu">
-                        <a href="{{ route('guest.laporan') }}" class="menu__item">Laporan</a>
-                        <a href="#" class="menu__item">Peraturan Perundang-undangan</a>
                         <div class="menu__dropdown">
-                            <span class="dropdown__label">Peraturan Rektor<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></span>
+                            <a href="{{ route('guest.laporan') }}" class="dropdown__label">Laporan<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></a>
                             <div class="dropdown__menu" style="left: -100%">
-                                <a href="#" class="menu__item">Peraturan Rektor Universitas</a>
+                                @foreach ($laporan_categories as $laporan_category)
+                                    <a href="{{ route('guest.laporan-category', compact('laporan_category')) }}" class="menu__item">{{ $laporan_category->title }}</a>
+                                @endforeach
                             </div>
                         </div>
                         <div class="menu__dropdown">
-                            <span class="dropdown__label">Surat Keputusan<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></span>
+                            <a href="{{ route('guest.peraturan-perundang-undangan') }}" class="dropdown__label">Peraturan Perundang-Undangan<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></a>
                             <div class="dropdown__menu" style="left: -100%">
-                                <a href="#" class="menu__item">Penetapan Kurikulum</a>
-                                <a href="#" class="menu__item">SK Panitia Kegiatan</a>
-                                <a href="#" class="menu__item">SK Narasumber Kegiatan</a>
+                                @foreach ($peraturan_perundang_undangan_categories as $ppuCategory)
+                                    <a href="{{ route('guest.peraturan-perundang-undangan-category', ['ppuCategory' => $ppuCategory]) }}" class="menu__item">{{ $ppuCategory->title }}</a>
+                                @endforeach
                             </div>
                         </div>
-                        <a href="#" class="menu__item">Sertifikat</a>
-                        <a href="#" class="menu__item">Materi Kegiatan</a>
                         <div class="menu__dropdown">
-                            <span class="dropdown__label">Dokumen Kurikulum & MBKM<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></span>
+                            <a href="{{ route('guest.peraturan-rektor') }}" class="dropdown__label">Peraturan Rektor<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></a>
                             <div class="dropdown__menu" style="left: -100%">
-                                <a href="#" class="menu__item">Panduan Kurikulum (Tahun)</a>
-                                <a href="#" class="menu__item">Panduan MBKM</a>
+                                @foreach ($peraturan_rektor_categories as $peraturan_rektor_category)
+                                    <a href="{{ route('guest.peraturan-rektor-category', compact('peraturan_rektor_category')) }}" class="menu__item">{{ $peraturan_rektor_category->title }}</a>
+                                @endforeach
+                            </div>
+                        </div>                        
+                        <div class="menu__dropdown">
+                            <a href="{{ route('guest.surat-keputusan') }}" class="dropdown__label">Surat Keputusan<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></a>
+                            <div class="dropdown__menu" style="left: -100%">
+                                @foreach ($surat_keputusan_categories as $surat_keputusan_category)
+                                    <a href="{{ route('guest.surat-keputusan-category', compact('surat_keputusan_category')) }}" class="menu__item">{{ $surat_keputusan_category->title }}</a>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="menu__dropdown">
+                            <a href="{{ route('guest.sertifikat') }}" class="dropdown__label">Sertifikat<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></a>
+                            <div class="dropdown__menu" style="left: -100%">
+                                @foreach ($sertifikat_categories as $sertifikat_category)
+                                    <a href="{{ route('guest.sertifikat-category', compact('sertifikat_category')) }}" class="menu__item">{{ $sertifikat_category->title }}</a>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="menu__dropdown">
+                            <a href="{{ route('guest.materi-kegiatan') }}" class="dropdown__label">Materi Kegiatan<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></a>
+                            <div class="dropdown__menu" style="left: -100%">
+                                @foreach ($materi_kegiatan_categories as $materi_kegiatan_category)
+                                    <a href="{{ route('guest.materi-kegiatan-category', compact('materi_kegiatan_category')) }}" class="menu__item">{{ $materi_kegiatan_category->title }}</a>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="menu__dropdown">
+                            <a href="{{ route('guest.dokumen-kurikulum') }}" class="dropdown__label">Dokumen Kurikulum<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></a>
+                            <div class="dropdown__menu" style="left: -100%">
+                                @foreach ($dokumen_kurikulum_categories as $dokumen_kurikulum_category)
+                                    <a href="{{ route('guest.dokumen-kurikulum-category', compact('dokumen_kurikulum_category')) }}" class="menu__item">{{ $dokumen_kurikulum_category->title }}</a>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="menu__dropdown">
+                            <a href="{{ route('guest.dokumen-mbkm') }}" class="dropdown__label">Dokumen MBKM<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></a>
+                            <div class="dropdown__menu" style="left: -100%">
+                                @foreach ($dokumen_mbkm_categories as $dokumen_mbkm_category)
+                                    <a href="{{ route('guest.dokumen-mbkm-category', compact('dokumen_mbkm_category')) }}" class="menu__item">{{ $dokumen_mbkm_category->title }}</a>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -140,37 +186,51 @@
                     <div class="dropdown__menu">
                         <a href="#" class="menu__item">Penyusunan Dokumen SPMI</a>
                         <div class="menu__dropdown">
-                            <span class="dropdown__label">Pendampingan Akreditasi<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></span>
+                            <a href="{{ route('guest.pendampingan-akreditasi-nasional') }}" class="dropdown__label">Pendampingan Akreditasi Nasional<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></a>
                             <div class="dropdown__menu" style="left: -100%">
-                                <a href="#" class="menu__item">Nasional</a>
-                                <a href="#" class="menu__item">Internasional</a>
+                                @foreach ($pendampingan_akreditasi_nasional_categories as $pendampingan_akreditasi_nasional_category)
+                                    <a href="{{ route('guest.pendampingan-akreditasi-nasional-category', ['panCategory' => $pendampingan_akreditasi_nasional_category]) }}" class="menu__item">{{ $pendampingan_akreditasi_nasional_category->title }}</a>
+                                @endforeach
                             </div>
                         </div>
                         <div class="menu__dropdown">
-                            <span class="dropdown__label">Pendampingan Kurikulum<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></span>
+                            <a href="{{ route('guest.pendampingan-akreditasi-internasional') }}" class="dropdown__label">Pendampingan Akreditasi Internasional<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></a>
                             <div class="dropdown__menu" style="left: -100%">
-                                <a href="#" class="menu__item">Penyusunan Kurikulum</a>
-                                <a href="#" class="menu__item">Asesmen Pembelajaran</a>
-                                <a href="#" class="menu__item">Evaluasi Kurikulum</a>
-                            </div>
-                        </div>
-                        <a href="#" class="menu__item">Inovasi Pembelajaran</a>
-                        <div class="menu__dropdown">
-                            <span class="dropdown__label">Layanan BKD<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></span>
-                            <div class="dropdown__menu" style="left: -100%">
-                                <a href="#" class="menu__item">Asesor BKD</a>
-                                <a href="#" class="menu__item">BKD Dosen</a>
+                                @foreach ($pendampingan_akreditasi_internasional_categories as $pendampingan_akreditasi_internasional_category)
+                                    <a href="{{ route('guest.pendampingan-akreditasi-internasional-category', ['paiCategory' => $pendampingan_akreditasi_internasional_category]) }}" class="menu__item">{{ $pendampingan_akreditasi_internasional_category->title }}</a>
+                                @endforeach
                             </div>
                         </div>
                         <div class="menu__dropdown">
-                            <span class="dropdown__label">Pelatihan<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></span>
+                            <a href="{{ route('guest.pendampingan-kurikulum') }}" class="dropdown__label">Pendampingan Kurikulum<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></a>
                             <div class="dropdown__menu" style="left: -100%">
-                                <a href="#" class="menu__item">Auditor Mutu Internal</a>
-                                <a href="#" class="menu__item">LMS ELPATTI</a>
-                                <a href="#" class="menu__item">Pekerti</a>
-                                <a href="#" class="menu__item">Applied Approach(AA)</a>
-                                <a href="#" class="menu__item">Buku Ajar</a>
-                                <a href="#" class="menu__item">Asesmen Pembelajaran</a>
+                                @foreach ($pendampingan_kurikulum_categories as $pendampingan_kurikulum_category)
+                                    <a href="{{ route('guest.pendampingan-kurikulum-category', ['pkCategory' => $pendampingan_kurikulum_category]) }}" class="menu__item">{{ $pendampingan_kurikulum_category->title }}</a>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="menu__dropdown">
+                            <a href="{{ route('guest.inovasi-pembelajaran') }}" class="dropdown__label">Inovasi Pembelajaran<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></a>
+                            <div class="dropdown__menu" style="left: -100%">
+                                @foreach ($inovasi_pembelajaran_categories as $inovasi_pembelajaran_category)
+                                    <a href="{{ route('guest.inovasi-pembelajaran-category', compact('inovasi_pembelajaran_category')) }}" class="menu__item">{{ $inovasi_pembelajaran_category->title }}</a>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="menu__dropdown">
+                            <a href="{{ route('guest.layanan-bkd') }}" class="dropdown__label">Layanan BKD<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></a>
+                            <div class="dropdown__menu" style="left: -100%">
+                                @foreach ($layanan_bkd_categories as $layanan_bkd_category)
+                                    <a href="{{ route('guest.layanan-bkd-category', compact('layanan_bkd_category')) }}" class="menu__item">{{ $layanan_bkd_category->title }}</a>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="menu__dropdown">
+                            <a href="{{ route('guest.pelatihan') }}" class="dropdown__label">Pelatihan<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></a>
+                            <div class="dropdown__menu" style="left: -100%">
+                                @foreach ($pelatihan_categories as $pelatihan_category)
+                                    <a href="{{ route('guest.pelatihan-category', compact('pelatihan_category')) }}" class="menu__item">{{ $pelatihan_category->title }}</a>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -190,10 +250,19 @@
                             </div>
                         </div>
                         <div class="menu__dropdown">
-                            <span class="dropdown__label">Instrumen Akrediatasi<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></span>
+                            <a href="{{ route('guest.instrumen-akreditasi-nasional') }}" class="dropdown__label">Instrumen Akreditasi Nasional<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></a>
                             <div class="dropdown__menu" style="left: -100%">
-                                <a href="#" class="menu__item">Nasional</a>
-                                <a href="#" class="menu__item">Internasional</a>
+                                @foreach ($instrumen_akreditasi_nasional_categories as $instrumen_akreditasi_nasional_category)
+                                    <a href="{{ route('guest.instrumen-akreditasi-nasional-category', ['ianCategory' => $instrumen_akreditasi_nasional_category]) }}" class="menu__item">{{ $instrumen_akreditasi_nasional_category->title }}</a>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="menu__dropdown">
+                            <a href="{{ route('guest.instrumen-akreditasi-internasional') }}" class="dropdown__label">Instrumen Akreditasi Internasional<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></a>
+                            <div class="dropdown__menu" style="left: -100%">
+                                @foreach ($instrumen_akreditasi_internasional_categories as $instrumen_akreditasi_internasional_category)
+                                    <a href="{{ route('guest.instrumen-akreditasi-internasional-category', ['iaiCategory' => $instrumen_akreditasi_internasional_category]) }}" class="menu__item">{{ $instrumen_akreditasi_internasional_category->title }}</a>
+                                @endforeach
                             </div>
                         </div>
                     </div>

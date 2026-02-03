@@ -1,5 +1,6 @@
 <x-layout.page title="Sejarah Singkat LPMPP" background="assets/img/default.jpg" class="sejarah">
     
-    {!! $sejarah->body ?? null !!}
+    {{-- Content --}}
+    <div class="sejarah__content">{!! content($sejarah?->body) !!}</div>
     
 </x-layout.page>

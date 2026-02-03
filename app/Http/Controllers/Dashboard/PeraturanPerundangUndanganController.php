@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Models\PeraturanPerundangUndangan;
+use App\Models\PeraturanPerundangUndanganCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -15,7 +16,8 @@ class PeraturanPerundangUndanganController extends Controller
     public function index()
     {
         return view('dashboard.peraturan-perundang-undangan', [
-            'peraturan_perundang_undangans' => PeraturanPerundangUndangan::all()
+            'peraturan_perundang_undangan_categories' => PeraturanPerundangUndanganCategory::all(),
+            'peraturan_perundang_undangans' => PeraturanPerundangUndangan::whereNull('peraturan_perundang_undangan_category_id')->get()
         ]);
     }
 
@@ -64,22 +66,19 @@ class PeraturanPerundangUndanganController extends Controller
      */
     public function destroy(PeraturanPerundangUndangan $peraturanPerundangUndangan)
     {
-        //
+        $peraturanPerundangUndangan->delete();
+        
+        return redirect()->route('dashboard.peraturan-perundang-undangan.index')->with('success', 'Successfully deleted!');
     }
 
-    /**
-     * Truncate all records in the table.
-     */
     public function truncate(Request $request)
     {
+        PeraturanPerundangUndanganCategory::query()->delete();
         PeraturanPerundangUndangan::truncate();
 
         return redirect()->route('dashboard.peraturan-perundang-undangan.index')->with('success', 'Successfully deleted all!');
     }
 
-    /**
-     * Download a specific file.
-     */
     public function download(Request $request, PeraturanPerundangUndangan $peraturanPerundangUndangan)
     {
         if (!Storage::disk('public')->exists($peraturanPerundangUndangan->file)) {

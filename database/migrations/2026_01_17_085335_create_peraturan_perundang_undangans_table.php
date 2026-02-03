@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('peraturan_perundang_undangans', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('peraturan_perundang_undangan_category_id')->nullable();
+            $table->foreign('peraturan_perundang_undangan_category_id', 'ppu_cat_fk')->references('id')->on('peraturan_perundang_undangan_categories')->nullOnDelete();
             $table->string('title');
             $table->string('file');
             $table->timestamps();

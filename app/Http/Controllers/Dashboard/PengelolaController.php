@@ -37,7 +37,7 @@ class PengelolaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Pengelola $tenagaPengelola)
+    public function show(Pengelola $pengelola)
     {
         //
     }
@@ -45,7 +45,7 @@ class PengelolaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Pengelola $tenagaPengelola)
+    public function edit(Pengelola $pengelola)
     {
         //
     }
@@ -53,7 +53,7 @@ class PengelolaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Pengelola $tenagaPengelola)
+    public function update(Request $request, Pengelola $pengelola)
     {
         //
     }
@@ -61,9 +61,11 @@ class PengelolaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pengelola $tenagaPengelola)
+    public function destroy(Pengelola $pengelola)
     {
-        //
+        $pengelola->delete();
+        
+        return redirect()->route('dashboard.pengelola.index')->with('success', 'Successfully deleted!');
     }
     
     public function truncate(Request $request)

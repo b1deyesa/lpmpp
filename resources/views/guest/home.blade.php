@@ -17,7 +17,7 @@
     {{-- Sambutan --}}
     <section class="sambutan">
         <div class="sambutan__container">
-            <img src="{{ asset('storage/'.($sambutan?->photo ?? '')) ?: asset('assets/img/default.jpg') }}" alt="Foto Ketua" class="sambutan__photo" data-animate data-position="bottom" data-delay="300">
+            <img src="{{ asset($sambutan?->photo ? 'storage/'.$sambutan?->photo : 'assets/img/default.jpg') }}" alt="Foto Ketua" class="sambutan__photo" data-animate data-position="bottom" data-delay="300">
             <div class="sambutan__right">
                 <h1 class="sambutan__title" data-animate data-position="left" data-delay="200">Sambutan Ketua LPMPP<br>Universitas Pattimura</h1>
                 <h3 class="sambutan__author" data-animate data-position="left" data-delay="300">

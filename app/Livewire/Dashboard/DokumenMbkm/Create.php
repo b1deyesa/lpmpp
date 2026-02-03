@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\DokumenMbkm;
 
 use App\Models\DokumenMbkm;
+use App\Models\DokumenMbkmCategory;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -10,8 +11,15 @@ class Create extends Component
 {
     use WithFileUploads;
     
+    public $dokumen_mbkm_categories;
     public $title;
     public $file;
+    public $dokumen_mbkm_category_id;
+    
+    public function mount()
+    {
+        $this->dokumen_mbkm_categories = DokumenMbkmCategory::all()->pluck('title', 'id')->toJson();
+    }
     
     public function store()
     {
@@ -23,6 +31,7 @@ class Create extends Component
         $file = $this->file->store('dokumen-mbkm', 'public');
         
         DokumenMbkm::create([
+            'dokumen_mbkm_category_id' => $this->dokumen_mbkm_category_id,
             'title' => $this->title,
             'file' => $file
         ]);

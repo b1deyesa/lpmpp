@@ -19,14 +19,16 @@
                     <img src="{{ asset('assets/img/logo-dikstis.png') }}" alt="Logo DIKSTIS">
                     <img src="{{ asset('assets/img/logo-blu.png') }}" alt="Logo BLU">
                 </div>
-                <p>
-                    @php
-                        $text  = html_entity_decode($sambutan->body);
-                        $clean = trim(preg_replace('/\s+/u', ' ', strip_tags($text)));
-                        $words = Str::wordCount($clean);
-                    @endphp
-                    {{ Str::words($clean, 50) }}
-                </p>
+                @if ($sambutan?->body)
+                    <p>
+                        @php
+                            $text  = html_entity_decode($sambutan->body);
+                            $clean = trim(preg_replace('/\s+/u', ' ', strip_tags($text)));
+                            $words = Str::wordCount($clean);
+                        @endphp
+                        {{ Str::words($clean, 50) }}
+                    </p>
+                @endif
             </div>
         </div>
     </footer>

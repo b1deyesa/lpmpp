@@ -6,5 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class InovasiPembelajaran extends Model
 {
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'inovasi_pembelajaran_category_id',
+        'title',
+        'file',
+    ];
+
+    public function category()
+    {
+        return $this->belongsTo(InovasiPembelajaranCategory::class, 'inovasi_pembelajaran_category_id');
+    }
 }

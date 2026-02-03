@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Models\InstrumenAkreditasiInternasional;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\InstrumenAkreditasiInternasionalCategory;
 use Illuminate\Support\Facades\Storage;
 
 class InstrumenAkreditasiInternasionalController extends Controller
@@ -15,7 +16,8 @@ class InstrumenAkreditasiInternasionalController extends Controller
     public function index()
     {
         return view('dashboard.instrumen-akreditasi-internasional', [
-            'instrumen_akreditasi_internasionals' => InstrumenAkreditasiInternasional::all()
+            'instrumen_akreditasi_internasional_categories' => InstrumenAkreditasiInternasionalCategory::all(),
+            'instrumen_akreditasi_internasionals' => InstrumenAkreditasiInternasional::whereNull('instrumen_akreditasi_internasional_category_id')->get()
         ]);
     }
 
@@ -62,31 +64,29 @@ class InstrumenAkreditasiInternasionalController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(InstrumenAkreditasiInternasional $instrumenAkreditasiInternasional)
+    public function destroy(InstrumenAkreditasiInternasional $iai)
     {
-        //
+        $iai->delete();
+        
+        return redirect()->route('dashboard.instrumen-akreditasi-internasional.index')->with('success', 'Successfully deleted!');
     }
 
-    /**
-     * Truncate all records in the table.
-     */
     public function truncate(Request $request)
     {
+        InstrumenAkreditasiInternasionalCategory::query()->delete();
         InstrumenAkreditasiInternasional::truncate();
 
         return redirect()->route('dashboard.instrumen-akreditasi-internasional.index')->with('success', 'Successfully deleted all!');
     }
 
-    /**
-     * Download a specific file.
-     */
-    public function download(Request $request, InstrumenAkreditasiInternasional $instrumenAkreditasiInternasional)
+    public function download(Request $request, InstrumenAkreditasiInternasional $iai)
     {
         if (!Storage::disk('public')->exists($instrumenAkreditasiInternasional->file)) {
             abort(404, 'File not found.');
         }
 
         $extension = pathinfo($instrumenAkreditasiInternasional->file, PATHINFO_EXTENSION);
+
         $filename = str($instrumenAkreditasiInternasional->title)->slug() . '.' . $extension;
 
         return Storage::disk('public')->download($instrumenAkreditasiInternasional->file, $filename);

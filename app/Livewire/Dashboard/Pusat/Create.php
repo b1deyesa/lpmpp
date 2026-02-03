@@ -80,7 +80,7 @@ class Create extends Component
             'tugas' => $this->tugas,
             'email' => $this->email,
             'no_telp' => $this->no_telp,
-            'photo' => $photoPath
+            'photo' => $photoPath ?? null
         ]);
 
         foreach ($this->anggota as $item) {
@@ -89,9 +89,7 @@ class Create extends Component
             ]);
         }
 
-        return redirect()
-            ->route('dashboard.pusat.index')
-            ->with('success', 'Successfully added!');
+        return redirect()->route('dashboard.pusat.index')->with('success', 'Successfully added!');
     }
 
     public function render()

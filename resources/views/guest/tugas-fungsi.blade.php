@@ -1,21 +1,15 @@
 <x-layout.page title="Tugas dan Fungsi LPMP" background="assets/img/default.jpg" class="tugas-fungsi">
     
     {{-- Tugas --}}
-    <section class="tugas">
-        <header>
-            <i class="fa-solid fa-circle-dot"></i>
-            <h2>Tugas</h2>
-        </header>
-        {!! $tugas_fungsi->tugas ?? '<small class="empty">No content available</small>' !!}
-    </section>
+    <div class="tugas">
+        <h2 class="tugas__title">Tugas</h2>
+        <div class="tugas__content">{!! content($tugas_fungsi?->tugas) !!}</div>
+    </div>
     
     {{-- Fungsi --}}
-    <section class="fungsi">
-        <header>
-            <i class="fa-solid fa-circle-dot"></i>
-            <h2>Fungsi</h2>
-        </header>
-        {!! $tugas_fungsi->fungsi ?? '<small class="empty">No content available</small>' !!}
-    </section>
+    <div class="fungsi">
+        <h2 class="fungsi__title">Fungsi</h2>
+        <div class="fungsi__content">{!! content($tugas_fungsi?->fungsi) !!}</div>
+    </div>
     
 </x-layout.page>

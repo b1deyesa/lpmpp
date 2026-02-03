@@ -6,13 +6,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const toolbarPresets = {
         basic: [
-            'bold', 'italic',
+            'bold', 'italic', 'link',
             'bulletedList', 'numberedList',
             'blockQuote'
         ],
         full: [
             'undo', 'redo', '|',
-            'bold', 'italic', '|',
+            'bold', 'italic', 'link', '|',
             'bulletedList', 'numberedList', '|',
             'fontFamily', 'fontSize',
             'fontColor', 'fontBackgroundColor', '|',
@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     CKEDITOR.Paragraph,
                     CKEDITOR.Bold,
                     CKEDITOR.Italic,
+                    CKEDITOR.Link,
                     CKEDITOR.Font,
                     CKEDITOR.BlockQuote,
 

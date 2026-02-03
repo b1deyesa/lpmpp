@@ -39,7 +39,7 @@
             background: $color-white;
             border: 1px solid rgba($color-black, 15%);
             outline: none;
-            color: $color-text;
+            color: rgba($color-black, 80%);
             
             &::placeholder {
                 color: rgba($color-text, 30%);
@@ -73,7 +73,7 @@
             background: $color-white;
             border: 1px solid rgba($color-black, 15%);
             outline: none;
-            color: $color-text;
+            color: rgba($color-black, 80%);
             
             &.error {
                 border-color: red !important;
@@ -111,6 +111,7 @@
                 border: none;
                 outline: none;
                 background: transparent;
+                color: rgba($color-black, 80%);
             }
             
             &::after {
@@ -133,6 +134,7 @@
         .select-search,
         .select-search-multiple {
             position: relative;
+            color: rgba($color-light, 80%);
             
             ul {
                 position: absolute;
@@ -220,7 +222,7 @@
                 line-height: 1.4;
                 gap: .5em;
                 width: fit-content;
-                color: $color-text;
+                color: rgba($color-black, 80%);
                 cursor: pointer;
                 
                 input {
@@ -244,7 +246,7 @@
                 line-height: 1.4;
                 gap: .5em;
                 width: fit-content;
-                color: $color-text;
+                color: rgba($color-black, 80%);
                 cursor: pointer;
                 
                 input {
@@ -265,14 +267,14 @@
                 font-size: .9rem !important;
                 height: 100%;
                 width: 100%;
-                color: $color-text;
+                color: rgba($color-black, 80%);
             }
         
             .ck-editor__main {
                 font-size: .9rem !important;
                 height: 100%;
                 width: 100%;
-                color: $color-text;
+                color: rgba($color-black, 80%);
             }
             
             .ck-content {
@@ -280,7 +282,11 @@
                 min-height: calc(100% - 2.5em);
                 width: 100%;
                 font-family: $font-family-default;
-                color: $color-text;
+                color: rgba($color-black, 80%);
+                
+                * {
+                    line-height: $line-height-default;
+                }
                 
                 p {
                     margin: 1em 0;
@@ -298,6 +304,10 @@
                     margin: 1em 0;
                     padding-top: 0;
                     padding-bottom: 0;
+                    
+                    li {
+                        padding-left: .5em;
+                    }
                 }
             }
         }

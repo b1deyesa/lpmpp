@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('pendampingan_kurikulums', function (Blueprint $table) {
             $table->id();
-            $table->text('body')->nullable();
+            $table->unsignedBigInteger('pendampingan_kurikulum_category_id')->nullable();
+            $table->foreign('pendampingan_kurikulum_category_id', 'pk_cat_fk')->references('id')->on('pendampingan_kurikulum_categories')->nullOnDelete();
+            $table->string('title');
+            $table->string('file');
             $table->timestamps();
         });
     }

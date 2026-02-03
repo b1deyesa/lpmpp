@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Models\MateriKegiatan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\MateriKegiatanCategory;
 use Illuminate\Support\Facades\Storage;
 
 class MateriKegiatanController extends Controller
@@ -15,7 +16,8 @@ class MateriKegiatanController extends Controller
     public function index()
     {
         return view('dashboard.materi-kegiatan', [
-            'materi_kegiatans' => MateriKegiatan::all()
+            'materi_kegiatan_categories' => MateriKegiatanCategory::all(),
+            'materi_kegiatans' => MateriKegiatan::whereNull('materi_kegiatan_category_id')->get()
         ]);
     }
 
@@ -64,22 +66,19 @@ class MateriKegiatanController extends Controller
      */
     public function destroy(MateriKegiatan $materiKegiatan)
     {
-        //
+        $materiKegiatan->delete();
+        
+        return redirect()->route('dashboard.materi-kegiatan.index')->with('success', 'Successfully deleted!');
     }
 
-    /**
-     * Truncate all records in the table.
-     */
     public function truncate(Request $request)
     {
+        MateriKegiatanCategory::query()->delete();
         MateriKegiatan::truncate();
 
         return redirect()->route('dashboard.materi-kegiatan.index')->with('success', 'Successfully deleted all!');
     }
 
-    /**
-     * Download a specific file.
-     */
     public function download(Request $request, MateriKegiatan $materiKegiatan)
     {
         if (!Storage::disk('public')->exists($materiKegiatan->file)) {
@@ -87,6 +86,7 @@ class MateriKegiatanController extends Controller
         }
 
         $extension = pathinfo($materiKegiatan->file, PATHINFO_EXTENSION);
+
         $filename = str($materiKegiatan->title)->slug() . '.' . $extension;
 
         return Storage::disk('public')->download($materiKegiatan->file, $filename);

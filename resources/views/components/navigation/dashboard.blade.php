@@ -80,14 +80,14 @@
                 <div class="menu__dropdown">
                     <span class="dropdown__label">Download<i class="menu__icon__dropdown fa-solid fa-angle-down"></i></span>
                     <div class="dropdown__menu" style="display: none">
-                        <a href="{{ route('dashboard.laporan.index') }}" class="menu__item {{ request()->routeIs('dashboard.laporan.*') ? 'active' : '' }}">Laporan</a>
-                        <a href="{{ route('dashboard.peraturan-perundang-undangan.index') }}" class="menu__item {{ request()->routeIs('dashboard.peraturan-perundang-undangan.*') ? 'active' : '' }}">Peraturan Perundang-undangan</a>
-                        <a href="{{ route('dashboard.peraturan-rektor.index') }}" class="menu__item {{ request()->routeIs('dashboard.peraturan-rektor.*') ? 'active' : '' }}">Peraturan Rektor</a>
-                        <a href="{{ route('dashboard.surat-keputusan.index') }}" class="menu__item {{ request()->routeIs('dashboard.surat-keputusan.*') ? 'active' : '' }}">Surat Keputusan</a>
-                        <a href="{{ route('dashboard.sertifikat.index') }}" class="menu__item {{ request()->routeIs('dashboard.sertifikat.*') ? 'active' : '' }}">Sertifikat</a>
-                        <a href="{{ route('dashboard.materi-kegiatan.index') }}" class="menu__item {{ request()->routeIs('dashboard.materi-kegiatan.*') ? 'active' : '' }}">Materi Kegiatan</a>
-                        <a href="{{ route('dashboard.dokumen-kurikulum.index') }}" class="menu__item {{ request()->routeIs('dashboard.dokumen-kurikulum.*') ? 'active' : '' }}">Dokumen Kurikulum</a>
-                        <a href="{{ route('dashboard.dokumen-mbkm.index') }}" class="menu__item {{ request()->routeIs('dashboard.dokumen-mbkm.*') ? 'active' : '' }}">Dokumen MBKM</a>
+                        <a href="{{ route('dashboard.laporan.index') }}" class="menu__item {{ request()->routeIs('dashboard.laporan.*') || request()->routeIs('dashboard.laporan-category.*') ? 'active' : '' }}">Laporan</a>
+                        <a href="{{ route('dashboard.peraturan-perundang-undangan.index') }}" class="menu__item {{ request()->routeIs('dashboard.peraturan-perundang-undangan.*') || request()->routeIs('dashboard.peraturan-perundang-undangan-category.*') ? 'active' : '' }}">Peraturan Perundang-Undangan</a>
+                        <a href="{{ route('dashboard.peraturan-rektor.index') }}" class="menu__item {{ request()->routeIs('dashboard.peraturan-rektor.*') || request()->routeIs('dashboard.peraturan-rektor-category.*') ? 'active' : '' }}">Peraturan Rektor</a>
+                        <a href="{{ route('dashboard.surat-keputusan.index') }}" class="menu__item {{ request()->routeIs('dashboard.surat-keputusan.*') || request()->routeIs('dashboard.surat-keputusan-category.*') ? 'active' : '' }}">Surat Keputusan</a>
+                        <a href="{{ route('dashboard.sertifikat.index') }}" class="menu__item {{ request()->routeIs('dashboard.sertifikat.*') || request()->routeIs('dashboard.sertifikat-category.*') ? 'active' : '' }}">Sertifikat</a>
+                        <a href="{{ route('dashboard.materi-kegiatan.index') }}" class="menu__item {{ request()->routeIs('dashboard.materi-kegiatan.*') || request()->routeIs('dashboard.materi-kegiatan-category.*') ? 'active' : '' }}">Materi Kegiatan</a>
+                        <a href="{{ route('dashboard.dokumen-kurikulum.index') }}" class="menu__item {{ request()->routeIs('dashboard.dokumen-kurikulum.*') || request()->routeIs('dashboard.dokumen-kurikulum-category.*') ? 'active' : '' }}">Dokumen Kurikulum</a>
+                        <a href="{{ route('dashboard.dokumen-mbkm.index') }}" class="menu__item {{ request()->routeIs('dashboard.dokumen-mbkm.*') || request()->routeIs('dashboard.dokumen-mbkm-category.*') ? 'active' : '' }}">Dokumen MBKM</a>
                     </div>
                 </div>
             @endrole
@@ -117,8 +117,8 @@
                         <a href="{{ route('dashboard.akreditasi-institusi.index') }}" class="menu__item {{ request()->routeIs('dashboard.akreditasi-institusi.*') ? 'active' : '' }}">Akreditasi Institusi</a>
                         <a href="{{ route('dashboard.akreditasi-prodi-nasional.index') }}" class="menu__item {{ request()->routeIs('dashboard.akreditasi-prodi-nasional.*') ? 'active' : '' }}">Akreditasi Prodi Nasional</a>
                         <a href="{{ route('dashboard.akreditasi-prodi-internasional.index') }}" class="menu__item {{ request()->routeIs('dashboard.akreditasi-prodi-internasional.*') ? 'active' : '' }}">Akreditasi Prodi Internasional</a>
-                        <a href="{{ route('dashboard.instrumen-akreditasi-nasional.index') }}" class="menu__item {{ request()->routeIs('dashboard.instrumen-akreditasi-nasional.*') ? 'active' : '' }}">Instrumen Akreditasi Nasional</a>
-                        <a href="{{ route('dashboard.instrumen-akreditasi-internasional.index') }}" class="menu__item {{ request()->routeIs('dashboard.instrumen-akreditasi-internasional.*') ? 'active' : '' }}">Instrumen Akreditasi Internasional</a>
+                        <a href="{{ route('dashboard.instrumen-akreditasi-nasional.index') }}" class="menu__item {{ request()->routeIs('dashboard.instrumen-akreditasi-nasional.*') || request()->routeIs('dashboard.instrumen-akreditasi-nasional-category.*') ? 'active' : '' }}">Instrumen Akreditasi Nasional</a>
+                        <a href="{{ route('dashboard.instrumen-akreditasi-internasional.index') }}" class="menu__item {{ request()->routeIs('dashboard.instrumen-akreditasi-internasional.*') || request()->routeIs('dashboard.instrumen-akreditasi-internasional-category.*') ? 'active' : '' }}">Instrumen Akreditasi Internasional</a>
                     </div>
                 </div>
             @endrole

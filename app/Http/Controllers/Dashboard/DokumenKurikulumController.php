@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Models\DokumenKurikulum;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\DokumenKurikulumCategory;
 use Illuminate\Support\Facades\Storage;
 
 class DokumenKurikulumController extends Controller
@@ -15,7 +16,8 @@ class DokumenKurikulumController extends Controller
     public function index()
     {
         return view('dashboard.dokumen-kurikulum', [
-            'dokumen_kurikulums' => DokumenKurikulum::all()
+            'dokumen_kurikulum_categories' => DokumenKurikulumCategory::all(),
+            'dokumen_kurikulums' => DokumenKurikulum::whereNull('dokumen_kurikulum_category_id')->get()
         ]);
     }
 
@@ -64,22 +66,19 @@ class DokumenKurikulumController extends Controller
      */
     public function destroy(DokumenKurikulum $dokumenKurikulum)
     {
-        //
+        $dokumenKurikulum->delete();
+        
+        return redirect()->route('dashboard.dokumen-kurikulum.index')->with('success', 'Successfully deleted!');
     }
 
-    /**
-     * Truncate all records in the table.
-     */
     public function truncate(Request $request)
     {
+        DokumenKurikulumCategory::query()->delete();
         DokumenKurikulum::truncate();
 
         return redirect()->route('dashboard.dokumen-kurikulum.index')->with('success', 'Successfully deleted all!');
     }
 
-    /**
-     * Download a specific file.
-     */
     public function download(Request $request, DokumenKurikulum $dokumenKurikulum)
     {
         if (!Storage::disk('public')->exists($dokumenKurikulum->file)) {
@@ -87,6 +86,7 @@ class DokumenKurikulumController extends Controller
         }
 
         $extension = pathinfo($dokumenKurikulum->file, PATHINFO_EXTENSION);
+
         $filename = str($dokumenKurikulum->title)->slug() . '.' . $extension;
 
         return Storage::disk('public')->download($dokumenKurikulum->file, $filename);

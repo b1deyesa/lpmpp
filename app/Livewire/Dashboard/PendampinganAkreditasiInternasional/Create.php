@@ -1,0 +1,46 @@
+<?php
+
+namespace App\Livewire\Dashboard\PendampinganAkreditasiInternasional;
+
+use App\Models\PendampinganAkreditasiInternasional;
+use App\Models\PendampinganAkreditasiInternasionalCategory;
+use Livewire\Component;
+use Livewire\WithFileUploads;
+
+class Create extends Component
+{
+    use WithFileUploads;
+    
+    public $pendampingan_akreditasi_internasional_categories;
+    public $title;
+    public $file;
+    public $pendampingan_akreditasi_internasional_category_id;
+    
+    public function mount()
+    {
+        $this->pendampingan_akreditasi_internasional_categories = PendampinganAkreditasiInternasionalCategory::all()->pluck('title', 'id')->toJson();
+    }
+    
+    public function store()
+    {
+        $this->validate([
+            'title' => 'required',
+            'file' => 'required'
+        ]);
+        
+        $file = $this->file->store('pendampingan-akreditasi-internasional', 'public');
+        
+        PendampinganAkreditasiInternasional::create([
+            'pendampingan_akreditasi_internasional_category_id' => $this->pendampingan_akreditasi_internasional_category_id,
+            'title' => $this->title,
+            'file' => $file
+        ]);
+        
+        return redirect()->route('dashboard.pendampingan-akreditasi-internasional.index')->with('success', 'Successfully added!');
+    }
+    
+    public function render()
+    {
+        return view('livewire.dashboard.pendampingan-akreditasi-internasional.create');
+    }
+}

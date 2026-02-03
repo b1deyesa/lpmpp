@@ -26,6 +26,30 @@
         line-height: 1.4;
         color: $color-1;
     }
+    %header-4 {
+        position: relative;
+        display: flex;
+        align-items: center;
+        font-family: $font-family-secondary;
+        font-size: 1.4em;
+        font-weight: 700;
+        line-height: 1.4;
+        gap: .5em;
+        margin: 0 0 1em;
+        color: $color-2;
+        
+        &::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: -.5em;
+            left: 0;
+            height: .3em;
+            width: 75%;
+            opacity: 50%;
+            background: $color-3;
+        }
+    }
 /* 
  | ---------------------------------
  |  Text

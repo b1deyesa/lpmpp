@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
 use App\Models\PendampinganAkreditasiInternasional;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\PendampinganAkreditasiInternasionalCategory;
+use Illuminate\Support\Facades\Storage;
 
 class PendampinganAkreditasiInternasionalController extends Controller
 {
@@ -14,7 +16,8 @@ class PendampinganAkreditasiInternasionalController extends Controller
     public function index()
     {
         return view('dashboard.pendampingan-akreditasi-internasional', [
-            'pendampingan_akreditasi_internasional' => PendampinganAkreditasiInternasional::first()
+            'pendampingan_akreditasi_internasional_categories' => PendampinganAkreditasiInternasionalCategory::all(),
+            'pendampingan_akreditasi_internasionals' => PendampinganAkreditasiInternasional::whereNull('pendampingan_akreditasi_internasional_category_id')->get()
         ]);
     }
 
@@ -31,14 +34,7 @@ class PendampinganAkreditasiInternasionalController extends Controller
      */
     public function store(Request $request)
     {
-        PendampinganAkreditasiInternasional::updateOrCreate(
-            ['id' => 1],
-            [
-                'body' => $request->body
-            ]
-        );
-        
-        return redirect()->route('dashboard.pendampingan-akreditasi-internasional.index')->with('success', 'Successfully Update!');
+        //
     }
 
     /**
@@ -68,15 +64,31 @@ class PendampinganAkreditasiInternasionalController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PendampinganAkreditasiInternasional $pendampinganAkreditasiInternasional)
+    public function destroy(PendampinganAkreditasiInternasional $pai)
     {
-        //
+        $pai->delete();
+        
+        return redirect()->route('dashboard.pendampingan-akreditasi-internasional.index')->with('success', 'Successfully deleted!');
     }
-    
+
     public function truncate(Request $request)
     {
+        PendampinganAkreditasiInternasionalCategory::query()->delete();
         PendampinganAkreditasiInternasional::truncate();
 
         return redirect()->route('dashboard.pendampingan-akreditasi-internasional.index')->with('success', 'Successfully deleted all!');
+    }
+
+    public function download(Request $request, PendampinganAkreditasiInternasional $pai)
+    {
+        if (!Storage::disk('public')->exists($pai->file)) {
+            abort(404, 'File not found.');
+        }
+
+        $extension = pathinfo($pai->file, PATHINFO_EXTENSION);
+
+        $filename = str($pai->title)->slug() . '.' . $extension;
+
+        return Storage::disk('public')->download($pai->file, $filename);
     }
 }

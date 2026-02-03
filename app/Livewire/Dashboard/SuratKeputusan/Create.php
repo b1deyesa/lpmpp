@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\SuratKeputusan;
 
 use App\Models\SuratKeputusan;
+use App\Models\SuratKeputusanCategory;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -10,8 +11,15 @@ class Create extends Component
 {
     use WithFileUploads;
     
+    public $surat_keputusan_categories;
     public $title;
     public $file;
+    public $surat_keputusan_category_id;
+    
+    public function mount()
+    {
+        $this->surat_keputusan_categories = SuratKeputusanCategory::all()->pluck('title', 'id')->toJson();
+    }
     
     public function store()
     {
@@ -23,6 +31,7 @@ class Create extends Component
         $file = $this->file->store('surat-keputusan', 'public');
         
         SuratKeputusan::create([
+            'surat_keputusan_category_id' => $this->surat_keputusan_category_id,
             'title' => $this->title,
             'file' => $file
         ]);

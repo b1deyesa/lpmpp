@@ -333,12 +333,24 @@
         @case('image')
             @if (!empty($wire))
                 <div class="image {{ $class }}">
-                    <div class="image__preview
-                        {{ !empty($this->{$wire}) ? 'has-image' : 'is-empty' }}">
-            
-                        @if (!empty($this->{$wire}))
+                    <div class="image__preview {{ !empty($this->{$wire}) ? 'has-image' : 'is-empty' }}">
+                        @php
+                            $file = $this->{$wire} ?? null;
+
+                            if (is_array($file)) {
+                                $file = $file[0] ?? null;
+                            }
+                        @endphp
+
+                        @if ($file && method_exists($file, 'temporaryUrl'))
                             <img
-                                src="{{ $this->{$wire}->temporaryUrl() }}"
+                                src="{{ $file->temporaryUrl() }}"
+                                alt="Preview"
+                                class="image__value"
+                            >
+                        @elseif (is_string($file))
+                            <img
+                                src="{{ asset('storage/'.$file) }}"
                                 alt="Preview"
                                 class="image__value"
                             >

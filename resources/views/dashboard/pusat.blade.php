@@ -30,6 +30,7 @@
                 <th>Photo</th>
                 <th>Nama Pusat</th>
                 <th>Pengelola Pusat</th>
+                <th></th>
             </x-slot:head>
 
             <x-slot:body>
@@ -60,6 +61,23 @@
                                     <li>-</li>
                                 @endforelse
                             </ul>
+                        </td>
+                        <td width="1%">
+                            <div class="table__action">
+                                @livewire('dashboard.pusat.edit', compact('pusat'), key($pusat->id))
+                                <x-modal>
+                                    <x-slot:trigger>
+                                        <x-button class="button__outline"><i class="fa-solid fa-trash"></i></x-button>
+                                    </x-slot:trigger>
+                                    <p>Are you sure you want to delete it?</p>
+                                    <x-form action="{{ route('dashboard.pusat.destroy', compact('pusat')) }}" method="DELETE">
+                                        <x-slot:bottom>
+                                            <x-button type="button" class="button__outline" onclick="window.location.reload()">Cancel</x-button>
+                                            <x-button type="submit">Delete</x-button>
+                                        </x-slot:bottom>
+                                    </x-form>
+                                </x-modal>
+                            </div>
                         </td>
                     </tr>
                 @empty

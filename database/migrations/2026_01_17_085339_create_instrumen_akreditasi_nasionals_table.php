@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('instrumen_akreditasi_nasionals', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('instrumen_akreditasi_nasional_category_id')->nullable();
+            $table->foreign('instrumen_akreditasi_nasional_category_id', 'ian_cat_fk')->references('id')->on('instrumen_akreditasi_nasional_categories')->nullOnDelete();
             $table->string('title');
             $table->string('file');
             $table->timestamps();

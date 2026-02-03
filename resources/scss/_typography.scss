@@ -1,4 +1,5 @@
 @use 'variables' as *;
+@use 'placeholders' as *;
 
 ul {
     display: flex;
@@ -32,4 +33,58 @@ strong {
 
 i {
     font-style: italic;
+}
+
+blockquote {
+    font-weight: 400;
+    margin: 1em 0;
+    padding: 0 0 0 2em;
+    border-left: .5em solid darken($color-4, 5%);
+    
+    p {
+        text-align: start;
+        margin: 0;
+    }
+    
+    * {
+        line-height: $line-height-default - .2;
+    }
+}
+
+figure.image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    margin: auto;
+    
+    img {
+        height: 100%;
+        width: 100%;
+        border: .8px solid rgba(black, .1);
+    }
+}
+
+ul, ol {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    padding: 0 0 0 1.5em;
+    
+    li {
+        padding-left: .8em;
+    }
+}
+
+p, li {
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    word-break: normal;
+}
+
+a {
+    text-decoration: none;
+    color: lighten($color-2, 10%);
 }

@@ -1,0 +1,76 @@
+<?php
+
+namespace App\Http\Controllers\Dashboard;
+
+use App\Models\Renstra;
+use Illuminate\Http\Request;
+use App\Models\RenstraCategory;
+use App\Http\Controllers\Controller;
+
+class RenstraCategoryController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        // 
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(RenstraCategory $renstraCategory)
+    {
+        return view('dashboard.renstra-category', [
+            'renstra_category' => $renstraCategory
+        ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(RenstraCategory $renstraCategory)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, RenstraCategory $renstraCategory)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(RenstraCategory $renstraCategory)
+    {
+        //
+    }
+    
+    public function truncate(Request $request, RenstraCategory $renstraCategory)
+    {
+        Renstra::where('renstra_category_id', $renstraCategory->id)->delete();
+
+        return redirect()->route('dashboard.renstra-category.show', ['renstra_category' => $renstraCategory])->with('success', 'Successfully deleted all!');
+    }
+}

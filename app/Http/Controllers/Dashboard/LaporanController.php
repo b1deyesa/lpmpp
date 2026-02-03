@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Models\Laporan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\LaporanCategory;
 use Illuminate\Support\Facades\Storage;
 
 class LaporanController extends Controller
@@ -15,7 +16,8 @@ class LaporanController extends Controller
     public function index()
     {
         return view('dashboard.laporan', [
-            'laporans' => Laporan::all()
+            'laporan_categories' => LaporanCategory::all(),
+            'laporans' => Laporan::whereNull('laporan_category_id')->get()
         ]);
     }
 
@@ -64,11 +66,14 @@ class LaporanController extends Controller
      */
     public function destroy(Laporan $laporan)
     {
-        //
+        $laporan->delete();
+        
+        return redirect()->route('dashboard.laporan.index')->with('success', 'Successfully deleted!');
     }
     
     public function truncate(Request $request)
     {
+        LaporanCategory::query()->delete();
         Laporan::truncate();
 
         return redirect()->route('dashboard.laporan.index')->with('success', 'Successfully deleted all!');

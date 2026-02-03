@@ -6,5 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sertifikat extends Model
 {
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'sertifikat_category_id',
+        'title',
+        'file',
+    ];
+
+    public function category()
+    {
+        return $this->belongsTo(SertifikatCategory::class, 'sertifikat_category_id');
+    }
 }

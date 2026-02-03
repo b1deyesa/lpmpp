@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('pelatihans', function (Blueprint $table) {
             $table->id();
-            $table->text('body')->nullable();
+            $table->foreignId('pelatihan_category_id')->nullable()->constrained()->nullOnDelete();
+            $table->string('title');
+            $table->string('file');
             $table->timestamps();
         });
     }

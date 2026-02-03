@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('inovasi_pembelajarans', function (Blueprint $table) {
             $table->id();
-            $table->text('body')->nullable();
+            $table->foreignId('inovasi_pembelajaran_category_id')->nullable()->constrained('inovasi_pembelajaran_categories')->nullOnDelete();
+            $table->string('title');
+            $table->string('file');
             $table->timestamps();
         });
     }

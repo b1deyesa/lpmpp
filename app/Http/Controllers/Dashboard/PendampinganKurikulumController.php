@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\PendampinganKurikulum;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use App\Models\PendampinganKurikulumCategory;
 
 class PendampinganKurikulumController extends Controller
 {
@@ -14,7 +16,8 @@ class PendampinganKurikulumController extends Controller
     public function index()
     {
         return view('dashboard.pendampingan-kurikulum', [
-            'pendampingan_kurikulum' => PendampinganKurikulum::first()
+            'pendampingan_kurikulum_categories' => PendampinganKurikulumCategory::all(),
+            'pendampingan_kurikulums' => PendampinganKurikulum::whereNull('pendampingan_kurikulum_category_id')->get()
         ]);
     }
 
@@ -31,14 +34,7 @@ class PendampinganKurikulumController extends Controller
      */
     public function store(Request $request)
     {
-        PendampinganKurikulum::updateOrCreate(
-            ['id' => 1],
-            [
-                'body' => $request->body
-            ]
-        );
-        
-        return redirect()->route('dashboard.pendampingan-kurikulum.index')->with('success', 'Successfully Update!');
+        // 
     }
 
     /**
@@ -70,13 +66,25 @@ class PendampinganKurikulumController extends Controller
      */
     public function destroy(PendampinganKurikulum $pendampinganKurikulum)
     {
-        //
+        $pendampinganKurikulum->delete();
+        
+        return redirect()->route('dashboard.pendampingan-kurikulum.index')->with('success', 'Successfully deleted!');
     }
     
     public function truncate(Request $request)
     {
+        PendampinganKurikulumCategory::query()->delete();
         PendampinganKurikulum::truncate();
-
         return redirect()->route('dashboard.pendampingan-kurikulum.index')->with('success', 'Successfully deleted all!');
+    }
+
+    public function download(Request $request, PendampinganKurikulum $pk)
+    {
+        if (!Storage::disk('public')->exists($pk->file)) {
+            abort(404, 'File not found.');
+        }
+        $extension = pathinfo($pk->file, PATHINFO_EXTENSION);
+        $filename = str($pk->title)->slug() . '.' . $extension;
+        return Storage::disk('public')->download($pk->file, $filename);
     }
 }

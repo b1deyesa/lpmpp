@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('materi_kegiatans', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('materi_kegiatan_category_id')->nullable()->constrained()->nullOnDelete();
             $table->string('title');
             $table->string('file');
             $table->timestamps();

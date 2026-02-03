@@ -65,7 +65,9 @@ class PusatController extends Controller
      */
     public function destroy(Pusat $pusat)
     {
-        //
+        $pusat->delete();
+        
+        return redirect()->route('dashboard.pusat.index')->with('success', 'Successfully deleted!');
     }
     
     public function truncate(Request $request)

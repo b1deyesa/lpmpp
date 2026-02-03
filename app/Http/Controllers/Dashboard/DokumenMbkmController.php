@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Models\DokumenMbkm;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\DokumenMbkmCategory;
 use Illuminate\Support\Facades\Storage;
 
 class DokumenMbkmController extends Controller
@@ -15,7 +16,8 @@ class DokumenMbkmController extends Controller
     public function index()
     {
         return view('dashboard.dokumen-mbkm', [
-            'dokumen_mbkms' => DokumenMbkm::all()
+            'dokumen_mbkm_categories' => DokumenMbkmCategory::all(),
+            'dokumen_mbkms' => DokumenMbkm::whereNull('dokumen_mbkm_category_id')->get()
         ]);
     }
 
@@ -64,22 +66,19 @@ class DokumenMbkmController extends Controller
      */
     public function destroy(DokumenMbkm $dokumenMbkm)
     {
-        //
+        $dokumenMbkm->delete();
+        
+        return redirect()->route('dashboard.dokumen-mbkm.index')->with('success', 'Successfully deleted!');
     }
 
-    /**
-     * Truncate all records in the table.
-     */
     public function truncate(Request $request)
     {
+        DokumenMbkmCategory::query()->delete();
         DokumenMbkm::truncate();
 
         return redirect()->route('dashboard.dokumen-mbkm.index')->with('success', 'Successfully deleted all!');
     }
 
-    /**
-     * Download a specific file.
-     */
     public function download(Request $request, DokumenMbkm $dokumenMbkm)
     {
         if (!Storage::disk('public')->exists($dokumenMbkm->file)) {
@@ -87,6 +86,7 @@ class DokumenMbkmController extends Controller
         }
 
         $extension = pathinfo($dokumenMbkm->file, PATHINFO_EXTENSION);
+
         $filename = str($dokumenMbkm->title)->slug() . '.' . $extension;
 
         return Storage::disk('public')->download($dokumenMbkm->file, $filename);

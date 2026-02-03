@@ -708,18 +708,6 @@
         section.page {
             display: flex;
             flex-direction: column;
-    
-            .page__row {
-                display: flex;
-                gap: 3em;
-                width: 100%;
-            }
-            
-            .page__col {
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-            }
             
             .page__title {
                 position: relative;
@@ -749,35 +737,15 @@
                     background: linear-gradient(100deg, rgba($color-white, 95%), rgba($color-white, 90%), rgba($color-white, 100%));
     
                     .title {
-                        font-size: 1.8em;
+                        font-size: 1.6em;
                         font-weight: bold;
+                        line-height: 1.5em;
+                        text-align: center;
                         color: $color-1;
                     }
                 }
             }
-
-            .page__header {
-                display: flex;
-                align-items: center;
-                gap: 1em;
-                margin: 2em 0 1em;
-                
-                .header__icon {
-                    font-size: .9em;
-                    color: rgba($color-2, 80%);
-                }
-                
-                .header__title {
-                    @extend %header-1;
-                    font-size: 1.2em;
-                    color: $color-2;
-                }
-                
-                .header__line {
-                    @include line(horizontal);
-                }
-            }
-    
+            
             section:last-child {
                 display: flex;
                 flex-direction: column;
@@ -785,134 +753,1618 @@
                 min-height: 30em;
                 width: 100%;
                 max-width: 1000px;
-                margin: 4em auto;
+                margin: 6em auto;
                 
                 &.sambutan {
-                    flex-direction: row;
-                    align-items: start;
-                    gap: 3em;
+                    @include flex-layout();
                     
                     .sambutan__photo {
-                        object-fit: contain;
                         width: 20em;
                     }
-                }
-    
-                &.struktur-organisasi {
                     
-                    .list {
-                        display: grid;
-                        grid-template-columns: repeat(4, 1fr);
-                        gap: 1.5em;
-
-                        .list__item {
-                            position: relative;
-                            aspect-ratio: 4/4;
-                            width: 100%;
-                            background: linear-gradient(transparent 50%, rgba($color-black, 80%));
-
-                            .item__photo {
-                                position: absolute;
-                                object-fit: cover;
-                                inset: 0;
-                                height: 100%;
+                    .sambutan__content {
+                        @include flex-layout(column, $gap: 1em);
+                    }
+                }
+                &.visi-misi {
+                    @include grid-layout();
+                    
+                    .visi {
+                        @include flex-layout(column, $align: center, $gap: 2em);
+                        
+                        .visi__title {
+                            @extend %header-1;
+                            color: $color-2;
+                        }
+                        
+                        .visi__content {
+                            @include flex-layout(column, $gap: 1em);
+                        }
+                    }
+                    
+                    .misi {
+                        @include flex-layout(column, $align: center, $gap: 2em);
+                        
+                        .misi__title {
+                            @extend %header-1;
+                            color: $color-2;
+                        }
+                        
+                        .misi__content {
+                            @include flex-layout(column, $gap: 1em);
+                        }
+                    }
+                }
+                &.tugas-fungsi {
+                    @include grid-layout();
+                    
+                    .tugas {
+                        @include flex-layout(column, $gap: 2em);
+                        
+                        .tugas__title {
+                            @extend %header-1;
+                            color: $color-2;
+                        }
+                        
+                        .tugas__content {
+                            @include flex-layout(column, $gap: 1em);
+                        }
+                    }
+                    
+                    .fungsi {
+                        @include flex-layout(column);
+                        
+                        .fungsi__title {
+                            @extend %header-1;
+                            color: $color-2;
+                        }
+                        
+                        .fungsi__content {
+                            @include flex-layout(column, $gap: 1em);
+                        }
+                    }
+                }
+                &.sejarah {
+                    @include flex-layout(column);
+                    
+                    .sejarah__content {
+                        @include flex-layout(column, $gap: 1em);
+                    }
+                }
+                &.struktur-organisasi {
+                    @include flex-layout(column);
+                    
+                    .pengelola {
+                        @include flex-layout(column);
+                        
+                        .pengelola__list {
+                            display: grid;
+                            grid-template-columns: repeat(4, 1fr);
+                            gap: 1.5em;
+        
+                            .list__item {
+                                position: relative;
+                                aspect-ratio: 4/4;
                                 width: 100%;
-                                z-index: -1;
-                            }
-
-                            .item__bottom {
-                                position: absolute;
-                                display: flex;
-                                flex-direction: column;
-                                justify-content: end;
-                                inset: 0;
-                                gap: .5em;
-                                height: 100%;
-                                width: 100%;
-                                padding: 1.2em;
-
-                                .item__title {
-                                    font-size: .9em;
-                                    font-weight: 500;
-                                    color: $color-white;
+                                background: linear-gradient(transparent 50%, rgba($color-black, 80%));
+        
+                                .item__photo {
+                                    position: absolute;
+                                    object-fit: cover;
+                                    inset: 0;
+                                    height: 100%;
+                                    width: 100%;
+                                    z-index: -1;
                                 }
-
-                                .item__subtitle {
-                                    font-size: .8em;
-                                    color: rgba($color-white, 60%);
+        
+                                .item__bottom {
+                                    position: absolute;
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: end;
+                                    inset: 0;
+                                    gap: .5em;
+                                    height: 100%;
+                                    width: 100%;
+                                    padding: 1.2em;
+        
+                                    .item__title {
+                                        font-size: .9em;
+                                        font-weight: 500;
+                                        color: $color-white;
+                                    }
+        
+                                    .item__subtitle {
+                                        font-size: .8em;
+                                        color: rgba($color-white, 60%);
+                                    }
                                 }
                             }
                         }
                     }
                 }
-    
-                div.tugas-fungsi {
-                    gap: 3em;
-    
-                    .tugas,
-                    .fungsi {
+                &.renstra {
+                    @include flex-layout(column);
+                    
+                    .renstra__list {
                         display: flex;
                         flex-direction: column;
-                        gap: 1em;
+                        gap: .8em;
                         width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
                     }
                 }
-                
-                blockquote {
-                    font-weight: 400;
-                    margin: 1em 0;
-                    padding: 0 0 0 2em;
-                    border-left: .5em solid darken($color-4, 5%);
+                &.renstra-category {
+                    @include flex-layout(column);
                     
-                    p {
-                        text-align: start;
-                        margin: 0;
+                    .renstra-category__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
                     }
+                }
+                &.laporan {
+                    @include flex-layout(column);
                     
-                    * {
-                        line-height: $line-height-default - .2;
+                    .laporan__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
                     }
                 }
-                
-                .image {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    height: fit-content;
-                    margin: auto;
-                }
-                
-                img {
-                    display: flex;
-                    object-fit: contain;
-                    height: 100%;
-                    width: 100%;
-                    border: .01em solid rgba($color-black, 10%);
-                }
-                
-                ul, ol {
-                    display: flex;
-                    flex-direction: column;
-                    gap: .5em;
-                    margin: .5em 0;
-                    padding: 0 0 0 1.5em;
+                &.laporan-category {
+                    @include flex-layout(column);
                     
-                    li {
-                        padding-left: 1em;
+                    .laporan-category__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
                     }
                 }
-                
-                p, li {
-                    @extend %text;
-                    text-align: justify;
-                    hyphens: auto;
-                    -webkit-hyphens: auto;
-                    -ms-hyphens: auto;
-                    word-break: normal;
+                &.peraturan-perundang-undangan {
+                    @include flex-layout(column);
+                    
+                    .peraturan-perundang-undangan__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
                 }
-                
-                p {
-                    margin: .5em 0;
+                &.peraturan-perundang-undangan-category {
+                    @include flex-layout(column);
+                    
+                    .peraturan-perundang-undangan-category__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.peraturan-rektor {
+                    @include flex-layout(column);
+                    
+                    .peraturan-rektor__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__icon {
+                                    min-height: fit-content;
+                                    padding: 0;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.peraturan-rektor-category {
+                    @include flex-layout(column);
+                    
+                    .peraturan-rektor-category__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.sertifikat {
+                    @include flex-layout(column);
+                    
+                    .sertifikat__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.sertifikat-category {
+                    @include flex-layout(column);
+                    
+                    .sertifikat-category__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.materi-kegiatan {
+                    @include flex-layout(column);
+                    
+                    .materi-kegiatan__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.materi-kegiatan-category {
+                    @include flex-layout(column);
+                    
+                    .materi-kegiatan-category__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.dokumen-kurikulum {
+                    @include flex-layout(column);
+                    
+                    .dokumen-kurikulum__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.dokumen-kurikulum-category {
+                    @include flex-layout(column);
+                    
+                    .dokumen-kurikulum-category__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.dokumen-mbkm {
+                    @include flex-layout(column);
+                    
+                    .dokumen-mbkm__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.dokumen-mbkm-category {
+                    @include flex-layout(column);
+                    
+                    .dokumen-mbkm-category__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.surat-keputusan {
+                    @include flex-layout(column);
+                    
+                    .surat-keputusan__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.surat-keputusan-category {
+                    @include flex-layout(column);
+                    
+                    .surat-keputusan-category__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.dokumen-kurikulum {
+                    @include flex-layout(column);
+                    
+                    .dokumen-kurikulum__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.dokumen-kurikulum-category {
+                    @include flex-layout(column);
+                    
+                    .dokumen-kurikulum-category__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }     
+                &.dokumen-mbkm {
+                    @include flex-layout(column);
+                    
+                    .dokumen-mbkm__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.dokumen-mbkm-category {
+                    @include flex-layout(column);
+                    
+                    .dokumen-mbkm-category__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.pendampingan-akreditasi-nasional {
+                    @include flex-layout(column);
+                    
+                    .pendampingan-akreditasi-nasional__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.pendampingan-akreditasi-nasional-category {
+                    @include flex-layout(column);
+                    
+                    .pendampingan-akreditasi-nasional-category__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.pendampingan-akreditasi-internasional {
+                    @include flex-layout(column);
+                    
+                    .pendampingan-akreditasi-internasional__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.pendampingan-akreditasi-internasional-category {
+                    @include flex-layout(column);
+                    
+                    .pendampingan-akreditasi-internasional-category__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.pendampingan-kurikulum {
+                    @include flex-layout(column);
+                    
+                    .pendampingan-kurikulum__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.pendampingan-kurikulum-category {
+                    @include flex-layout(column);
+                    
+                    .pendampingan-kurikulum-category__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.inovasi-pembelajaran {
+                    @include flex-layout(column);
+                    
+                    .inovasi-pembelajaran__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.inovasi-pembelajaran-category {
+                    @include flex-layout(column);
+                    
+                    .inovasi-pembelajaran-category__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.layanan-bkd {
+                    @include flex-layout(column);
+                    
+                    .layanan-bkd__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.layanan-bkd-category {
+                    @include flex-layout(column);
+                    
+                    .layanan-bkd-category__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.pelatihan {
+                    @include flex-layout(column);
+                    
+                    .pelatihan__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.pelatihan-category {
+                    @include flex-layout(column);
+                    
+                    .pelatihan-category__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.instrumen-akreditasi-nasional {
+                    @include flex-layout(column);
+                    
+                    .instrumen-akreditasi-nasional__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.instrumen-akreditasi-nasional-category {
+                    @include flex-layout(column);
+                    
+                    .instrumen-akreditasi-nasional-category__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.instrumen-akreditasi-internasional {
+                    @include flex-layout(column);
+                    
+                    .instrumen-akreditasi-internasional__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.instrumen-akreditasi-internasional-category {
+                    @include flex-layout(column);
+                    
+                    .instrumen-akreditasi-internasional-category__list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            padding: .8em .8em .8em 1.2em;
+                            background: $color-white;
+                            border: .8px solid rgba($color-black, 20%);
+                            
+                            .item__title {
+                                @extend %text;
+                                color: $color-2;
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .5em;
+                                
+                                .item__download {
+                                    min-height: fit-content;
+                                }
+                                
+                                .item__view {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -1014,7 +2466,7 @@
         height: 100vh;
         width: 100vw;
 
-        section:nth-child(2) {
+        > section:nth-child(2) {
             display: flex;
             flex-direction: column;
             justify-content: start;
@@ -1045,6 +2497,7 @@
             
             .dashboard__title {
                 @extend %header-1;
+                margin: 0 0 1em;
                 color: $color-dark;
             }
             
@@ -1065,6 +2518,100 @@
                 }
             }
             
+            .dashboard__file {
+                display: flex;
+                flex-direction: column;
+                gap: 2em;
+                
+                .file__features {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    
+                    .features__right {
+                        display: flex;
+                        align-items: center;
+                        justify-content: end;
+                        gap: .8em;
+                        width: 100%;
+                        
+                        > .feature__search {
+                            width: 100%;
+                            max-width: 20em;
+                        }
+                    }
+                }
+                
+                .file__list {
+                    display: flex;
+                    flex-direction: column;
+                    border: .4px solid rgba($color-black, 10%);
+                    
+                    > section {
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                        
+                        .list__item {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            text-decoration: none;
+                            width: 100%;
+                            padding: .6em .6em .6em 1.2em;
+                            background: $color-white;
+                            border: .4px solid rgba($color-black, 10%);
+                            
+                            .item__left {
+                                display: flex;
+                                align-items: center;
+                                gap: .5em;
+                                
+                                .item__icon {
+                                    font-size: .85em;
+                                    width: 1.5em;
+                                    color: rgba($color-6, 70%);
+                                }
+                                
+                                .item__title {
+                                    @extend %text;
+                                    color: $color-dark;
+                                }
+                            }
+                            
+                            .item__right {
+                                display: flex;
+                                gap: .4em;
+                                
+                                .button__download {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                    padding: .4em;
+                                    background: $color-info;
+                                    border-color: $color-info;
+                                }
+                                
+                                .button__edit {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                    padding: .4em;
+                                    background: $color-warning;
+                                    border-color: $color-warning;
+                                }
+                                
+                                .button__delete {
+                                    min-height: fit-content;
+                                    min-width: fit-content;
+                                    padding: .4em;
+                                    background: $color-danger;
+                                    border-color: $color-danger;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
             .dashboard__table {
                 display: flex;
                 flex-direction: column;
@@ -1075,8 +2622,10 @@
                     align-items: center;
                     justify-content: end;
                     gap: .8em;
+                    width: 100%;
                     
                     > .feature__search {
+                        width: 100%;
                         max-width: 20em;
                     }
                 }
@@ -1093,7 +2642,6 @@
                     }
                 }
             }
-            
             &.pengelola {
     
                 .table {
@@ -1106,7 +2654,6 @@
                     }
                 }
             }
-            
             &.pusat {
                 
                 .table {
@@ -1119,7 +2666,6 @@
                     }
                 }
             }
-            
             &.portal {
                 
                 .form {
@@ -1172,7 +2718,6 @@
                     }
                 }
             }
-            
             &.survey-form {
                 
                 .form {
@@ -1200,7 +2745,6 @@
                     }
                 }
             }
-            
             &.website {
                 
                 .form {

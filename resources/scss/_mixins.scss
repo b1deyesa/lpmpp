@@ -5,10 +5,8 @@
  |  Line
  | ---------------------------------
  */
-    @mixin line(
-        $direction: vertical, 
-        $color: dark
-    ) {
+    @mixin line($direction: vertical, $color: dark)
+    {
         margin: 0;
         border: .5px solid
             if($color == light, rgba($color-light, 10%), rgba($color-dark, 10%));
@@ -18,5 +16,32 @@
             height: 0;
         } @else {
             height: 100%;
+        }
+    }
+/* 
+ | ---------------------------------
+ |  Layout
+ | ---------------------------------
+ */
+    @mixin flex-layout($direction: row, $align: start, $justify: start, $gap: 3em) 
+    {
+        display: flex;
+        flex-direction: $direction;
+        align-items: $align;
+        justify-content: $justify;
+        gap: $gap;
+        width: 100%;
+    }
+    
+    @mixin grid-layout($column: null, $gap: 3em) 
+    {
+        display: grid;
+        gap: $gap;
+        
+        @if $column {
+            grid-template-columns: repeat($column, 1fr);
+        } @else {
+            grid-auto-flow: column;
+            grid-auto-columns: 1fr;
         }
     }

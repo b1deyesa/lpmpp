@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
 use App\Models\PendampinganAkreditasiNasional;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\PendampinganAkreditasiNasionalCategory;
+use Illuminate\Support\Facades\Storage;
 
 class PendampinganAkreditasiNasionalController extends Controller
 {
@@ -14,7 +16,8 @@ class PendampinganAkreditasiNasionalController extends Controller
     public function index()
     {
         return view('dashboard.pendampingan-akreditasi-nasional', [
-            'pendampingan_akreditasi_nasional' => PendampinganAkreditasiNasional::first()
+            'pendampingan_akreditasi_nasional_categories' => PendampinganAkreditasiNasionalCategory::all(),
+            'pendampingan_akreditasi_nasionals' => PendampinganAkreditasiNasional::whereNull('pendampingan_akreditasi_nasional_category_id')->get()
         ]);
     }
 
@@ -31,14 +34,7 @@ class PendampinganAkreditasiNasionalController extends Controller
      */
     public function store(Request $request)
     {
-        PendampinganAkreditasiNasional::updateOrCreate(
-            ['id' => 1],
-            [
-                'body' => $request->body
-            ]
-        );
-        
-        return redirect()->route('dashboard.pendampingan-akreditasi-nasional.index')->with('success', 'Successfully Update!');
+        //
     }
 
     /**
@@ -70,13 +66,29 @@ class PendampinganAkreditasiNasionalController extends Controller
      */
     public function destroy(PendampinganAkreditasiNasional $pendampinganAkreditasiNasional)
     {
-        //
+        $pendampinganAkreditasiNasional->delete();
+        
+        return redirect()->route('dashboard.pendampingan-akreditasi-nasional.index')->with('success', 'Successfully deleted!');
     }
-    
+
     public function truncate(Request $request)
     {
+        PendampinganAkreditasiNasionalCategory::query()->delete();
         PendampinganAkreditasiNasional::truncate();
 
         return redirect()->route('dashboard.pendampingan-akreditasi-nasional.index')->with('success', 'Successfully deleted all!');
+    }
+
+    public function download(Request $request, PendampinganAkreditasiNasional $pan)
+    {
+        if (!Storage::disk('public')->exists($pan->file)) {
+            abort(404, 'File not found.');
+        }
+
+        $extension = pathinfo($pan->file, PATHINFO_EXTENSION);
+
+        $filename = str($pan->title)->slug() . '.' . $extension;
+
+        return Storage::disk('public')->download($pan->file, $filename);
     }
 }

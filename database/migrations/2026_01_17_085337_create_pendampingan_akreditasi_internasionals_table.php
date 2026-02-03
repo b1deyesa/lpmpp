@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('pendampingan_akreditasi_internasionals', function (Blueprint $table) {
             $table->id();
-            $table->text('body')->nullable();
+            $table->unsignedBigInteger('pendampingan_akreditasi_internasional_category_id')->nullable();
+            $table->foreign('pendampingan_akreditasi_internasional_category_id', 'pai_cat_fk')->references('id')->on('pendampingan_akreditasi_internasional_categories')->nullOnDelete();
+            $table->string('title');
+            $table->string('file');
             $table->timestamps();
         });
     }

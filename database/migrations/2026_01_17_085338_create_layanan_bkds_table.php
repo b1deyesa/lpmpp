@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('layanan_bkds', function (Blueprint $table) {
             $table->id();
-            $table->text('body')->nullable();
+            $table->foreignId('layanan_bkd_category_id')->nullable()->constrained()->nullOnDelete();
+            $table->string('title');
+            $table->string('file');
             $table->timestamps();
         });
     }

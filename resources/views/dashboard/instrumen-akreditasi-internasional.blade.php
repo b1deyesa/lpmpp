@@ -1,63 +1,96 @@
 <x-layout.dashboard class="instrumen-akreditasi-internasional">
-
+    
     {{-- Title --}}
     <h1 class="dashboard__title">Instrumen Akreditasi Internasional</h1>
-
+    
     {{-- Table --}}
-    <div class="dashboard__table" x-data="{ search: '', highlight(text) { if (!this.search) return text; const keyword = this.search.toLowerCase(); const source  = text.toLowerCase(); let result = ''; let i = 0; while (i < text.length) { const index = source.indexOf(keyword, i); if (index === -1) { result += text.slice(i); break; } result += text.slice(i, index); result += `<mark>${text.slice(index, index + this.search.length)}</mark>`; i = index + this.search.length; } return result; } }">
-
+    <div class="dashboard__file" x-data="{ search: '', highlight(text) { if (!this.search) return text; const keyword = this.search.toLowerCase(); const source  = text.toLowerCase(); let result = ''; let i = 0; while (i < text.length) { const index = source.indexOf(keyword, i); if (index === -1) { result += text.slice(i); break; } result += text.slice(i, index); result += `<mark>${text.slice(index, index + this.search.length)}</mark>`; i = index + this.search.length; } return result; } }">
+    
         {{-- Features --}}
-        <div class="table__features">
-            <x-input type="search" class="feature__search" placeholder="Search here..." x-model="search" />
-            <x-modal>
-                <x-slot:trigger>
-                    <x-button class="button__outline">Reset All</x-button>
-                </x-slot:trigger>
-                <p>Are you sure you want to reset?</p>
-                <x-form action="{{ route('dashboard.instrumen-akreditasi-internasional.truncate') }}" method="POST">
-                    <x-slot:bottom>
-                        <x-button type="button" class="button__outline" onclick="window.location.reload()">Cancel</x-button>
-                        <x-button type="submit">Reset</x-button>
-                    </x-slot:bottom>
-                </x-form>
-            </x-modal>
-            @livewire('dashboard.instrumen-akreditasi-internasional.create')
+        <div class="file__features">
+            @livewire('dashboard.instrumen-akreditasi-internasional-category.create')
+            <div class="features__right">
+                <x-input type="search" class="feature__search" placeholder="Search here..." x-model="search" />
+                <x-modal>
+                    <x-slot:trigger>
+                        <x-button class="button__outline">Reset All</x-button>
+                    </x-slot:trigger>
+                    <p>Are you sure you want to reset?</p>
+                    <x-form action="{{ route('dashboard.instrumen-akreditasi-internasional.truncate') }}" method="POST">
+                        <x-slot:bottom>
+                            <x-button type="button" class="button__outline" onclick="window.location.reload()">Cancel</x-button>
+                            <x-button type="submit">Reset</x-button>
+                        </x-slot:bottom>
+                    </x-form>
+                </x-modal>
+                @livewire('dashboard.instrumen-akreditasi-internasional.create')
+            </div>
         </div>
-
-        {{-- Table --}}
-        <x-table>
-            <x-slot:head>
-                <th>Judul</th>
-                <th>File</th>
-            </x-slot:head>
-
-            <x-slot:body>
-                @forelse ($instrumen_akreditasi_internasionals ?? [] as $instrumenAkreditasiInternasional)
-                    @php
-                        $searchable = strtolower(
-                            implode(' ', [
-                                $instrumenAkreditasiInternasional->title,
-                                $instrumenAkreditasiInternasional->file
-                            ])
-                        );
-                    @endphp
-
-                    <tr x-show="search === '' || '{{ $searchable }}'.includes(search.toLowerCase())">
-                        <td x-html="highlight('{{ addslashes($instrumenAkreditasiInternasional->title) }}')"></td>
-                        <td width="1%">
-                            <div class="table__action">
-                                <x-button type="link" href="{{ route('dashboard.instrumen-akreditasi-internasional.download', compact('instrumenAkreditasiInternasional')) }}" class="button__info"><i class="fa-solid fa-download"></i>Download</x-button>
+        
+        {{-- List --}}
+        @if (count($instrumen_akreditasi_internasional_categories) > 0 || count($instrumen_akreditasi_internasionals) > 0)
+            <div class="file__list">
+                
+                {{-- Category --}}
+                <section>
+                    @foreach ($instrumen_akreditasi_internasional_categories as $instrumen_akreditasi_internasional_category)
+                        @php
+                            $searchable = strtolower(
+                                implode(' ', [
+                                    $instrumen_akreditasi_internasional_category->title
+                                ])
+                            );
+                        @endphp
+                        <a href="{{ route('dashboard.instrumen-akreditasi-internasional-category.show', ['iaiCategory' => $instrumen_akreditasi_internasional_category]) }}" class="list__item" x-show="search === '' || '{{ $searchable }}'.includes(search.toLowerCase())">
+                            <div class="item__left">
+                                <i class="item__icon fa-regular fa-folder-open"></i>
+                                <h3 class="item__title" x-html="highlight('{{ addslashes($instrumen_akreditasi_internasional_category->title) }}')"></h3>
                             </div>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="999" class="table__empty">No content available</td>
-                    </tr>
-                @endforelse
-            </x-slot:body>
-        </x-table>
-
+                        </a>
+                    @endforeach
+                </section>
+                
+                {{-- Item --}}
+                <section>
+                    @foreach ($instrumen_akreditasi_internasionals as $instrumen_akreditasi_internasional)
+                        @php
+                            $searchable = strtolower(
+                                implode(' ', [
+                                    $instrumen_akreditasi_internasional->title,
+                                    $instrumen_akreditasi_internasional->file
+                                ])
+                            );
+                        @endphp
+                        <div class="list__item" x-show="search === '' || '{{ $searchable }}'.includes(search.toLowerCase())">
+                            <div class="item__left">
+                                <i class="item__icon fa-regular fa-file-lines"></i>
+                                <h3 class="item__title" x-html="highlight('{{ addslashes($instrumen_akreditasi_internasional->title) }}')"></h3>
+                            </div>
+                            <div class="item__right">
+                                <x-button type="link" href="{{ route('dashboard.instrumen-akreditasi-internasional.download', ['iai' => $instrumen_akreditasi_internasional]) }}" class="button__download"><i class="fa-solid fa-download"></i></x-button>
+                                @livewire('dashboard.instrumen-akreditasi-internasional.edit', compact('instrumen_akreditasi_internasional'), key($instrumen_akreditasi_internasional->id))
+                                <x-modal>
+                                    <x-slot:trigger>
+                                        <x-button class="button__delete"><i class="fa-solid fa-trash"></i></x-button>
+                                    </x-slot:trigger>
+                                    <p>Are you sure you want to delete it?</p>
+                                    <x-form action="{{ route('dashboard.instrumen-akreditasi-internasional.destroy', ['iai' => $instrumen_akreditasi_internasional]) }}" method="DELETE">
+                                        <x-slot:bottom>
+                                            <x-button type="button" class="button__outline" onclick="window.location.reload()">Cancel</x-button>
+                                            <x-button type="submit">Delete</x-button>
+                                        </x-slot:bottom>
+                                    </x-form>
+                                </x-modal>
+                            </div>
+                        </div>
+                    @endforeach
+                </section>
+                
+            </div>
+        @else
+            <small class="empty">No content available</small>
+        @endif
+        
     </div>
-
+    
 </x-layout.dashboard>

@@ -1,11 +1,16 @@
 <x-layout.page title="Laporan" background="assets/img/default.jpg" class="laporan">
     
-    {{-- Photo --}}
-    <img src="{{ asset('storage/'.($sambutan?->photo ?? '')) ?: asset('assets/img/default.jpg') }}" alt="Foto Ketua" class="sambutan__photo">    
-    
-    {{-- Body --}}
-    <div class="sambutan__body">
-        {!! $sambutan->body ?? null !!}
+    {{-- List --}}
+    <div class="laporan__list">
+        @foreach ($laporans as $laporan)
+            <div class="list__item">
+                <h3 class="item__title">{{ $laporan->title }}</h3>
+                <div class="item__right">
+                    <x-button type="link" href="{{ route('guest.laporan.download', compact('laporan')) }}" class="button__outline item__download"><i class="fa-solid fa-download"></i>Download</x-button>
+                    <x-button class="item__view"><i class="fa-solid fa-eye"></i></x-button>
+                </div>
+            </div>
+        @endforeach
     </div>
-        
+
 </x-layout.page>

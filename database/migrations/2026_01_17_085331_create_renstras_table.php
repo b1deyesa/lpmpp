@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('renstras', function (Blueprint $table) {
             $table->id();
-            $table->text('body')->nullable();
+            $table->foreignId('renstra_category_id')->nullable()->constrained()->nullOnDelete();
+            $table->string('title');
+            $table->string('file');
             $table->timestamps();
         });
     }

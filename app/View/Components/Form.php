@@ -8,7 +8,7 @@ use Illuminate\View\Component;
 
 class Form extends Component
 {
-    public $method_name;
+    public $method_name = null;
     
     /**
      * Create a new component instance.
@@ -31,12 +31,12 @@ class Form extends Component
         if ($method == 'PUT') {
             $this->method = 'POST';
             $this->method_name = 'PUT';
-        } elseif ($method == 'DETELE') {
+        } elseif ($method == 'DELETE') {
             $this->method = 'POST';
             $this->method_name = 'DELETE';
         } else {
             $this->method = $method;
-        }
+        }        
     }
 
     /**

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('laporans', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('laporan_category_id')->nullable()->constrained('laporan_categories')->cascadeOnUpdate()->nullOnDelete();
             $table->string('title');
             $table->string('file');
             $table->timestamps();

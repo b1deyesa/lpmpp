@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
-use App\Models\InovasiPembelajaran;
 use Illuminate\Http\Request;
+use App\Models\InovasiPembelajaran;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use App\Models\InovasiPembelajaranCategory;
 
 class InovasiPembelajaranController extends Controller
 {
@@ -14,7 +16,8 @@ class InovasiPembelajaranController extends Controller
     public function index()
     {
         return view('dashboard.inovasi-pembelajaran', [
-            'inovasi_pembelajaran' => InovasiPembelajaran::first()
+            'inovasi_pembelajaran_categories' => InovasiPembelajaranCategory::all(),
+            'inovasi_pembelajarans' => InovasiPembelajaran::whereNull('inovasi_pembelajaran_category_id')->get()
         ]);
     }
 
@@ -31,14 +34,7 @@ class InovasiPembelajaranController extends Controller
      */
     public function store(Request $request)
     {
-        InovasiPembelajaran::updateOrCreate(
-            ['id' => 1],
-            [
-                'body' => $request->body
-            ]
-        );
-        
-        return redirect()->route('dashboard.inovasi-pembelajaran.index')->with('success', 'Successfully Update!');
+        // 
     }
 
     /**
@@ -70,13 +66,26 @@ class InovasiPembelajaranController extends Controller
      */
     public function destroy(InovasiPembelajaran $inovasiPembelajaran)
     {
-        //
+        $inovasiPembelajaran->delete();
+        
+        return redirect()->route('dashboard.inovasi-pembelajaran.index')->with('success', 'Successfully deleted!');
     }
     
     public function truncate(Request $request)
     {
+        InovasiPembelajaranCategory::query()->delete();
         InovasiPembelajaran::truncate();
-
+        
         return redirect()->route('dashboard.inovasi-pembelajaran.index')->with('success', 'Successfully deleted all!');
+    }
+    
+    public function download(Request $request, InovasiPembelajaran $inovasiPembelajaran)
+    {
+        if (!Storage::disk('public')->exists($inovasiPembelajaran->file)) {
+            abort(404, 'File not found.');
+        }
+        $extension = pathinfo($inovasiPembelajaran->file, PATHINFO_EXTENSION);
+        $filename = str($inovasiPembelajaran->title)->slug() . '.' . $extension;
+        return Storage::disk('public')->download($inovasiPembelajaran->file, $filename);
     }
 }

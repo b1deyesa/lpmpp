@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
 use App\Models\Renstra;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\RenstraCategory;
+use Illuminate\Support\Facades\Storage;
 
 class RenstraController extends Controller
 {
@@ -14,7 +16,8 @@ class RenstraController extends Controller
     public function index()
     {
         return view('dashboard.renstra', [
-            'renstra' => Renstra::first()
+            'renstra_categories' => RenstraCategory::all(),
+            'renstras' => Renstra::whereNull('renstra_category_id')->get()
         ]);
     }
 
@@ -31,14 +34,7 @@ class RenstraController extends Controller
      */
     public function store(Request $request)
     {
-        Renstra::updateOrCreate(
-            ['id' => 1],
-            [
-                'body' => $request->body
-            ]
-        );
-        
-        return redirect()->route('dashboard.renstra.index')->with('success', 'Successfully Update!');
+        //
     }
 
     /**
@@ -70,13 +66,29 @@ class RenstraController extends Controller
      */
     public function destroy(Renstra $renstra)
     {
-        //
+        $renstra->delete();
+        
+        return redirect()->route('dashboard.renstra.index')->with('success', 'Successfully deleted!');
     }
-    
+
     public function truncate(Request $request)
     {
+        RenstraCategory::query()->delete();
         Renstra::truncate();
 
         return redirect()->route('dashboard.renstra.index')->with('success', 'Successfully deleted all!');
+    }
+
+    public function download(Request $request, Renstra $renstra)
+    {
+        if (!Storage::disk('public')->exists($renstra->file)) {
+            abort(404, 'File not found.');
+        }
+
+        $extension = pathinfo($renstra->file, PATHINFO_EXTENSION);
+
+        $filename = str($renstra->title)->slug() . '.' . $extension;
+
+        return Storage::disk('public')->download($renstra->file, $filename);
     }
 }

@@ -31,7 +31,7 @@ class HomeController extends Controller
             ]);    
         }
         
-        return view('guest.soft-launching');
+        // return view('guest.soft-launching');
         return view('guest.maintenance');
     }
 }
