@@ -15,6 +15,6 @@
     <x-alert />
     
     {{-- Loading --}}
-    {{-- <x-loading /> --}}
+    <x-loading />
     
 </x-layout.app>
