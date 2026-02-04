@@ -16,6 +16,8 @@
         {{-- Menu --}}
         <div class="menu">
             
+            <a href="{{ route('dashboard.home') }}" class="menu__item {{ request()->routeIs('dashboard.home') ? 'active' : '' }}">Home</a>
+            
             {{-- Profil --}}
             @role('admin', 'superadmin')
                 <div class="menu__dropdown">
