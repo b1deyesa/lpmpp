@@ -17,6 +17,8 @@ class Dashboard extends Component
     public function __construct()
     {
         $this->pusats = Pusat::all();
+        
+        dd($this->pusats);
     }
 
     /**
