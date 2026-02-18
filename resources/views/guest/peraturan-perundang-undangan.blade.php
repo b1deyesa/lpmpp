@@ -7,7 +7,7 @@
                 <h3 class="item__title">{{ $peraturan_perundang_undangan->title }}</h3>
                 <div class="item__right">
                     <x-button type="link" href="{{ route('guest.peraturan-perundang-undangan.download', ['peraturanPerundangUndangan' => $peraturan_perundang_undangan]) }}" class="button__outline item__download"><i class="fa-solid fa-download"></i>Download</x-button>
-                    <x-button class="item__view"><i class="fa-solid fa-eye"></i></x-button>
+                    <x-button type="link" href="{{ asset('storage/'. $peraturan_perundang_undangan->file) }}" class="item__view"><i class="fa-solid fa-eye"></i></x-button>
                 </div>
             </div>
         @endforeach
