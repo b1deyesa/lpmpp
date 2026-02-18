@@ -397,7 +397,8 @@
                 </div>
             @endif
             @break
-            @case('file')
+        @default
+            @if ($type == 'file' && $wire)
                 <div class="file__upload" x-data="{ uploading: false, progress: 0 }" x-on:livewire-upload-start="uploading = true; $dispatch('disable-actions', true)" x-on:livewire-upload-finish="uploading = false; progress = 0; $dispatch('disable-actions', false)" x-on:livewire-upload-error="uploading = false; $dispatch('disable-actions', false)" x-on:livewire-upload-progress="progress = $event.detail.progress" style="margin-bottom: 15px;">
                     <input 
                         type="file"
@@ -408,27 +409,24 @@
                         {{ $attributes }}
                     >
                     <div x-show="uploading" style="display: none;">
-                        <div style="width: 100%; background: #e9ecef; height: 10px; border-radius: 5px; overflow: hidden; margin-bottom: .3em;">
-                            <div style="background: #007bff; height: 100%; transition: width 0.3s;" :style="`width: ${progress}%`"></div>
-                        </div>
                         <small class="text-muted" style="font-size: .8em; opacity: 50% !important;">Upload: <span x-text="progress"></span>%</small>
                     </div>
                 </div>
-                @break
-        @default
-            <input 
-                type="{{ $type }}"
-                value="{{ old($name, $value) }}"
-                id="{{ $id }}"
-                @if($wire) wire:model.live="{{ $wire }}" @endif
-                @if($name) name="{{ $name }}" @endif
-                @if($placeholder) placeholder="{{ $placeholder }}" @endif
-                @required($required)
-                autocomplete="off"
-                class="@error($name) error @enderror"
-                autofocus
-                {{ $attributes }}
-                >
+            @else
+                <input 
+                    type="{{ $type }}"
+                    value="{{ old($name, $value) }}"
+                    id="{{ $id }}"
+                    @if($wire) wire:model.live="{{ $wire }}" @endif
+                    @if($name) name="{{ $name }}" @endif
+                    @if($placeholder) placeholder="{{ $placeholder }}" @endif
+                    @required($required)
+                    autocomplete="off"
+                    class="@error($name) error @enderror"
+                    autofocus
+                    {{ $attributes }}
+                    >
+            @endif
     @endswitch
     
     {{-- Error --}}
