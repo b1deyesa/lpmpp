@@ -11,7 +11,7 @@
             x-data="{ isUploading: false }" 
             x-on:disable-actions.window="isUploading = $event.detail"
             x-bind:disabled="isUploading"
-            x-bind:class="{ 'opacity-50 cursor-not-allowed': isUploading }"
+            x-bind:class="{ 'upload': isUploading }"
             {{ $attributes }}
             >{{ $slot }}</button>
 @endswitch
