@@ -24,7 +24,7 @@
     {{-- Navigation --}}
     <nav class="navigation">
         <div class="navigation__container">
-                
+                            
             {{-- Banner --}}
             <a href="{{ route('guest.home') }}" class="banner">
                 <div class="banner__left">
@@ -39,6 +39,9 @@
             
             {{-- Manu --}}
             <div class="menu">
+                
+                {{-- Home --}}
+                <a href="{{ route('guest.home') }}" class="menu__item">Home</a>
                 
                 {{-- Profil --}}
                 <div class="menu__dropdown">

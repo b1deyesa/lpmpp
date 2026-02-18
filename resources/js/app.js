@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const toolbarType = el.dataset.toolbar || 'basic';
 
             CKEDITOR.ClassicEditor.create(el, {
-                licenseKey: 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NzAzMzU5OTksImp0aSI6IjA2NWY5OTkwLTg4Y2UtNGM5Zi05ZTEwLTMzMDA1YzZlZDk3MSIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6IjIxY2E4NWJlIn0.JWnrCEU9BpDYH2cJA-Tf1i6Rar_QuQdcGBguEv6sMzi-VSihOLYhvukDPQhyWVcYxf8l13ve2Y0qD6HtCG9BHw',
+                licenseKey: 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NzI2Njg3OTksImp0aSI6IjRkOGVmNjdhLTQ5NGEtNDE3Ni04MzY3LTMwZDhhNzdiY2RmZiIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6IjI2N2ViMzk5In0.a0_QFOLebXKalY3zVr_3Bjf528rRBi2byiIXZffAGbHCFn0UH-IZFILMAIccidFN6iKv-MfBamOuDmm_lYk1sQ',
 
                 plugins: [
                     CKEDITOR.Essentials,

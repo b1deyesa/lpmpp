@@ -383,6 +383,18 @@
             background: #dbf6db;
         }
         
+        .file__upload {
+            display: flex;
+            flex-direction: column;
+            gap: .5em;
+            
+            .uploading {
+                display: flex;
+                flex-direction: column;
+                gap: .5em;
+            }
+        }
+        
         &:has(.editor),
         &:has(textarea) {
             height: 100%;
